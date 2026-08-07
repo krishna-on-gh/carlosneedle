@@ -80,12 +80,12 @@ def _weighted_recent(polls, as_of_date, window_days, col):
     return float(np.average(recent[col], weights=recent["weight"]))
 
 
-def rolling_average(polls, as_of_date, window_days=30):
+def rolling_average(polls, as_of_date, window_days=21):
     """LV/RV-weighted rolling avg of margin over the last `window_days`."""
     return _weighted_recent(polls, as_of_date, window_days, "margin_r")
 
 
-def projected_gcb(polls, as_of_date=None, window_days=30,
+def projected_gcb(polls, as_of_date=None, window_days=21,
                   d_share=UNDECIDED_TO_D, r_share=UNDECIDED_TO_R):
     """
     Project the GCB by splitting undecideds `d_share`/`r_share`.
@@ -116,7 +116,7 @@ def projected_gcb(polls, as_of_date=None, window_days=30,
     }
 
 
-def projected_swing(polls, reference=REFERENCE_2024, window_days=30,
+def projected_swing(polls, reference=REFERENCE_2024, window_days=21,
                     d_share=UNDECIDED_TO_D, r_share=UNDECIDED_TO_R):
     """Poll-derived expected_swing using the *projected* GCB."""
     p = projected_gcb(polls, window_days=window_days,
@@ -126,7 +126,7 @@ def projected_swing(polls, reference=REFERENCE_2024, window_days=30,
     return p["proj_margin_r"] - reference
 
 
-def fever_series(polls, window_days=30):
+def fever_series(polls, window_days=21):
     """Rolling avg per day for each day in the polls range. Returns DataFrame."""
     if len(polls) == 0:
         return pd.DataFrame(columns=["date", "avg"])
@@ -138,7 +138,7 @@ def fever_series(polls, window_days=30):
 
 
 # ── Model integration ────────────────────────────────────────────────────────
-def poll_derived_swing(polls, reference=REFERENCE_2024, window_days=30):
+def poll_derived_swing(polls, reference=REFERENCE_2024, window_days=21):
     """
     Convert current poll aggregate into an `expected_swing` value
     (R+ convention). Formula: current_avg - 2024_reference.
@@ -152,7 +152,7 @@ def poll_derived_swing(polls, reference=REFERENCE_2024, window_days=30):
     return avg - reference
 
 
-def summary(polls, window_days=30):
+def summary(polls, window_days=21):
     """Compact summary dict for display."""
     if len(polls) == 0:
         return {

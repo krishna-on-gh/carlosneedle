@@ -131,7 +131,7 @@ st.markdown(
 
 # ── Load polls & compute poll-derived swing ──────────────────────────────────
 polls_df = load_polls(POLLS_CSV)
-poll_summary_d = poll_summary(polls_df, window_days=30)
+poll_summary_d = poll_summary(polls_df, window_days=21)
 poll_swing_raw = poll_summary_d.get("swing")
 poll_swing_proj = poll_summary_d.get("projected_swing")
 
@@ -178,7 +178,7 @@ results["flip"] = results.apply(flip_label, axis=1)
 # SHARED COMPONENTS
 # ═════════════════════════════════════════════════════════════════════════════
 def chamber_card(office, sub, small=False):
-    """Card showing R/D/Tossup/Flip counts for one office."""
+    """Card showing R/D/Tossup/Flip counts for one office (2x2 grid)."""
     r_wins  = int((sub["predicted_winner"] == "R").sum())
     d_wins  = int(len(sub) - r_wins)
     tossups = int(((sub["win_prob_R"] > 0.40) & (sub["win_prob_R"] < 0.60)).sum())
@@ -186,11 +186,14 @@ def chamber_card(office, sub, small=False):
     d_flips = int((sub["flip"] == "R→D").sum())
 
     st.markdown(f"### {office}")
-    c1, c2, c3, c4 = st.columns(4)
+    # Row 1: R wins / D wins
+    c1, c2 = st.columns(2)
     c1.metric("R wins", r_wins)
     c2.metric("D wins", d_wins)
+    # Row 2: Tossups / Flips
+    c3, c4 = st.columns(2)
     c3.metric("Tossups", tossups)
-    c4.metric("Flips (D↔R)", f"{d_flips}D / {r_flips}R",
+    c4.metric("Flips", f"{d_flips}D / {r_flips}R",
               help="R→D pickups on the D side, D→R pickups on the R side")
     st.caption(f"{len(sub)} races modeled")
 
@@ -403,7 +406,7 @@ with tab_home:
     st.markdown(
         "<div style='color:#6a6a6a; margin-top:-8px;'>"
         "Manually-entered generic-ballot polls, weighted <b>60% LV / 40% RV</b>, "
-        "rolling 30-day average. Toggle the switch to feed the poll-derived swing "
+        "rolling 21-day average. Toggle the switch to feed the poll-derived swing "
         "into the model instead of the CSV's default."
         "</div>",
         unsafe_allow_html=True,
@@ -417,7 +420,7 @@ with tab_home:
             avg_val = poll_summary_d["current_avg"]
             party = "D" if avg_val < 0 else "R"
             label = f"{party}+{abs(avg_val):.1f}"
-            st.metric("Raw polling average (30d)", label,
+            st.metric("Raw polling average (21d)", label,
                       help="LV/RV-weighted rolling average of margin. Negative = D lead.")
             if poll_swing_raw is not None:
                 s_party = "D" if poll_swing_raw < 0 else "R"
@@ -426,7 +429,7 @@ with tab_home:
                     f"(2024 reference: R+{REFERENCE_2024:.2f})"
                 )
         else:
-            st.metric("Raw polling average (30d)", "—")
+            st.metric("Raw polling average (21d)", "—")
             st.caption("Add polls below.")
 
     with ag2:
@@ -464,7 +467,7 @@ with tab_home:
     )
 
     # Fever chart
-    fever = fever_series(polls_df, window_days=30)
+    fever = fever_series(polls_df, window_days=21)
     if len(fever) >= 2:
         fig = go.Figure()
         fig.add_trace(go.Scatter(
@@ -472,12 +475,12 @@ with tab_home:
             mode="lines", line=dict(width=3, color="#333"),
             fill="tozeroy",
             hovertemplate="%{x|%b %d}: %{y:+.2f}<extra></extra>",
-            name="30d avg",
+            name="21d avg",
         ))
         fig.add_hline(y=0, line_dash="dash", line_color="black", line_width=1,
                       annotation_text="Tie", annotation_position="top right")
         fig.update_layout(
-            title="Generic ballot — 30-day rolling average (R+ scale)",
+            title="Generic ballot — 21-day rolling average (R+ scale)",
             xaxis_title="",
             yaxis_title="Margin (R − D)",
             height=280,
