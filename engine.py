@@ -90,13 +90,20 @@ def _run_one(baseline, swing, swing_unc, scandal, incumbency, quality, spending,
 
 
 # ── Public API ───────────────────────────────────────────────────────────────
-def simulate_races(df, swing_shift=0.0, n_sims=N_SIMS_DEFAULT, seed=SEED_DEFAULT):
+def simulate_races(df, override_national_swing=None, csv_national_swing=-9.65,
+                   n_sims=N_SIMS_DEFAULT, seed=SEED_DEFAULT):
     """
     Run Monte Carlo for every race in df.
 
     Args:
         df: DataFrame from races_2026.csv
-        swing_shift: added to each race's expected_swing (for scenario testing)
+        override_national_swing: if set, replaces the CSV's implied national
+            swing (default -9.65). Per-race swings are scaled proportionally so
+            dampening ratios are preserved (e.g., a CSV race with -3.86 stays
+            at 2.5x dampening = override / 2.5).
+        csv_national_swing: the CSV's reference "full" swing (default -9.65).
+            Used only to compute the dampening ratio; any race whose CSV swing
+            equals this value gets the full override.
         n_sims: sims per race
         seed: RNG seed for reproducibility
 
@@ -119,7 +126,14 @@ def simulate_races(df, swing_shift=0.0, n_sims=N_SIMS_DEFAULT, seed=SEED_DEFAULT
             skipped.append((row.get("race_id"), blend_info))
             continue
 
-        swing      = _to_float(row.get("expected_swing")) + swing_shift
+        csv_swing = _to_float(row.get("expected_swing"))
+        if override_national_swing is None or csv_national_swing == 0:
+            swing = csv_swing
+        else:
+            # Preserve per-race dampening ratio: race_swing = override * (csv_race / csv_national)
+            ratio = csv_swing / csv_national_swing
+            swing = override_national_swing * ratio
+
         scandal    = _to_float(row.get("scandal"))
         incumbency = _to_float(row.get("incumbency_factor"))
         quality    = _to_float(row.get("candidate_quality"))

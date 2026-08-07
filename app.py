@@ -88,11 +88,16 @@ def _file_mtime(path):
 
 
 @st.cache_data(show_spinner="Running Monte Carlo…")
-def run_engine(csv_path, swing_shift, seed, _mtime):
+def run_engine(csv_path, override_national_swing, csv_national_swing, seed, _mtime):
     """`_mtime` is unused inside, but including it in the signature causes the
     cache to invalidate whenever the CSV file is edited."""
     df = pd.read_csv(csv_path)
-    results, _ = simulate_races(df, swing_shift=swing_shift, seed=seed)
+    results, _ = simulate_races(
+        df,
+        override_national_swing=override_national_swing,
+        csv_national_swing=csv_national_swing,
+        seed=seed,
+    )
     return results
 
 
@@ -169,14 +174,13 @@ poll_swing_raw = poll_summary_d.get("swing")
 poll_swing_proj = poll_summary_d.get("projected_swing")
 
 # Always use the projected poll-derived swing (if polls exist)
+# Per-race dampening ratios are preserved by the engine.
 use_polls = True
-if poll_swing_proj is not None:
-    swing_shift = poll_swing_proj - CSV_NATIONAL_SWING
-else:
-    swing_shift = 0.0
+override_national = poll_swing_proj if poll_swing_proj is not None else None
+effective_national = override_national if override_national is not None else CSV_NATIONAL_SWING
 
 # ── Run engine ───────────────────────────────────────────────────────────────
-results = run_engine(CSV_PATH, swing_shift, seed, _file_mtime(CSV_PATH))
+results = run_engine(CSV_PATH, override_national, CSV_NATIONAL_SWING, seed, _file_mtime(CSV_PATH))
 results["rating"] = results["win_prob_R"].apply(rating)
 
 
@@ -365,7 +369,13 @@ def race_detail(sub_results, office_label):
         row_input = input_df[input_df["race_id"] == picked].iloc[0]
         settings = OFFICE_SETTINGS[r["office"]]
         baseline, swing_unc, _ = _baseline_and_unc(row_input, settings)
-        swing = _to_float(row_input["expected_swing"]) + swing_shift
+        # Match the engine: preserve per-race dampening ratio when overriding
+        csv_swing_val = _to_float(row_input["expected_swing"])
+        if override_national is not None and CSV_NATIONAL_SWING != 0:
+            ratio = csv_swing_val / CSV_NATIONAL_SWING
+            swing = override_national * ratio
+        else:
+            swing = csv_swing_val
         scandal    = _to_float(row_input["scandal"])
         incumbency = _to_float(row_input["incumbency_factor"])
         quality    = _to_float(row_input["candidate_quality"])
@@ -525,13 +535,15 @@ with tab_home:
         else:
             st.metric("Projected GCB", "—")
 
-    # Model is always fed by the projected GCB swing (when polls exist)
+    # Model is always fed by the projected GCB swing (when polls exist).
+    # Per-race dampening ratios (e.g., -3.86 = -9.65 / 2.5) are preserved.
     st.caption(
         f"**Model swing:** using projected GCB (undecideds split "
         f"{int(UNDECIDED_TO_D*100)}/{int(UNDECIDED_TO_R*100)} D) · "
         f"CSV baseline: **{CSV_NATIONAL_SWING:+.2f}** · "
-        f"Applied shift: **{swing_shift:+.2f}** · "
-        f"Effective swing: **{CSV_NATIONAL_SWING + swing_shift:+.2f}**"
+        f"Effective national swing: **{effective_national:+.2f}** · "
+        f"Dampened races scale proportionally (e.g. {CSV_NATIONAL_SWING/2.5:+.2f} → "
+        f"{effective_national/2.5:+.2f})"
     )
 
     # Fever chart
