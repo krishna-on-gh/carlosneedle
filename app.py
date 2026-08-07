@@ -117,6 +117,27 @@ seed = 42
 # CSV's baseline national swing (what the -9.65 values in the CSV represent)
 CSV_NATIONAL_SWING = -9.65
 
+# ── Chamber composition: seats NOT on the 2026 ballot ───────────────────────
+# Post-2024 sitting membership that carries into the 119th Congress. Update if
+# vacancies, party switches, or special-election outcomes change these.
+#
+# Senate: 65 senators NOT up in 2026 (Class 1 up '24, Class 3 up '22)
+SENATE_CARRYOVER_R = 32
+SENATE_CARRYOVER_D = 33  # includes 3 indies caucusing with Dems
+
+# Governor: 14 governors NOT up in 2026 (elected in 2024 or 2025)
+GOV_CARRYOVER_R = 8
+GOV_CARRYOVER_D = 6
+
+# House: 346 seats NOT in the CSV — assumed safe based on 2024 result.
+# 89 modeled + 346 safe = 435 total. Adjust when you add/remove CSV rows.
+HOUSE_SAFE_R = 189
+HOUSE_SAFE_D = 157
+
+# Total seats needed for majority
+SENATE_MAJORITY = 51
+HOUSE_MAJORITY = 218
+
 
 # ── Header ───────────────────────────────────────────────────────────────────
 st.markdown("# CarlosNeedle")
@@ -178,7 +199,7 @@ results["flip"] = results.apply(flip_label, axis=1)
 # SHARED COMPONENTS
 # ═════════════════════════════════════════════════════════════════════════════
 def chamber_card(office, sub, small=False):
-    """Card showing R/D/Tossup/Flip counts for one office (2x2 grid)."""
+    """Card showing final chamber composition (Senate/Gov only) + 2026 breakdown."""
     r_wins  = int((sub["predicted_winner"] == "R").sum())
     d_wins  = int(len(sub) - r_wins)
     tossups = int(((sub["win_prob_R"] > 0.40) & (sub["win_prob_R"] < 0.60)).sum())
@@ -186,16 +207,51 @@ def chamber_card(office, sub, small=False):
     d_flips = int((sub["flip"] == "R→D").sum())
 
     st.markdown(f"### {office}")
-    # Row 1: R wins / D wins
+
+    # Final composition — only for Senate & Governor (House needs full CSV first)
+    if office in ("Senate", "Governor"):
+        if office == "Senate":
+            total_r = r_wins + SENATE_CARRYOVER_R
+            total_d = d_wins + SENATE_CARRYOVER_D
+            control = "R" if total_r >= SENATE_MAJORITY else "D"
+            maj_line = f"{SENATE_MAJORITY} needed for majority"
+        else:
+            total_r = r_wins + GOV_CARRYOVER_R
+            total_d = d_wins + GOV_CARRYOVER_D
+            control = "R" if total_r > total_d else "D"
+            maj_line = "50 total governorships"
+
+        control_color = R_COLOR if control == "R" else D_COLOR
+        st.markdown(
+            f"<div style='margin-bottom:8px; font-size:1.9rem; font-weight:700; letter-spacing:-0.5px;'>"
+            f"<span style='color:{R_COLOR}'>{total_r}R</span> · "
+            f"<span style='color:{D_COLOR}'>{total_d}D</span>"
+            f"</div>"
+            f"<div style='margin-top:-6px; margin-bottom:14px; color:{control_color}; font-weight:600; font-size:0.95rem;'>"
+            f"{'Republican' if control == 'R' else 'Democratic'} control · "
+            f"<span style='color:#9c9c9c; font-weight:400;'>{maj_line}</span>"
+            f"</div>",
+            unsafe_allow_html=True,
+        )
+        subhead = "2026 RACES"
+    else:
+        subhead = None  # House: skip the composition; just show the 2026 breakdown
+
+    if subhead:
+        st.markdown(
+            f"<div style='color:#6a6a6a; font-size:0.85rem; font-weight:500;'>{subhead}</div>",
+            unsafe_allow_html=True,
+        )
+
+    # 2026-race breakdown (2x2 grid)
     c1, c2 = st.columns(2)
     c1.metric("R wins", r_wins)
     c2.metric("D wins", d_wins)
-    # Row 2: Tossups / Flips
     c3, c4 = st.columns(2)
     c3.metric("Tossups", tossups)
     c4.metric("Flips", f"{d_flips}D / {r_flips}R",
               help="R→D pickups on the D side, D→R pickups on the R side")
-    st.caption(f"{len(sub)} races modeled")
+    st.caption(f"{len(sub)} 2026 races modeled")
 
 
 def ratings_bar(sub_results, title=None):
