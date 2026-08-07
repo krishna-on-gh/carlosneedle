@@ -497,7 +497,7 @@ with tab_home:
         if poll_summary_d["current_avg"] is not None:
             avg_val = poll_summary_d["current_avg"]
             party = "D" if avg_val < 0 else "R"
-            label = f"{party}+{abs(avg_val):.1f}"
+            label = f"{party}+{abs(avg_val):.2f}"
             st.metric("Raw polling average (21d)", label,
                       help="LV/RV-weighted rolling average of margin. Negative = D lead.")
             if poll_swing_raw is not None:
@@ -515,7 +515,7 @@ with tab_home:
         if proj is not None:
             m = proj["proj_margin_r"]
             party = "D" if m < 0 else "R"
-            label = f"{party}+{abs(m):.1f}"
+            label = f"{party}+{abs(m):.2f}"
             st.metric(
                 f"Projected GCB (undecideds split {int(UNDECIDED_TO_D*100)}/{int(UNDECIDED_TO_R*100)} D)",
                 label,
