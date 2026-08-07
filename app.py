@@ -135,13 +135,9 @@ poll_summary_d = poll_summary(polls_df, window_days=30)
 poll_swing_raw = poll_summary_d.get("swing")
 poll_swing_proj = poll_summary_d.get("projected_swing")
 
-# Session state for toggle (whether polls override the CSV's swing)
-if "use_polls" not in st.session_state:
-    st.session_state.use_polls = False
-
-use_polls = st.session_state.use_polls
-# When overriding, use the PROJECTED swing (undecideds split 56/44 D)
-if use_polls and poll_swing_proj is not None:
+# Always use the projected poll-derived swing (if polls exist)
+use_polls = True
+if poll_swing_proj is not None:
     swing_shift = poll_swing_proj - CSV_NATIONAL_SWING
 else:
     swing_shift = 0.0
@@ -458,27 +454,14 @@ with tab_home:
         else:
             st.metric("Projected GCB", "—")
 
-    # Row 2: model override toggle
-    st.markdown("")  # spacer
-    tcol1, tcol2 = st.columns([2, 3])
-    with tcol1:
-        toggle = st.toggle(
-            "Use projected GCB swing in model",
-            value=st.session_state.use_polls,
-            help="When ON: model rebuilds using the *projected* poll-derived swing "
-                 "(undecideds already split). When OFF: model uses the CSV's "
-                 "expected_swing values as-is.",
-            key="use_polls_toggle",
-        )
-        if toggle != st.session_state.use_polls:
-            st.session_state.use_polls = toggle
-            st.rerun()
-    with tcol2:
-        st.caption(
-            f"CSV baseline swing: **{CSV_NATIONAL_SWING:+.2f}** · "
-            f"Applied shift: **{swing_shift:+.2f}** · "
-            f"Effective swing: **{CSV_NATIONAL_SWING + swing_shift:+.2f}**"
-        )
+    # Model is always fed by the projected GCB swing (when polls exist)
+    st.caption(
+        f"**Model swing:** using projected GCB (undecideds split "
+        f"{int(UNDECIDED_TO_D*100)}/{int(UNDECIDED_TO_R*100)} D) · "
+        f"CSV baseline: **{CSV_NATIONAL_SWING:+.2f}** · "
+        f"Applied shift: **{swing_shift:+.2f}** · "
+        f"Effective swing: **{CSV_NATIONAL_SWING + swing_shift:+.2f}**"
+    )
 
     # Fever chart
     fever = fever_series(polls_df, window_days=30)
