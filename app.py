@@ -8,6 +8,8 @@ Tabbed Streamlit app:
   4. Governor — detailed Gov predictions
 """
 
+import os
+
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -77,8 +79,18 @@ st.markdown("""
 
 
 # ── Cached engine wrapper ────────────────────────────────────────────────────
+def _file_mtime(path):
+    """File modification time — used as a cache-buster when the CSV changes."""
+    try:
+        return os.path.getmtime(path)
+    except OSError:
+        return 0
+
+
 @st.cache_data(show_spinner="Running Monte Carlo…")
-def run_engine(csv_path, swing_shift, seed):
+def run_engine(csv_path, swing_shift, seed, _mtime):
+    """`_mtime` is unused inside, but including it in the signature causes the
+    cache to invalidate whenever the CSV file is edited."""
     df = pd.read_csv(csv_path)
     results, _ = simulate_races(df, swing_shift=swing_shift, seed=seed)
     return results
@@ -164,7 +176,7 @@ else:
     swing_shift = 0.0
 
 # ── Run engine ───────────────────────────────────────────────────────────────
-results = run_engine(CSV_PATH, swing_shift, seed)
+results = run_engine(CSV_PATH, swing_shift, seed, _file_mtime(CSV_PATH))
 results["rating"] = results["win_prob_R"].apply(rating)
 
 
