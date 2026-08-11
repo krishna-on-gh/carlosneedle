@@ -139,8 +139,10 @@ CSV_NATIONAL_SWING = -9.65
 # vacancies, party switches, or special-election outcomes change these.
 #
 # Senate: 65 senators NOT up in 2026 (Class 1 up '24, Class 3 up '22)
-SENATE_CARRYOVER_R = 32
-SENATE_CARRYOVER_D = 33  # includes 3 indies caucusing with Dems
+# R holds 22 of the 35 up in 2026, D holds 13 → carryover: 31 R + 34 D = 65
+# (34 D includes 3 indies caucusing with Dems)
+SENATE_CARRYOVER_R = 31
+SENATE_CARRYOVER_D = 34
 
 # Governor: 14 governors NOT up in 2026 (elected in 2024 or 2025)
 GOV_CARRYOVER_R = 8
