@@ -1,75 +1,75 @@
 race_id,office,state,district,baseline_pres,baseline_shave,expected_swing,incumbent_party,scandal,incumbency_factor,candidate_quality,spending_effect,tier,last_updated,notes
 AK-Sen,Senate,AK,,13.1,,-9.65,R,0,0,-1.5,-2,1,2026-08-03,Former Rep. Mary Peltola up against incumbent Sen. Dan Sullivan (R). Massive upset potential
 GA-Sen,Senate,GA,,2.3,5.2,-9.65,D,0,-6.1,0,-3.5,1,2026-08-03,Incumbent Senator Jon Ossoff Up against likely Mike Collins
-IA-Sen,Senate,IA,,13.2,13,-9.65,Open,0,0,0,0.5,1,2026-08-03,"Rep. Ashley Hinson up against likely Josh Turek (D). Open Iowa seat in a blue wave, could get interesting"
+IA-Sen,Senate,IA,,13.2,13,-9.65,Open - R,0,0,0,0.5,1,2026-08-03,"Rep. Ashley Hinson up against likely Josh Turek (D). Open Iowa seat in a blue wave, could get interesting"
 ME-Sen,Senate,ME,,-6.9,-12,-9.65,R,1.5,12.5,0,3.5,1,2026-08-03,"Sen. Susan Collins up against Graham Platner (D), he has a lot of scandals so this could be an election to look out for"
-MI-Sen,Senate,MI,,1.4,1.2,-9.65,Open,0,0,0,0,1,2026-05-28,"Competitive Primary for Dems, 2024 loser Mike Rogers is R nominee. Could be really competitive"
-MN-Sen,Senate,MN,,-4.2,-0.9,-9.65,Open,0,0,-1.5,0,1,2026-05-28,"Lt. Gov Peggy Flanagan vs. Some R, no idea who but it won't matter"
+MI-Sen,Senate,MI,,1.4,1.2,-9.65,Open - D,0,0,0,0,1,2026-05-28,"Competitive Primary for Dems, 2024 loser Mike Rogers is R nominee. Could be really competitive"
+MN-Sen,Senate,MN,,-4.2,-0.9,-9.65,Open - D,0,0,-1.5,0,1,2026-05-28,"Lt. Gov Peggy Flanagan vs. Some R, no idea who but it won't matter"
 NE-Sen,Senate,NE,,20.4,27,-9.65,R,0,2.8,-10,0.5,1,2026-05-28,"Former Gov. and Current Sen. Pete Ricketts vs. Dan Osborn. Osborn is an indie and ran a super strong campaign in 2024, he has a massive candidate quality boost"
-NH-Sen,Senate,NH,,-2.7,-7,-9.65,Open,0,0,1.5,-3.5,1,2026-05-28,Former Sen. John Sununu (R) vs. Rep. Chris Pappas
-NC-Sen,Senate,NC,,3.3,3.8,-9.65,Open,0,0,-1.5,-0.5,1,2026-05-28,Former Gov. Roy Cooper (D) vs. Michael Whatley. Cooper is a super strong recruit for Dems
+NH-Sen,Senate,NH,,-2.7,-7,-9.65,Open - D,0,0,1.5,-3.5,1,2026-05-28,Former Sen. John Sununu (R) vs. Rep. Chris Pappas
+NC-Sen,Senate,NC,,3.3,3.8,-9.65,Open - R,0,0,-1.5,-0.5,1,2026-05-28,Former Gov. Roy Cooper (D) vs. Michael Whatley. Cooper is a super strong recruit for Dems
 OH-Sen,Senate,OH,,11.1,13,-9.65,R,0,2.5,-1.5,-3.5,1,2026-05-28,"Former Lt. Gov, current Sen. Jon Husted (R) vs. Former Sen. Sherrod Brown. This will be interesting"
-TX-Sen,Senate,TX,,13.6,16,-9.65,Open,-3,0,0,-3.5,1,2026-05-28,AG Ken Paxton (R) vs. James Talarico. Paxton has a lot of scandals...
+TX-Sen,Senate,TX,,13.6,16,-9.65,Open - R,-3,0,0,-3.5,1,2026-05-28,AG Ken Paxton (R) vs. James Talarico. Paxton has a lot of scandals...
 CO-Sen,Senate,CO,,-11,-12,-9.65,D,0,-0.8,0,-3.5,2,2026-05-28,Former Gov. and current Sen. John Hickenlooper (D) vs. whatever political sacrificial lamb that the GOP puts up against him
 FL-Sen,Senate,FL,,13.1,14,-9.65,R,0,2.5,0,0,2,2026-05-28,Former AG and current Sen. Ashley Moody up against probably some resister grifter Dem. Yet again a sacrificial lamb put up against Rs in FL.
-MT-Sen,Senate,MT,,19.9,19,-9.65,Open,0,0,25,0,2,2026-08-03,"Open seat after Steve Daines just decided to not file for re-election last minute. Dem nominee refusing to dropout for Bodnar, Alme cruises to election"
+MT-Sen,Senate,MT,,19.9,19,-9.65,Open - R,0,0,25,0,2,2026-08-03,"Open seat after Steve Daines just decided to not file for re-election last minute. Dem nominee refusing to dropout for Bodnar, Alme cruises to election"
 SC-Sen,Senate,SC,,17.8,21,-9.65,R,0,0,0,0,2,2026-08-03,"Sen. Lindsey Graham running for re-election. He's a massive underperformer, let's see if he breaks the streak this time around. UPDATE: Whelp he died. His sister will take over pribably for him"
 VA-Sen,Senate,VA,,-5.7,-3.8,-9.65,D,0,-2.1,0,0,2,2026-05-28,"Former Gov. and current Sen. Mark Warner (D) running for re-election. He's an overperformer (albeit much less than he was before), lets see what happens to his crossover appeal in the hills this year"
-AL-Sen,Senate,AL,,30.5,31,-9.65,Open,0,0,0,0,3,2026-05-28,
+AL-Sen,Senate,AL,,30.5,31,-9.65,Open - R,0,0,0,0,3,2026-05-28,
 AR-Sen,Senate,AR,,30.6,35,-9.65,R,0,0,0,0,3,2026-05-28,
 DE-Sen,Senate,DE,,-14.7,-16,-9.65,D,0,-3,0,0,3,2026-05-28,
 ID-Sen,Senate,ID,,36.3,38,-9.65,R,0,0,0,0,3,2026-05-28,
-IL-Sen,Senate,IL,,-10.9,-13,-9.65,Open,0,0,-1.5,-3.5,3,2026-05-28,Lt. Gov Juliana Stratton running
+IL-Sen,Senate,IL,,-10.9,-13,-9.65,Open - D,0,0,-1.5,-3.5,3,2026-05-28,Lt. Gov Juliana Stratton running
 KS-Sen,Senate,KS,,16,17,-9.65,R,0,0,0,0,3,2026-05-28,We love the Plains states don't we
-KY-Sen,Senate,KY,,30.5,34,-9.65,Open,0,0,0,0,3,2026-05-28,
-LA-Sen,Senate,LA,,22,24,-9.65,Open,0,0,0,0,3,2026-05-28,
+KY-Sen,Senate,KY,,30.5,34,-9.65,Open - R,0,0,0,0,3,2026-05-28,
+LA-Sen,Senate,LA,,22,24,-9.65,Open - R,0,0,0,0,3,2026-05-28,
 MA-Sen,Senate,MA,,-25.2,-33,-9.65,D,0,0,0,0,3,2026-05-28,
 MS-Sen,Senate,MS,,22.8,24,-9.65,R,0,0,0,0,3,2026-05-28,
 NJ-Sen,Senate,NJ,,-5.9,-7.1,-9.65,D,0,0.9,0,-3.5,3,2026-08-03,
 NM-Sen,Senate,NM,,-6,-8.2,-9.65,D,0,-50,0,0,3,2026-05-28,Unopposed
-OK-Sen,Senate,OK,,34.3,37,-9.65,Open,0,0,0,0,3,2026-05-28,
+OK-Sen,Senate,OK,,34.3,37,-9.65,Open - R,0,0,0,0,3,2026-05-28,
 OR-Sen,Senate,OR,,-14.3,-11,-9.65,D,0,-0.3,0,-3.5,3,2026-05-28,
 RI-Sen,Senate,RI,,-13.7,-23,-9.65,D,0,-10,0,0,3,2026-05-28,
 SD-Sen,Senate,SD,,29.2,44,-9.65,R,0,0,25,0,3,2026-08-03,Dem not dropping out
 TN-Sen,Senate,TN,,29.6,31,-9.65,R,0,1.1,0,0,3,2026-05-28,
 WV-Sen,Senate,WV,,41.8,41,-9.65,R,0,1,0,3.5,3,2026-08-03,
-WY-Sen,Senate,WY,,45.8,48,-9.65,Open,0,0,0,0,3,2026-05-28,
-AK-Gov,Governor,AK,,13.1,,-9.65,Open,0,0,0,0,1,2026-05-30,
+WY-Sen,Senate,WY,,45.8,48,-9.65,Open - R,0,0,0,0,3,2026-05-28,
+AK-Gov,Governor,AK,,13.1,,-9.65,Open - R,0,0,0,0,1,2026-05-30,
 AZ-Gov,Governor,AZ,,5.5,,-9.65,D,0,-2.5,0,0,1,2026-05-30,
-GA-Gov,Governor,GA,,2.3,,-9.65,Open,0,0,0,3.5,1,2026-08-03,
-IA-Gov,Governor,IA,,13.2,,-9.65,Open,0,0,-4,0,1,2026-06-01,
-MI-Gov,Governor,MI,,1.4,,-9.65,Open,0,0,-1.5,0,1,2026-05-30,
+GA-Gov,Governor,GA,,2.3,,-9.65,Open - R,0,0,0,3.5,1,2026-08-03,
+IA-Gov,Governor,IA,,13.2,,-9.65,Open - R,0,0,-4,0,1,2026-06-01,
+MI-Gov,Governor,MI,,1.4,,-9.65,Open - D,0,0,-1.5,0,1,2026-05-30,
 NV-Gov,Governor,NV,,1.51,,-9.65,R,0,4,-1.5,0,1,2026-08-03,
 NH-Gov,Governor,NH,,9.34,,-9.65,R,0,4,0,0,1,2026-05-30,
-OH-Gov,Governor,OH,,11.1,,-9.65,Open,0,0,0,3.5,1,2026-05-30,
+OH-Gov,Governor,OH,,11.1,,-9.65,Open - R,0,0,0,3.5,1,2026-05-30,
 PA-Gov,Governor,PA,,-14.78,,-9.65,D,0,-2.5,1.5,0,1,2026-05-30,
 TX-Gov,Governor,TX,,10.9,,-9.65,R,0,2.5,0,0,1,2026-05-30,
-WI-Gov,Governor,WI,,0.9,,-9.65,Open,0,0,0,0,1,2026-08-03,
-CO-Gov,Governor,CO,,-11,,-9.65,Open,-3,0,-1.5,0,2,2026-08-03,
-FL-Gov,Governor,FL,,13.1,,-9.65,Open,0,0,0,0,2,2026-06-01,
-KS-Gov,Governor,KS,,16,,-9.65,Open,0,0,0,0,2,2026-06-01,
-ME-Gov,Governor,ME,,-6.9,,-9.65,Open,0,0,0,0,2,2026-06-01,
+WI-Gov,Governor,WI,,0.9,,-9.65,Open - D,0,0,0,0,1,2026-08-03,
+CO-Gov,Governor,CO,,-11,,-9.65,Open - D,-3,0,-1.5,0,2,2026-08-03,
+FL-Gov,Governor,FL,,13.1,,-9.65,Open - R,0,0,0,0,2,2026-06-01,
+KS-Gov,Governor,KS,,16,,-9.65,Open - D,0,0,0,0,2,2026-06-01,
+ME-Gov,Governor,ME,,-6.9,,-9.65,Open - D,0,0,0,0,2,2026-06-01,
 NE-Gov,Governor,NE,,23.24,,-9.65,R,0,2.5,0,0,2,2026-06-01,
-NM-Gov,Governor,NM,,-6,,-9.65,Open,0,0,0,0,2,2026-06-01,
+NM-Gov,Governor,NM,,-6,,-9.65,Open - D,0,0,0,0,2,2026-06-01,
 NY-Gov,Governor,NY,,-6.39,,-9.65,D,0,-2.5,0,0,2,2026-06-01,
 OR-Gov,Governor,OR,,-3.42,,-9.65,D,0,-2.5,0,0,2,2026-06-01,
-AL-Gov,Governor,AL,,30.5,,-9.65,Open,0,0,-1.5,3.5,3,2026-06-01,
+AL-Gov,Governor,AL,,30.5,,-9.65,Open - R,0,0,-1.5,3.5,3,2026-06-01,
 AR-Gov,Governor,AR,,27.76,,-9.65,R,0,2.5,0,0,3,2026-06-01,
-CA-Gov,Governor,CA,,-20.1,,-9.65,Open,0,0,0,0,3,2026-06-01,
+CA-Gov,Governor,CA,,-20.1,,-9.65,Open - D,0,0,0,0,3,2026-06-01,
 CT-Gov,Governor,CT,,-12.97,,-9.65,D,0,-2.5,0,0,3,2026-06-01,
 HI-Gov,Governor,HI,,-26.32,,-9.65,D,0,-2.5,0,0,3,2026-06-01,
 ID-Gov,Governor,ID,,40.34,,-9.65,R,0,2.5,0,0,3,2026-06-01,
 IL-Gov,Governor,IL,,-12.54,,-9.65,D,0,-2.5,0,0,3,2026-06-01,
 MD-Gov,Governor,MD,,-32.41,,-9.65,D,0,-2.5,0,0,3,2026-06-01,
 MA-Gov,Governor,MA,,-29.17,,-9.65,D,0,-2.5,0,0,3,2026-06-01,
-MN-Gov,Governor,MN,,-4.2,,-9.65,Open,0,0,-1.5,0,3,2026-06-01,
-OK-Gov,Governor,OK,,34.3,,-9.65,Open,0,0,0,0,3,2026-06-01,
-RI-Gov,Governor,RI,,-19.06,,-9.65,Open,0,0,0,0,3,2026-06-01,
-SC-Gov,Governor,SC,,17.8,,-9.65,Open,0,0,0,0,3,2026-06-01,
-SD-Gov,Governor,SD,,29.2,,-9.65,Open,0,0,0,0,3,2026-06-01,
-TN-Gov,Governor,TN,,29.6,,-9.65,Open,0,0,0,0,3,2026-06-01,
+MN-Gov,Governor,MN,,-4.2,,-9.65,Open - D,0,0,-1.5,0,3,2026-06-01,
+OK-Gov,Governor,OK,,34.3,,-9.65,Open - R,0,0,0,0,3,2026-06-01,
+RI-Gov,Governor,RI,,-19.06,,-9.65,Open - D,0,0,0,0,3,2026-06-01,
+SC-Gov,Governor,SC,,17.8,,-9.65,Open - R,0,0,0,0,3,2026-06-01,
+SD-Gov,Governor,SD,,29.2,,-9.65,Open - R,0,0,0,0,3,2026-06-01,
+TN-Gov,Governor,TN,,29.6,,-9.65,Open - R,0,0,0,0,3,2026-06-01,
 VT-Gov,Governor,VT,,51.6,,-9.65,R,0,4,0,0,3,2026-06-01,
-WY-Gov,Governor,WY,,45.8,,-9.65,Open,0,0,0,0,3,2026-06-01,
+WY-Gov,Governor,WY,,45.8,,-9.65,Open - R,0,0,0,0,3,2026-06-01,
 AK-01,House,AK,01,13.1,,-9.65,R,0,2.5,0,3.5,1,2026-06-06,2.5 = standard incumbency boost for an R that beat a Dem in their previous election
 AZ-01,House,AZ,01,3.1,,-9.65,R,0,0,0,0.5,1,2026-08-03,
 AZ-02,House,AZ,02,15,,-9.65,R,0,-8.5,0,0,1,2026-08-03,
