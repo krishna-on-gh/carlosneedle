@@ -190,7 +190,7 @@ results["rating"] = results["median_margin"].apply(rating)
 
 # ── Flip detection ───────────────────────────────────────────────────────────
 def held_party(incumbent):
-    """Return 'R', 'D', or None from the incumbent_party field."""
+    """Return 'R', 'D', 'Open' (bare, unknown holder), or None (N/A)."""
     if incumbent is None:
         return None
     s = str(incumbent).strip().upper()
@@ -200,14 +200,18 @@ def held_party(incumbent):
         return "R"
     if s == "D" or s == "OPEN - D":
         return "D"
-    return None  # bare "Open" or unknown
+    if s == "OPEN":
+        return "Open"  # party unknown → whoever wins counts as a flip
+    return None
 
 
 def flip_label(row):
-    """Return 'D→R', 'R→D', or ''."""
+    """Return 'D→R', 'R→D', 'Open→R', 'Open→D', or ''."""
     held = held_party(row["incumbent_party"])
     pred = row["predicted_winner"]
-    if held is None or held == pred:
+    if held is None:
+        return ""
+    if held == pred:
         return ""
     return f"{held}→{pred}"
 
@@ -223,8 +227,9 @@ def chamber_card(office, sub, small=False):
     r_wins  = int((sub["predicted_winner"] == "R").sum())
     d_wins  = int(len(sub) - r_wins)
     tossups = int((sub["median_margin"].abs() <= 2.5).sum())  # Tilt R + Tilt D
-    r_flips = int((sub["flip"] == "D→R").sum())
-    d_flips = int((sub["flip"] == "R→D").sum())
+    # Flips include D→R, R→D, and bare Open→R / Open→D
+    r_flips = int(sub["flip"].isin(["D→R", "Open→R"]).sum())
+    d_flips = int(sub["flip"].isin(["R→D", "Open→D"]).sum())
 
     st.markdown(f"### {office}")
 
