@@ -101,15 +101,16 @@ def run_engine(csv_path, override_national_swing, csv_national_swing, seed, _mti
     return results
 
 
-# ── Rating helpers ───────────────────────────────────────────────────────────
-def rating(p):
-    if p >= 0.90: return "Safe R"
-    if p >= 0.75: return "Likely R"
-    if p >= 0.60: return "Lean R"
-    if p > 0.40:  return "Tossup"
-    if p > 0.25:  return "Lean D"
-    if p > 0.10:  return "Likely D"
-    return "Safe D"
+# ── Rating helpers (margin-based) ────────────────────────────────────────────
+def rating(median_margin):
+    """Classify a race by its predicted margin (R+ convention).
+       |m| ≤ 2.5: Tilt  |  2.5 < |m| ≤ 7: Lean  |  7 < |m| < 15: Likely  |  |m| ≥ 15: Safe"""
+    m = median_margin
+    a = abs(m)
+    if a >= 15:  return "Safe R"   if m > 0 else "Safe D"
+    if a >  7:   return "Likely R" if m > 0 else "Likely D"
+    if a >  2.5: return "Lean R"   if m > 0 else "Lean D"
+    return "Tossup - Tilt R" if m >= 0 else "Tossup - Tilt D"
 
 
 def rating_color(r):
@@ -117,7 +118,8 @@ def rating_color(r):
         "Safe R":   "#a01a1c",
         "Likely R": "#cf3d3f",
         "Lean R":   "#e88b8c",
-        "Tossup":   TOSSUP_COLOR,
+        "Tossup - Tilt R":   "#f5c8c9",   # very light red
+        "Tossup - Tilt D":   "#c8d5f5",   # very light blue
         "Lean D":   "#98b3ee",
         "Likely D": "#4e7be3",
         "Safe D":   "#1e4bab",
@@ -125,7 +127,7 @@ def rating_color(r):
     return palette.get(r, TOSSUP_COLOR)
 
 
-RATING_ORDER = ["Safe D", "Likely D", "Lean D", "Tossup", "Lean R", "Likely R", "Safe R"]
+RATING_ORDER = ["Safe D", "Likely D", "Lean D", "Tossup - Tilt D", "Tossup - Tilt R", "Lean R", "Likely R", "Safe R"]
 
 
 # ── Fixed config (sidebar removed) ───────────────────────────────────────────
@@ -183,7 +185,7 @@ effective_national = override_national if override_national is not None else CSV
 
 # ── Run engine ───────────────────────────────────────────────────────────────
 results = run_engine(CSV_PATH, override_national, CSV_NATIONAL_SWING, seed, _file_mtime(CSV_PATH))
-results["rating"] = results["win_prob_R"].apply(rating)
+results["rating"] = results["median_margin"].apply(rating)
 
 
 # ── Flip detection ───────────────────────────────────────────────────────────
@@ -220,7 +222,7 @@ def chamber_card(office, sub, small=False):
     """Card showing final chamber composition (Senate/Gov only) + 2026 breakdown."""
     r_wins  = int((sub["predicted_winner"] == "R").sum())
     d_wins  = int(len(sub) - r_wins)
-    tossups = int(((sub["win_prob_R"] > 0.40) & (sub["win_prob_R"] < 0.60)).sum())
+    tossups = int((sub["median_margin"].abs() <= 2.5).sum())  # Tilt R + Tilt D
     r_flips = int((sub["flip"] == "D→R").sum())
     d_flips = int((sub["flip"] == "R→D").sum())
 
@@ -323,7 +325,8 @@ def race_table(sub_results):
             filtered["state"].str.upper().str.contains(s)
         ]
 
-    filtered = filtered.assign(_c=(filtered["win_prob_R"] - 0.5).abs()).sort_values("_c")
+    # Sort by competitiveness (distance from tied margin)
+    filtered = filtered.assign(_c=filtered["median_margin"].abs()).sort_values("_c")
     table = filtered[[
         "race_id", "state", "rating", "flip", "median_margin", "p5", "p95",
         "win_prob_R", "win_prob_D", "tier"
