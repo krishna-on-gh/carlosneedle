@@ -16,6 +16,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from engine import simulate_races, _baseline_and_unc, _to_float, OFFICE_SETTINGS
+from hex_map import render_hex_map
 from poll_aggregator import (
     load_polls, append_poll, rolling_average, fever_series,
     poll_derived_swing, projected_gcb, projected_swing,
@@ -754,14 +755,12 @@ with tab_house:
     st.markdown("### Ratings")
     st.plotly_chart(ratings_bar(house), use_container_width=True, key="tab_bar_house")
 
-    st.markdown("### Map "
-                "<span class='wip-badge'>COMING SOON</span>",
-                unsafe_allow_html=True)
+    st.markdown("### Map")
+    st.plotly_chart(render_hex_map(house, bg_color=BG_COLOR),
+                    use_container_width=True, key="map_house")
     st.caption(
-        "House maps need per-district shapes (post-2022 redistricting). "
-        "Two options: (1) full CD choropleth with GeoJSON of 435 districts, or "
-        "(2) hex-tile cartogram (538-style, cleaner but requires a hex layout). "
-        "Ping me to pick one."
+        "Each hexagon = one congressional district (435 total). "
+        "Positioned in an approximate US shape. Hover for race details."
     )
 
     st.markdown("### Race List")
