@@ -314,32 +314,46 @@ ALL_STATES = [
 
 
 def state_map(sub, office_label):
-    """Interactive US choropleth for state-level races (Senate/Gov)."""
+    """Interactive US choropleth for state-level races (Senate/Gov).
+       Flipped states get a thick black border to signal the flip."""
     # Race lookup by state
-    race_by_state = {}
-    for _, r in sub.iterrows():
-        race_by_state[r["state"]] = r
+    race_by_state = {r["state"]: r for _, r in sub.iterrows()}
 
-    # Colored trace: only states in the CSV
-    locs, z, hover = [], [], []
+    # Split participating states into non-flip and flip groups
+    non_flip_locs, non_flip_z, non_flip_hover = [], [], []
+    flip_locs, flip_z, flip_hover = [], [], []
+
+    def hover_html(r):
+        party_str = "R wins" if r["predicted_winner"] == "R" else "D wins"
+        flip_str = f"<br><b>🔄 FLIP: {r['flip']}</b>" if r["flip"] else ""
+        return (
+            f"<b>{r['race_id']}</b><br>"
+            f"Rating: <b>{r['rating']}</b><br>"
+            f"Median margin: <b>{r['median_margin']:+.1f}</b><br>"
+            f"90% range: [{r['p5']:+.1f}, {r['p95']:+.1f}]<br>"
+            f"Predicted: <b>{party_str}</b> ({max(r['win_prob_R'], r['win_prob_D'])*100:.0f}%)"
+            f"{flip_str}"
+        )
+
     for st in ALL_STATES:
-        if st in race_by_state:
-            r = race_by_state[st]
-            party_str = "R wins" if r["predicted_winner"] == "R" else "D wins"
-            flip_str = f"<br><b>🔄 FLIP: {r['flip']}</b>" if r["flip"] else ""
-            locs.append(st)
-            z.append(r["median_margin"])
-            hover.append(
-                f"<b>{r['race_id']}</b><br>"
-                f"Rating: <b>{r['rating']}</b><br>"
-                f"Median margin: <b>{r['median_margin']:+.1f}</b><br>"
-                f"90% range: [{r['p5']:+.1f}, {r['p95']:+.1f}]<br>"
-                f"Predicted: <b>{party_str}</b> ({max(r['win_prob_R'], r['win_prob_D'])*100:.0f}%)"
-                f"{flip_str}"
-            )
+        if st not in race_by_state:
+            continue
+        r = race_by_state[st]
+        h = hover_html(r)
+        if r["flip"]:
+            flip_locs.append(st); flip_z.append(r["median_margin"]); flip_hover.append(h)
+        else:
+            non_flip_locs.append(st); non_flip_z.append(r["median_margin"]); non_flip_hover.append(h)
 
-    # Grayed-out background trace: non-participating states
     grey_locs = [st for st in ALL_STATES if st not in race_by_state]
+
+    COLORSCALE = [
+        [0.0, "#1e4bab"],   # Safe D
+        [0.25, "#98b3ee"],  # Lean D
+        [0.5, "#f2f2f2"],   # Tossup (white-ish)
+        [0.75, "#e88b8c"],  # Lean R
+        [1.0, "#a01a1c"],   # Safe R
+    ]
 
     fig = go.Figure()
 
@@ -356,21 +370,15 @@ def state_map(sub, office_label):
             marker_line_width=0.5,
         ))
 
-    # Participating states, colored by margin
-    if locs:
+    # Non-flipped participating states (standard white border)
+    if non_flip_locs:
         fig.add_trace(go.Choropleth(
-            locations=locs,
-            z=z,
+            locations=non_flip_locs,
+            z=non_flip_z,
             locationmode="USA-states",
-            colorscale=[
-                [0.0, "#1e4bab"],   # Safe D
-                [0.25, "#98b3ee"],  # Lean D
-                [0.5, "#f2f2f2"],   # Tossup (white-ish)
-                [0.75, "#e88b8c"],  # Lean R
-                [1.0, "#a01a1c"],   # Safe R
-            ],
+            colorscale=COLORSCALE,
             zmid=0, zmin=-25, zmax=25,
-            text=hover,
+            text=non_flip_hover,
             hovertemplate="%{text}<extra></extra>",
             colorbar=dict(
                 title=dict(text="Margin<br>(R+)"),
@@ -380,6 +388,21 @@ def state_map(sub, office_label):
             ),
             marker_line_color="white",
             marker_line_width=1,
+        ))
+
+    # Flipped participating states (thick black border)
+    if flip_locs:
+        fig.add_trace(go.Choropleth(
+            locations=flip_locs,
+            z=flip_z,
+            locationmode="USA-states",
+            colorscale=COLORSCALE,
+            zmid=0, zmin=-25, zmax=25,
+            text=flip_hover,
+            hovertemplate="%{text}<extra></extra>",
+            showscale=False,
+            marker_line_color="#000000",
+            marker_line_width=3,
         ))
 
     fig.update_layout(
