@@ -304,6 +304,92 @@ def ratings_bar(sub_results, title=None):
     return fig
 
 
+ALL_STATES = [
+    "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA",
+    "KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ",
+    "NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT",
+    "VA","WA","WV","WI","WY",
+]
+
+
+def state_map(sub, office_label):
+    """Interactive US choropleth for state-level races (Senate/Gov)."""
+    # Race lookup by state
+    race_by_state = {}
+    for _, r in sub.iterrows():
+        race_by_state[r["state"]] = r
+
+    # Colored trace: only states in the CSV
+    locs, z, hover = [], [], []
+    for st in ALL_STATES:
+        if st in race_by_state:
+            r = race_by_state[st]
+            party_str = "R wins" if r["predicted_winner"] == "R" else "D wins"
+            flip_str = f"<br><b>🔄 FLIP: {r['flip']}</b>" if r["flip"] else ""
+            locs.append(st)
+            z.append(r["median_margin"])
+            hover.append(
+                f"<b>{r['race_id']}</b><br>"
+                f"Rating: <b>{r['rating']}</b><br>"
+                f"Median margin: <b>{r['median_margin']:+.1f}</b><br>"
+                f"90% range: [{r['p5']:+.1f}, {r['p95']:+.1f}]<br>"
+                f"Predicted: <b>{party_str}</b> ({max(r['win_prob_R'], r['win_prob_D'])*100:.0f}%)"
+                f"{flip_str}"
+            )
+
+    # Grayed-out background trace: non-participating states
+    grey_locs = [st for st in ALL_STATES if st not in race_by_state]
+
+    fig = go.Figure()
+
+    # Non-participating states (grey)
+    if grey_locs:
+        fig.add_trace(go.Choropleth(
+            locations=grey_locs,
+            z=[0] * len(grey_locs),
+            locationmode="USA-states",
+            colorscale=[[0, "#e6e6e6"], [1, "#e6e6e6"]],
+            showscale=False,
+            hovertemplate="%{location} — not up in 2026<extra></extra>",
+            marker_line_color="white",
+            marker_line_width=0.5,
+        ))
+
+    # Participating states, colored by margin
+    if locs:
+        fig.add_trace(go.Choropleth(
+            locations=locs,
+            z=z,
+            locationmode="USA-states",
+            colorscale=[
+                [0.0, "#1e4bab"],   # Safe D
+                [0.25, "#98b3ee"],  # Lean D
+                [0.5, "#f2f2f2"],   # Tossup (white-ish)
+                [0.75, "#e88b8c"],  # Lean R
+                [1.0, "#a01a1c"],   # Safe R
+            ],
+            zmid=0, zmin=-25, zmax=25,
+            text=hover,
+            hovertemplate="%{text}<extra></extra>",
+            colorbar=dict(
+                title=dict(text="Margin<br>(R+)"),
+                thickness=15, len=0.7,
+                tickvals=[-25, -15, -7, -2.5, 0, 2.5, 7, 15, 25],
+                ticktext=["D+25", "D+15", "D+7", "D+2.5", "0", "R+2.5", "R+7", "R+15", "R+25"],
+            ),
+            marker_line_color="white",
+            marker_line_width=1,
+        ))
+
+    fig.update_layout(
+        geo=dict(scope="usa", showlakes=False, bgcolor=BG_COLOR),
+        height=460,
+        margin=dict(l=0, r=0, t=10, b=0),
+        paper_bgcolor=BG_COLOR,
+    )
+    return fig
+
+
 def race_table(sub_results):
     """Sortable/filterable race table."""
     fcol1, fcol2, fcol3 = st.columns([1, 1, 2])
@@ -648,6 +734,10 @@ with tab_sen:
     st.markdown("### Ratings")
     st.plotly_chart(ratings_bar(sen), use_container_width=True, key="tab_bar_sen")
 
+    st.markdown("### Map")
+    st.plotly_chart(state_map(sen, "senate"), use_container_width=True, key="map_sen")
+    st.caption("Colored states are up for election in 2026. Hover for race details.")
+
     st.markdown("### Race List")
     race_table(sen)
 
@@ -664,6 +754,16 @@ with tab_house:
     st.markdown("### Ratings")
     st.plotly_chart(ratings_bar(house), use_container_width=True, key="tab_bar_house")
 
+    st.markdown("### Map "
+                "<span class='wip-badge'>COMING SOON</span>",
+                unsafe_allow_html=True)
+    st.caption(
+        "House maps need per-district shapes (post-2022 redistricting). "
+        "Two options: (1) full CD choropleth with GeoJSON of 435 districts, or "
+        "(2) hex-tile cartogram (538-style, cleaner but requires a hex layout). "
+        "Ping me to pick one."
+    )
+
     st.markdown("### Race List")
     race_table(house)
 
@@ -679,6 +779,10 @@ with tab_gov:
 
     st.markdown("### Ratings")
     st.plotly_chart(ratings_bar(gov), use_container_width=True, key="tab_bar_gov")
+
+    st.markdown("### Map")
+    st.plotly_chart(state_map(gov, "gov"), use_container_width=True, key="map_gov")
+    st.caption("Colored states are electing a governor in 2026. Hover for race details.")
 
     st.markdown("### Race List")
     race_table(gov)
