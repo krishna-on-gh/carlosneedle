@@ -560,8 +560,8 @@ def race_detail(sub_results, office_label):
 # ═════════════════════════════════════════════════════════════════════════════
 # TABS
 # ═════════════════════════════════════════════════════════════════════════════
-tab_home, tab_sen, tab_house, tab_gov = st.tabs(
-    ["🏛️ Home", "🏛️ Senate", "🏛️ House", "🏛️ Governor"]
+tab_home, tab_sen, tab_house, tab_gov, tab_state = st.tabs(
+    ["🏛️ Home", "🏛️ Senate", "🏛️ House", "🏛️ Governor", "🏢 State Legislatures"]
 )
 
 
@@ -811,6 +811,26 @@ with tab_gov:
 
     st.markdown("---")
     race_detail(gov, "gov")
+
+
+# ── STATE LEGISLATURES TAB ───────────────────────────────────────────────────
+with tab_state:
+    st.markdown("## State Legislatures — 2026 "
+                "<span class='wip-badge'>WORK IN PROGRESS</span>",
+                unsafe_allow_html=True)
+    st.markdown(
+        "<div style='color:#6a6a6a; margin-top:-8px;'>"
+        "Forecasts for state house and state senate chamber composition. "
+        "Structure and inputs still being worked out."
+        "</div>",
+        unsafe_allow_html=True,
+    )
+    st.markdown("---")
+    st.info(
+        "🚧 This tab is under construction. Once we settle on the approach "
+        "(per-district modeling? chamber-level swing? seat-by-seat?), the "
+        "layout will populate here."
+    )
 
 
 # ── Footer ───────────────────────────────────────────────────────────────────
