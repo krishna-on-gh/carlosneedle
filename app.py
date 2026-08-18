@@ -185,7 +185,7 @@ STATE_LEG_CARRYOVER = {
 
 
 # ── Header ───────────────────────────────────────────────────────────────────
-st.markdown("# CarlosNeedle")
+st.markdown("# Carlo's Needle")
 st.markdown(
     "<div style='color:#6a6a6a; font-size:1.05rem; margin-top:-8px;'>"
     "A Monte Carlo forecast for the 2026 US Senate, Governor, and House elections. "
