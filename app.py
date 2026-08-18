@@ -168,6 +168,21 @@ HOUSE_SAFE_D = 157
 SENATE_MAJORITY = 51
 HOUSE_MAJORITY = 218
 
+# ── State legislative chambers: carryover seats (NOT up in 2026) ────────────
+# Keyed by (state, "State House" | "State Senate").
+# Values: dict of party -> # seats carrying over into 2026 (i.e., not on this ballot).
+# For states that stagger elections (like WI State Senate — half up each cycle),
+# fill in only the seats *not* up in 2026. Also include chamber total for display.
+STATE_LEG_CARRYOVER = {
+    # (state, chamber): {"R": #, "D": #, "total_seats": #, "notes": str}
+    ("WI", "State Senate"): {
+        "R": 6, "D": 10, "total_seats": 33,
+        "notes": "Even-numbered seats (2-32) carry over: 10D-6R. Odd seats (17) up in 2026.",
+    },
+    # Add more as you model chambers:
+    # ("WI", "State House"): {"R": 0, "D": 0, "total_seats": 99, ...},  # all up each cycle
+}
+
 
 # ── Header ───────────────────────────────────────────────────────────────────
 st.markdown("# CarlosNeedle")
@@ -951,6 +966,31 @@ with tab_state:
                 d_flips = int((sub["flip"] == "R→D").sum())
 
                 st.markdown(f"### {name}")
+
+                # Final chamber composition — only if we have carryover data
+                carry = STATE_LEG_CARRYOVER.get((selected_state, name))
+                if carry:
+                    total_r = r_wins + carry["R"]
+                    total_d = d_wins + carry["D"]
+                    total_seats = carry["total_seats"]
+                    control = "R" if total_r > total_d else "D" if total_d > total_r else "Tied"
+                    control_color = R_COLOR if control == "R" else D_COLOR if control == "D" else TOSSUP_COLOR
+                    maj = total_seats // 2 + 1
+                    st.markdown(
+                        f"<div style='margin-bottom:8px; font-size:1.9rem; font-weight:700; letter-spacing:-0.5px;'>"
+                        f"<span style='color:{R_COLOR}'>{total_r}R</span> · "
+                        f"<span style='color:{D_COLOR}'>{total_d}D</span>"
+                        f"</div>"
+                        f"<div style='margin-top:-6px; margin-bottom:14px; color:{control_color}; font-weight:600; font-size:0.95rem;'>"
+                        f"{control if control == 'Tied' else ('Republican' if control == 'R' else 'Democratic') + ' control'} · "
+                        f"<span style='color:#9c9c9c; font-weight:400;'>"
+                        f"{maj} of {total_seats} needed · {carry['R']+carry['D']} carryover seats"
+                        f"</span></div>",
+                        unsafe_allow_html=True,
+                    )
+                    st.markdown("<div style='color:#6a6a6a; font-size:0.85rem; font-weight:500;'>2026 RACES</div>",
+                                unsafe_allow_html=True)
+
                 c1, c2, c3, c4 = st.columns(4)
                 c1.metric("R wins", r_wins)
                 c2.metric("D wins", d_wins)
