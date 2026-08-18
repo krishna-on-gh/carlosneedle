@@ -26,7 +26,7 @@ from poll_aggregator import (
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="CarlosNeedle — 2026 Election Forecast",
+    page_title="Carlo's Needle — 2026 Election Forecast",
     page_icon="🗳️",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -1015,7 +1015,7 @@ with tab_state:
 st.markdown("---")
 st.markdown(
     f"<div style='color:#9c9c9c; font-size:0.85rem;'>"
-    f"CarlosNeedle · Backtested on 2018 &amp; 2022 (≈85% accuracy across 126 races). "
+    f"Carlo's Needle · Backtested on 2018 &amp; 2022 (≈85% accuracy across 126 races). "
     f"A hobbyist model — not a professional forecast."
     f"</div>",
     unsafe_allow_html=True,
