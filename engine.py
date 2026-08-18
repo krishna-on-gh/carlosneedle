@@ -29,9 +29,12 @@ N_SIMS_DEFAULT = 10_000
 SEED_DEFAULT   = 42
 
 OFFICE_SETTINGS = {
-    "Senate":   {"swing_unc": 3.5, "qual_base": 1.0, "blend": True},
-    "Governor": {"swing_unc": 4.0, "qual_base": 2.0, "blend": False},
-    "House":    {"swing_unc": 4.5, "qual_base": 2.0, "blend": False},
+    "Senate":       {"swing_unc": 3.5, "qual_base": 1.0, "blend": True},
+    "Governor":     {"swing_unc": 4.0, "qual_base": 2.0, "blend": False},
+    "House":        {"swing_unc": 4.5, "qual_base": 2.0, "blend": False},
+    # State legislatures — state-level races, use blend (Pres + SHAVE)
+    "State House":  {"swing_unc": 4.5, "qual_base": 1.5, "blend": True},
+    "State Senate": {"swing_unc": 4.0, "qual_base": 1.5, "blend": True},
 }
 
 
@@ -90,80 +93,132 @@ def _run_one(baseline, swing, swing_unc, scandal, incumbency, quality, spending,
 
 
 # ── Public API ───────────────────────────────────────────────────────────────
+FEDERAL_OFFICES  = ("Senate", "Governor", "House")
+STATELEG_OFFICES = ("State House", "State Senate")
+
+
+def _simulate_row(row, override_national_swing, csv_national_swing, rng, n_sims,
+                   swing_override=None):
+    """Simulate one race. Returns dict (or None + reason string)."""
+    office = row.get("office")
+    if office not in OFFICE_SETTINGS:
+        return None, f"unknown office: {office}"
+
+    settings = OFFICE_SETTINGS[office]
+    baseline, swing_unc, blend_info = _baseline_and_unc(row, settings)
+    if baseline is None:
+        return None, blend_info
+
+    if swing_override is not None:
+        # Explicit swing override (used for state-leg with derived state swing)
+        swing = swing_override
+    else:
+        csv_swing = _to_float(row.get("expected_swing"))
+        if override_national_swing is None or csv_national_swing == 0:
+            swing = csv_swing
+        else:
+            ratio = csv_swing / csv_national_swing
+            swing = override_national_swing * ratio
+
+    scandal    = _to_float(row.get("scandal"))
+    incumbency = _to_float(row.get("incumbency_factor"))
+    quality    = _to_float(row.get("candidate_quality"))
+    spending   = _to_float(row.get("spending_effect"))
+
+    median, p5, p95, win_prob_R = _run_one(
+        baseline, swing, swing_unc,
+        scandal, incumbency, quality, spending,
+        settings["qual_base"], rng, n_sims,
+    )
+
+    return {
+        "race_id":          row.get("race_id"),
+        "office":           office,
+        "state":            row.get("state"),
+        "district":         row.get("district"),
+        "tier":             row.get("tier"),
+        "incumbent_party":  row.get("incumbent_party"),
+        "baseline_used":    round(baseline, 3),
+        "blend_info":       blend_info,
+        "swing_used":       round(swing, 3),
+        "swing_unc_used":   round(swing_unc, 3),
+        "median_margin":    round(median, 2),
+        "p5":               round(p5, 2),
+        "p95":               round(p95, 2),
+        "win_prob_R":       round(win_prob_R, 4),
+        "win_prob_D":       round(1.0 - win_prob_R, 4),
+        "predicted_winner": "R" if median > 0 else "D",
+        "notes":            row.get("notes"),
+    }, None
+
+
 def simulate_races(df, override_national_swing=None, csv_national_swing=-9.65,
                    n_sims=N_SIMS_DEFAULT, seed=SEED_DEFAULT):
     """
-    Run Monte Carlo for every race in df.
+    Two-pass Monte Carlo:
+      1. Federal races (Senate, Governor, House) — run normally with national swing
+      2. State legislatures — auto-derive per-state swing from the state's Gov
+         and/or Senate margin in pass 1. Formula:
+             derived_state_swing = state_race_predicted_margin − state_pres_baseline
+         If a state has both Gov and Sen races, the two are averaged.
+         If neither, the state-leg row's own expected_swing is used.
 
-    Args:
-        df: DataFrame from races_2026.csv
-        override_national_swing: if set, replaces the CSV's implied national
-            swing (default -9.65). Per-race swings are scaled proportionally so
-            dampening ratios are preserved (e.g., a CSV race with -3.86 stays
-            at 2.5x dampening = override / 2.5).
-        csv_national_swing: the CSV's reference "full" swing (default -9.65).
-            Used only to compute the dampening ratio; any race whose CSV swing
-            equals this value gets the full override.
-        n_sims: sims per race
-        seed: RNG seed for reproducibility
-
-    Returns:
-        (results_df, skipped_list)
+    Args match the prior version.
+    Returns (results_df, skipped_list).
     """
     rng = np.random.default_rng(seed)
     results = []
     skipped = []
 
-    for _, row in df.iterrows():
-        office = row.get("office")
-        if office not in OFFICE_SETTINGS:
-            skipped.append((row.get("race_id"), f"unknown office: {office}"))
-            continue
-
-        settings = OFFICE_SETTINGS[office]
-        baseline, swing_unc, blend_info = _baseline_and_unc(row, settings)
-        if baseline is None:
-            skipped.append((row.get("race_id"), blend_info))
-            continue
-
-        csv_swing = _to_float(row.get("expected_swing"))
-        if override_national_swing is None or csv_national_swing == 0:
-            swing = csv_swing
+    # ── Pass 1: federal races ──
+    federal = df[df["office"].isin(FEDERAL_OFFICES)]
+    for _, row in federal.iterrows():
+        res, reason = _simulate_row(row, override_national_swing, csv_national_swing,
+                                     rng, n_sims)
+        if res is None:
+            skipped.append((row.get("race_id"), reason))
         else:
-            # Preserve per-race dampening ratio: race_swing = override * (csv_race / csv_national)
-            ratio = csv_swing / csv_national_swing
-            swing = override_national_swing * ratio
+            results.append(res)
 
-        scandal    = _to_float(row.get("scandal"))
-        incumbency = _to_float(row.get("incumbency_factor"))
-        quality    = _to_float(row.get("candidate_quality"))
-        spending   = _to_float(row.get("spending_effect"))
+    pass1 = pd.DataFrame(results)
 
-        median, p5, p95, win_prob_R = _run_one(
-            baseline, swing, swing_unc,
-            scandal, incumbency, quality, spending,
-            settings["qual_base"], rng, n_sims,
-        )
+    # ── Compute per-state derived swings from Gov and Sen results ──
+    state_swing_map = {}
+    if len(pass1):
+        for state in pass1["state"].unique():
+            derived = []
+            for _, r in pass1[(pass1["state"] == state) &
+                              (pass1["office"].isin(["Governor", "Senate"]))].iterrows():
+                # Look up the ORIGINAL Pres baseline for this state's federal race
+                src_row = federal[federal["race_id"] == r["race_id"]].iloc[0]
+                pres = src_row.get("baseline_pres")
+                if _is_blank(pres):
+                    continue
+                derived.append(r["median_margin"] - float(pres))
+            if derived:
+                state_swing_map[state] = sum(derived) / len(derived)
 
-        results.append({
-            "race_id":          row.get("race_id"),
-            "office":           office,
-            "state":            row.get("state"),
-            "district":         row.get("district"),
-            "tier":             row.get("tier"),
-            "incumbent_party":  row.get("incumbent_party"),
-            "baseline_used":    round(baseline, 3),
-            "blend_info":       blend_info,
-            "swing_used":       round(swing, 3),
-            "swing_unc_used":   round(swing_unc, 3),
-            "median_margin":    round(median, 2),
-            "p5":               round(p5, 2),
-            "p95":              round(p95, 2),
-            "win_prob_R":       round(win_prob_R, 4),
-            "win_prob_D":       round(1.0 - win_prob_R, 4),
-            "predicted_winner": "R" if median > 0 else "D",
-            "notes":            row.get("notes"),
-        })
+    # ── Pass 2: state legislature races ──
+    stateleg = df[df["office"].isin(STATELEG_OFFICES)]
+    for _, row in stateleg.iterrows():
+        state = row.get("state")
+        derived_swing = state_swing_map.get(state)
+        res, reason = _simulate_row(row, override_national_swing, csv_national_swing,
+                                     rng, n_sims, swing_override=derived_swing)
+        if res is None:
+            skipped.append((row.get("race_id"), reason))
+        else:
+            results.append(res)
+
+    # ── Anything else (unknown office types) ──
+    others = df[~df["office"].isin(FEDERAL_OFFICES + STATELEG_OFFICES)]
+    for _, row in others.iterrows():
+        res, reason = _simulate_row(row, override_national_swing, csv_national_swing,
+                                     rng, n_sims)
+        if res is None:
+            skipped.append((row.get("race_id"), reason))
+        else:
+            results.append(res)
 
     return pd.DataFrame(results), skipped
 
