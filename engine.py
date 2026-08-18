@@ -100,7 +100,7 @@ STATELEG_OFFICES = ("State House", "State Senate")
 # and use the raw national swing instead. Add states whose Gov/Sen races have
 # candidate factors that would improperly bleed into state-leg predictions
 # (e.g., PA where Shapiro's personal popularity distorts the derived swing).
-STATE_LEG_USE_NATIONAL = {"PA"}
+STATE_LEG_USE_NATIONAL = {"PA", "NC"}
 
 
 def _simulate_row(row, override_national_swing, csv_national_swing, rng, n_sims,
