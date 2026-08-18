@@ -33,6 +33,7 @@ st.set_page_config(
 )
 
 CSV_PATH = "data/races_2026.csv"
+STATE_LEG_CSV = "data/state_leg_2026.csv"
 
 # 538-adjacent palette
 R_COLOR      = "#cf3d3f"
@@ -89,10 +90,17 @@ def _file_mtime(path):
 
 
 @st.cache_data(show_spinner="Running Monte Carlo…")
-def run_engine(csv_path, override_national_swing, csv_national_swing, seed, _mtime):
-    """`_mtime` is unused inside, but including it in the signature causes the
-    cache to invalidate whenever the CSV file is edited."""
+def run_engine(csv_path, state_leg_path, override_national_swing,
+               csv_national_swing, seed, _mtime, _mtime_sl):
+    """Load federal races + state legislatures, run engine on combined df.
+       `_mtime` args are just cache-busters."""
     df = pd.read_csv(csv_path)
+    try:
+        sl = pd.read_csv(state_leg_path)
+        if len(sl) > 0:
+            df = pd.concat([df, sl], ignore_index=True)
+    except (FileNotFoundError, pd.errors.EmptyDataError):
+        pass  # state leg CSV is optional
     results, _ = simulate_races(
         df,
         override_national_swing=override_national_swing,
@@ -185,7 +193,11 @@ override_national = poll_swing_proj if poll_swing_proj is not None else None
 effective_national = override_national if override_national is not None else CSV_NATIONAL_SWING
 
 # ── Run engine ───────────────────────────────────────────────────────────────
-results = run_engine(CSV_PATH, override_national, CSV_NATIONAL_SWING, seed, _file_mtime(CSV_PATH))
+results = run_engine(
+    CSV_PATH, STATE_LEG_CSV,
+    override_national, CSV_NATIONAL_SWING, seed,
+    _file_mtime(CSV_PATH), _file_mtime(STATE_LEG_CSV),
+)
 results["rating"] = results["median_margin"].apply(rating)
 
 
@@ -815,22 +827,35 @@ with tab_gov:
 
 # ── STATE LEGISLATURES TAB ───────────────────────────────────────────────────
 with tab_state:
-    st.markdown("## State Legislatures — 2026 "
-                "<span class='wip-badge'>WORK IN PROGRESS</span>",
-                unsafe_allow_html=True)
-    st.markdown(
-        "<div style='color:#6a6a6a; margin-top:-8px;'>"
-        "Forecasts for state house and state senate chamber composition. "
-        "Structure and inputs still being worked out."
-        "</div>",
-        unsafe_allow_html=True,
-    )
-    st.markdown("---")
-    st.info(
-        "🚧 This tab is under construction. Once we settle on the approach "
-        "(per-district modeling? chamber-level swing? seat-by-seat?), the "
-        "layout will populate here."
-    )
+    state_leg = results[results["office"].isin(["State House", "State Senate"])]
+    st.markdown("## State Legislatures — 2026")
+
+    if len(state_leg) == 0:
+        st.info(
+            "No state legislative chambers loaded yet. "
+            "Add rows to `data/state_leg_2026.csv` using the same schema as "
+            "`races_2026.csv`. Set `office` to `State House` or `State Senate`, "
+            "leave `district` blank (chamber-level), and fill the rest as normal."
+        )
+    else:
+        st.caption(f"{len(state_leg)} chambers modeled")
+
+        # Split by chamber type
+        sh = state_leg[state_leg["office"] == "State House"]
+        ss = state_leg[state_leg["office"] == "State Senate"]
+
+        if len(sh) > 0:
+            st.markdown("### State Houses")
+            st.plotly_chart(ratings_bar(sh), use_container_width=True, key="tab_bar_sh")
+            race_table(sh)
+
+        if len(ss) > 0:
+            st.markdown("### State Senates")
+            st.plotly_chart(ratings_bar(ss), use_container_width=True, key="tab_bar_ss")
+            race_table(ss)
+
+        st.markdown("---")
+        race_detail(state_leg, "stateleg")
 
 
 # ── Footer ───────────────────────────────────────────────────────────────────
