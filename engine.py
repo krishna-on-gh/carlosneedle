@@ -96,6 +96,12 @@ def _run_one(baseline, swing, swing_unc, scandal, incumbency, quality, spending,
 FEDERAL_OFFICES  = ("Senate", "Governor", "House")
 STATELEG_OFFICES = ("State House", "State Senate")
 
+# States where state-leg races should IGNORE the Gov/Sen-derived state swing
+# and use the raw national swing instead. Add states whose Gov/Sen races have
+# candidate factors that would improperly bleed into state-leg predictions
+# (e.g., PA where Shapiro's personal popularity distorts the derived swing).
+STATE_LEG_USE_NATIONAL = {"PA"}
+
 
 def _simulate_row(row, override_national_swing, csv_national_swing, rng, n_sims,
                    swing_override=None):
@@ -202,16 +208,21 @@ def simulate_races(df, override_national_swing=None, csv_national_swing=-9.65,
     stateleg = df[df["office"].isin(STATELEG_OFFICES)]
     for _, row in stateleg.iterrows():
         state = row.get("state")
-        derived_swing = state_swing_map.get(state)
+
+        # Determine base swing: derived from Gov/Sen, or national (opt-out states)
+        if state in STATE_LEG_USE_NATIONAL:
+            base_swing = override_national_swing if override_national_swing is not None else csv_national_swing
+        else:
+            base_swing = state_swing_map.get(state)
+
         # Dampen swing by 2.5x for D-leaning districts (baseline_pres < 0).
-        # Rationale: already-D districts have less R vote to convert in a D
-        # wave (and less D vote to lose in an R wave), so they swing less.
-        if derived_swing is not None:
+        if base_swing is not None:
             pres = row.get("baseline_pres")
             if not _is_blank(pres) and float(pres) < 0:
-                derived_swing = derived_swing / 2.5
+                base_swing = base_swing / 2.5
+
         res, reason = _simulate_row(row, override_national_swing, csv_national_swing,
-                                     rng, n_sims, swing_override=derived_swing)
+                                     rng, n_sims, swing_override=base_swing)
         if res is None:
             skipped.append((row.get("race_id"), reason))
         else:
