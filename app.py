@@ -834,28 +834,139 @@ with tab_state:
         st.info(
             "No state legislative chambers loaded yet. "
             "Add rows to `data/state_leg_2026.csv` using the same schema as "
-            "`races_2026.csv`. Set `office` to `State House` or `State Senate`, "
-            "leave `district` blank (chamber-level), and fill the rest as normal."
+            "`races_2026.csv`. Set `office` to `State House` or `State Senate`."
         )
     else:
-        st.caption(f"{len(state_leg)} chambers modeled")
+        states_in_csv = sorted(state_leg["state"].unique().tolist())
+        st.caption(
+            f"{len(states_in_csv)} states modeled · {len(state_leg)} district-level races · "
+            "Click a state on the map to see details."
+        )
 
-        # Split by chamber type
-        sh = state_leg[state_leg["office"] == "State House"]
-        ss = state_leg[state_leg["office"] == "State Senate"]
+        # ── Build the map ──
+        # Hover text: which chambers are up + rough summary
+        colored_states, hover_text = [], []
+        for st_abbr in states_in_csv:
+            rows = state_leg[state_leg["state"] == st_abbr]
+            sh_n = int((rows["office"] == "State House").sum())
+            ss_n = int((rows["office"] == "State Senate").sum())
+            chamber_bits = []
+            if sh_n:
+                chamber_bits.append(f"State House ({sh_n} districts)")
+            if ss_n:
+                chamber_bits.append(f"State Senate ({ss_n} districts)")
+            colored_states.append(st_abbr)
+            hover_text.append(f"<b>{st_abbr}</b><br>" + "<br>".join(chamber_bits) +
+                              "<br><i>click to view details</i>")
 
-        if len(sh) > 0:
-            st.markdown("### State Houses")
-            st.plotly_chart(ratings_bar(sh), use_container_width=True, key="tab_bar_sh")
-            race_table(sh)
+        grey_states = [s for s in ALL_STATES if s not in states_in_csv]
 
-        if len(ss) > 0:
-            st.markdown("### State Senates")
-            st.plotly_chart(ratings_bar(ss), use_container_width=True, key="tab_bar_ss")
-            race_table(ss)
+        map_fig = go.Figure()
 
-        st.markdown("---")
-        race_detail(state_leg, "stateleg")
+        # Non-modeled states: light grey
+        if grey_states:
+            map_fig.add_trace(go.Choropleth(
+                locations=grey_states,
+                z=[0] * len(grey_states),
+                locationmode="USA-states",
+                colorscale=[[0, "#e6e6e6"], [1, "#e6e6e6"]],
+                showscale=False,
+                hovertemplate="%{location} — no state leg data<extra></extra>",
+                marker_line_color="white",
+                marker_line_width=0.5,
+            ))
+
+        # Modeled states: colored (using a single "active" fill)
+        if colored_states:
+            map_fig.add_trace(go.Choropleth(
+                locations=colored_states,
+                z=[1] * len(colored_states),
+                locationmode="USA-states",
+                colorscale=[[0, "#5b9bd5"], [1, "#5b9bd5"]],
+                showscale=False,
+                text=hover_text,
+                hovertemplate="%{text}<extra></extra>",
+                marker_line_color="white",
+                marker_line_width=1.5,
+            ))
+
+        map_fig.update_layout(
+            geo=dict(scope="usa", showlakes=False, bgcolor=BG_COLOR),
+            height=460,
+            margin=dict(l=0, r=0, t=10, b=0),
+            paper_bgcolor=BG_COLOR,
+            clickmode="event+select",
+        )
+
+        # Render with click-selection enabled
+        event = st.plotly_chart(
+            map_fig,
+            use_container_width=True,
+            key="stateleg_map",
+            on_select="rerun",
+            selection_mode="points",
+        )
+
+        # Resolve which state is selected
+        selected_state = None
+        try:
+            pts = event.selection.points if hasattr(event, "selection") else event.get("selection", {}).get("points")
+        except Exception:
+            pts = None
+        if pts:
+            selected_state = pts[0].get("location")
+            # Only accept clicks on modeled states
+            if selected_state not in states_in_csv:
+                selected_state = None
+
+        # Fallback selector in case click doesn't register
+        default_ix = 0
+        if selected_state and selected_state in states_in_csv:
+            default_ix = states_in_csv.index(selected_state)
+        selected_state = st.selectbox(
+            "Or pick a state directly",
+            options=states_in_csv,
+            index=default_ix,
+            key="stateleg_state_pick",
+        )
+
+        # ── Details for selected state ──
+        if selected_state:
+            st.markdown(f"---")
+            st.markdown(f"## {selected_state} — State Legislatures")
+
+            state_races = state_leg[state_leg["state"] == selected_state]
+            sh = state_races[state_races["office"] == "State House"]
+            ss = state_races[state_races["office"] == "State Senate"]
+
+            def chamber_summary(sub, name):
+                if len(sub) == 0:
+                    return
+                r_wins = int((sub["predicted_winner"] == "R").sum())
+                d_wins = int(len(sub) - r_wins)
+                tossups = int((sub["median_margin"].abs() <= 2.5).sum())
+                r_flips = int((sub["flip"] == "D→R").sum())
+                d_flips = int((sub["flip"] == "R→D").sum())
+
+                st.markdown(f"### {name}")
+                c1, c2, c3, c4 = st.columns(4)
+                c1.metric("R wins", r_wins)
+                c2.metric("D wins", d_wins)
+                c3.metric("Tossups", tossups)
+                c4.metric("Flips", f"{d_flips}D / {r_flips}R")
+                st.caption(f"{len(sub)} districts modeled")
+
+                st.plotly_chart(ratings_bar(sub), use_container_width=True,
+                                key=f"bar_{selected_state}_{name.replace(' ', '')}")
+
+            chamber_summary(sh, "State House")
+            chamber_summary(ss, "State Senate")
+
+            st.markdown("### Race List")
+            race_table(state_races)
+
+            st.markdown("---")
+            race_detail(state_races, f"stateleg_{selected_state}")
 
 
 # ── Footer ───────────────────────────────────────────────────────────────────
