@@ -203,6 +203,13 @@ def simulate_races(df, override_national_swing=None, csv_national_swing=-9.65,
     for _, row in stateleg.iterrows():
         state = row.get("state")
         derived_swing = state_swing_map.get(state)
+        # Dampen swing by 2.5x for D-leaning districts (baseline_pres < 0).
+        # Rationale: already-D districts have less R vote to convert in a D
+        # wave (and less D vote to lose in an R wave), so they swing less.
+        if derived_swing is not None:
+            pres = row.get("baseline_pres")
+            if not _is_blank(pres) and float(pres) < 0:
+                derived_swing = derived_swing / 2.5
         res, reason = _simulate_row(row, override_national_swing, csv_national_swing,
                                      rng, n_sims, swing_override=derived_swing)
         if res is None:
