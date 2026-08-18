@@ -491,18 +491,20 @@ def race_detail(sub_results, office_label):
     dcol1, dcol2 = st.columns([2, 1])
 
     with dcol1:
-        # Regenerate distribution for the histogram
+        # Regenerate distribution for the histogram — load both CSVs so state-leg races are found
         input_df = pd.read_csv(CSV_PATH)
+        try:
+            sl_df = pd.read_csv(STATE_LEG_CSV)
+            if len(sl_df) > 0:
+                input_df = pd.concat([input_df, sl_df], ignore_index=True)
+        except (FileNotFoundError, pd.errors.EmptyDataError):
+            pass
         row_input = input_df[input_df["race_id"] == picked].iloc[0]
         settings = OFFICE_SETTINGS[r["office"]]
         baseline, swing_unc, _ = _baseline_and_unc(row_input, settings)
-        # Match the engine: preserve per-race dampening ratio when overriding
-        csv_swing_val = _to_float(row_input["expected_swing"])
-        if override_national is not None and CSV_NATIONAL_SWING != 0:
-            ratio = csv_swing_val / CSV_NATIONAL_SWING
-            swing = override_national * ratio
-        else:
-            swing = csv_swing_val
+        # Use the swing the engine actually applied (works for both federal and
+        # state-leg races — state-leg uses derived state swing, not national)
+        swing = float(r["swing_used"])
         scandal    = _to_float(row_input["scandal"])
         incumbency = _to_float(row_input["incumbency_factor"])
         quality    = _to_float(row_input["candidate_quality"])
