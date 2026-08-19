@@ -96,10 +96,13 @@ def _run_one(baseline, swing, swing_unc, scandal, incumbency, quality, spending,
 FEDERAL_OFFICES  = ("Senate", "Governor", "House")
 STATELEG_OFFICES = ("State House", "State Senate")
 
-# States where state-leg races should IGNORE the Gov/Sen-derived state swing
-# and use the raw national swing instead. Add states whose Gov/Sen races have
-# candidate factors that would improperly bleed into state-leg predictions
-# (e.g., PA where Shapiro's personal popularity distorts the derived swing).
+# State-leg swing derivation rule (uniform, no per-state averaging):
+#   1. If state is in STATE_LEG_USE_NATIONAL → use raw national swing
+#   2. Else if state has a Governor race in 2026 → derived swing = Gov median − Pres baseline
+#   3. Else (no Gov race in 2026) → fall back to national swing
+# Senate races are never used to derive state-leg swings — they carry too much
+# candidate-specific noise (incumbency premiums, individual scandals) that
+# doesn't map cleanly onto legislative races.
 STATE_LEG_USE_NATIONAL = {"PA", "NC"}
 
 
@@ -188,32 +191,36 @@ def simulate_races(df, override_national_swing=None, csv_national_swing=-9.65,
 
     pass1 = pd.DataFrame(results)
 
-    # ── Compute per-state derived swings from Gov and Sen results ──
+    # ── Compute per-state derived swings from Governor races only ──
+    # (Senate races excluded — too much candidate-specific noise)
     state_swing_map = {}
     if len(pass1):
         for state in pass1["state"].unique():
-            derived = []
             for _, r in pass1[(pass1["state"] == state) &
-                              (pass1["office"].isin(["Governor", "Senate"]))].iterrows():
-                # Look up the ORIGINAL Pres baseline for this state's federal race
+                              (pass1["office"] == "Governor")].iterrows():
                 src_row = federal[federal["race_id"] == r["race_id"]].iloc[0]
                 pres = src_row.get("baseline_pres")
                 if _is_blank(pres):
                     continue
-                derived.append(r["median_margin"] - float(pres))
-            if derived:
-                state_swing_map[state] = sum(derived) / len(derived)
+                state_swing_map[state] = r["median_margin"] - float(pres)
+                break  # Only one Governor per state
 
     # ── Pass 2: state legislature races ──
     stateleg = df[df["office"].isin(STATELEG_OFFICES)]
     for _, row in stateleg.iterrows():
         state = row.get("state")
 
-        # Determine base swing: derived from Gov/Sen, or national (opt-out states)
+        # Determine base swing:
+        #   1. Opt-out states → national
+        #   2. Otherwise → Gov-derived (if state has a Gov race in 2026)
+        #   3. Fallback → national
+        national = override_national_swing if override_national_swing is not None else csv_national_swing
         if state in STATE_LEG_USE_NATIONAL:
-            base_swing = override_national_swing if override_national_swing is not None else csv_national_swing
+            base_swing = national
         else:
             base_swing = state_swing_map.get(state)
+            if base_swing is None:
+                base_swing = national  # no Gov race → national
 
         # Dampen swing by 2.5x for D-leaning districts (baseline_pres < 0).
         if base_swing is not None:
