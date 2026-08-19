@@ -15,6 +15,10 @@ the **5th–95th percentiles** form the 90% uncertainty band.
 **Sign convention:** Positive = Republican, Negative = Democrat.
 Everywhere. In the CSV, in the engine, in the dashboard.
 
+Mnemonic: positive is on the *right* on a number line, just like the GOP
+sits on the political right. Negative is on the *left*, like Dems. It reads
+naturally: `+7` means "R+7," `-3` means "D+3."
+
 ---
 
 ## The three-layer Monte Carlo
@@ -109,6 +113,38 @@ Applied selectively, informed by the 2018/2022 House backtest findings.
 
 ---
 
+## Race-specific alterations
+
+The uniform methodology handles most races well, but a handful get bespoke
+adjustments because a specific dynamic can't be captured by the general
+rules. These aren't fudges — each is documented and defensible.
+
+**NH-Sen (dampened swing)**
+- New Hampshire has an unusually inelastic Senate electorate (Sununu, Hassan,
+  Shaheen have all shown personal-vote effects that outrun the state's
+  partisan lean). To avoid overstating the state's swing response, NH-Sen
+  gets a dampened swing (about 2.5x less than the national wave) instead
+  of the full national swing every other Senate race sees.
+
+**PA-Gov (baseline from 2022 Gov result, not 2024 Pres)**
+- Josh Shapiro won PA-Gov by 14.8 in 2022 in the same state Trump won by
+  1.7 in 2024. That's a 16-point Gov-vs-Pres divergence — Shapiro's personal
+  vote is enormous. Using 2024 Pres as the baseline for PA-Gov 2026 would
+  ignore ~15 points of documented incumbent-specific overperformance.
+  Using the 2022 Gov result as the baseline better captures the reality
+  that Shapiro is running from a very different starting point than the
+  state's Pres lean would suggest.
+
+**Why bespoke rules at all?**
+The uniform methodology assumes each race's baseline is a reasonable proxy
+for the electorate that will show up. When that assumption clearly breaks
+(NH's unusual elasticity, Shapiro's outsized personal vote), the model gets
+a corrected input rather than a pretend-uniform one that produces a
+misleading prediction. Every alteration is one line in the CSV, documented
+in the `notes` field.
+
+---
+
 ## Incumbency & candidate factors
 
 **Incumbency factor:**
@@ -190,8 +226,14 @@ Manually-entered generic ballot polls in `data/polls_2026.csv`.
 
 **Projected GCB:** raw polling averages leave 10-15% undecided. The projection
 allocates these:
-- **56% to Democrats** (this cycle's assumed break)
+- **56% to Democrats**
 - **44% to Republicans**
+
+The 56/44 split is based on how undecideds broke in the **2018 generic
+ballot cycle** — a comparable midterm environment (unpopular Republican
+president, engaged Dem base). In 2018 late undecided voters split roughly
+56/44 toward Dems on final polls-to-result reconciliation, so the same
+split is applied here as a working assumption for 2026.
 
 Formula:
 ```
@@ -336,9 +378,15 @@ aggregator mitigates this but doesn't eliminate it.
 
 ---
 
-## What this is not
+## Who's behind this
 
-A professional forecast. This is a hobbyist Monte Carlo model built to test
-methodology decisions against historical backtests. It's calibrated, honest
-about uncertainty, and defensible — but it's built by one person with
-publicly-available data. Treat it as a well-argued opinion, not a prediction.
+These are predictions — real ones. The model runs 10,000 simulations per race,
+uses calibrated inputs, and reports honest uncertainty bands. But I'm not a
+pundit and I'm not doing this for money. I'm a hobbyist who loves electoral
+trends data and wanted to build a rigorous, transparent forecast for the
+2026 cycle.
+
+Everything is open — methodology documented here, code and CSVs public,
+inputs traceable. Treat the outputs as informed forecasts from someone who
+takes the methodology seriously, not as authoritative calls from an
+established forecasting operation.
