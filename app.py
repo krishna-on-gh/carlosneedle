@@ -589,8 +589,8 @@ def race_detail(sub_results, office_label):
 # ═════════════════════════════════════════════════════════════════════════════
 # TABS
 # ═════════════════════════════════════════════════════════════════════════════
-tab_home, tab_sen, tab_house, tab_gov, tab_state = st.tabs(
-    ["🏛️ Home", "🏛️ Senate", "🏛️ House", "🏛️ Governor", "🏢 State Legislatures"]
+tab_home, tab_sen, tab_house, tab_gov, tab_state, tab_about = st.tabs(
+    ["🏛️ Home", "🏛️ Senate", "🏛️ House", "🏛️ Governor", "🏢 State Legislatures", "ℹ️ About"]
 )
 
 
@@ -1009,6 +1009,39 @@ with tab_state:
 
             st.markdown("---")
             race_detail(state_races, f"stateleg_{selected_state}")
+
+
+# ── ABOUT TAB ────────────────────────────────────────────────────────────────
+with tab_about:
+    st.markdown("## About CarlosNeedle")
+    st.markdown(
+        "<div style='color:#6a6a6a; font-size:1.05rem; margin-top:-8px;'>"
+        "A Monte Carlo forecast of the 2026 U.S. Senate, Governor, House, and "
+        "state legislative elections. Built by one person as a hobbyist project. "
+        "Not a professional forecast — but methodology is transparent, calibrated on "
+        "historical backtests, and honest about uncertainty."
+        "</div>",
+        unsafe_allow_html=True,
+    )
+
+    st.markdown("---")
+
+    # Load METHODOLOGY.md content
+    import os
+    methodology_path = "METHODOLOGY.md"
+    if os.path.exists(methodology_path):
+        with open(methodology_path, "r", encoding="utf-8") as f:
+            methodology_content = f.read()
+        st.markdown(methodology_content)
+    else:
+        st.warning("METHODOLOGY.md not found in project root.")
+
+    st.markdown("---")
+    st.markdown("### Contact / Feedback")
+    st.markdown(
+        "This is a personal project — feedback welcome. "
+        "For methodology questions, corrections, or suggestions, ping the maintainer."
+    )
 
 
 # ── Footer ───────────────────────────────────────────────────────────────────
