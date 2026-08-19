@@ -362,11 +362,27 @@ aggregator mitigates this but doesn't eliminate it.
 - **`data/races_2026.csv`** — per-race inputs (baseline, swing, incumbency,
   scandal, quality, spending). Manually curated.
 - **`data/polls_2026.csv`** — generic ballot polls. Manually curated.
+- **`data/state_leg_2026.csv`** — state legislature district inputs.
 - **`engine.py`** — Monte Carlo engine; reads CSV, runs 10k sims per race,
   returns results.
 - **`poll_aggregator.py`** — poll loading, weighting, projected GCB,
   swing derivation.
 - **`app.py`** — Streamlit dashboard.
+
+### Sources
+
+- **U.S. House and state legislative district data (2024 Presidential
+  results by district)** — nearly all district-level Pres margins are
+  sourced from **[Dave's Redistricting App](https://davesredistricting.org)**.
+  DRA disaggregates precinct-level Pres results to whatever district map
+  you're viewing (post-2022 lines for most states) and exports clean CSVs
+  with Dem/Rep/Other percentages per district. Huge lift saved.
+- **Senate & Governor baselines** — 2024 state-level Presidential margins
+  (public / widely reported).
+- **Split Ticket WAR** for Senate incumbency values.
+- **Generic ballot polls** — manually entered from public releases
+  (Marquette, Emerson, Reuters/Ipsos, YouGov, NYT, Cygnal, FOX News, Pew,
+  Quinnipiac, CNN, NPR/PBS/Marist, and others).
 
 ---
 
