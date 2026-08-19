@@ -18,7 +18,7 @@ import streamlit as st
 from engine import simulate_races, _baseline_and_unc, _to_float, OFFICE_SETTINGS
 from hex_map import render_hex_map
 from poll_aggregator import (
-    load_polls, append_poll, rolling_average, fever_series,
+    load_polls, rolling_average, fever_series,
     poll_derived_swing, projected_gcb, projected_swing,
     summary as poll_summary,
     REFERENCE_2024, POLLS_CSV, UNDECIDED_TO_D, UNDECIDED_TO_R,
@@ -716,41 +716,10 @@ with tab_home:
     elif len(polls_df) > 0:
         st.info("Need at least 2 days of polls to draw the fever chart.")
 
-    # Add poll form
-    with st.expander("➕ Add a new poll", expanded=False):
-        with st.form("poll_form", clear_on_submit=True):
-            fcol1, fcol2, fcol3 = st.columns(3)
-            new_date = fcol1.date_input("Date")
-            new_pollster = fcol2.text_input("Pollster", placeholder="e.g. Marquette")
-            new_type = fcol3.selectbox("Sample type", ["LV", "RV"],
-                                        help="Likely Voter (weighted 60%) or Registered Voter (40%)")
-            f2col1, f2col2, f2col3 = st.columns(3)
-            new_dem = f2col1.number_input("Dem %", min_value=0.0, max_value=100.0, value=48.0, step=0.5)
-            new_rep = f2col2.number_input("Rep %", min_value=0.0, max_value=100.0, value=44.0, step=0.5)
-            new_n = f2col3.number_input("Sample size", min_value=0, value=1000, step=100)
-            new_notes = st.text_input("Notes", placeholder="Optional")
-            submitted = st.form_submit_button("Add poll")
-            if submitted:
-                if not new_pollster.strip():
-                    st.error("Please enter a pollster name.")
-                else:
-                    append_poll({
-                        "date":         new_date.isoformat(),
-                        "pollster":     new_pollster.strip(),
-                        "sample_type":  new_type,
-                        "dem_pct":      new_dem,
-                        "rep_pct":      new_rep,
-                        "sample_size":  int(new_n),
-                        "notes":        new_notes.strip(),
-                    }, path=POLLS_CSV)
-                    st.cache_data.clear()
-                    st.success(f"Added {new_pollster} poll from {new_date.isoformat()}. Reloading…")
-                    st.rerun()
-
     # Poll table
     st.markdown("### Polls")
     if len(polls_df) == 0:
-        st.caption("No polls yet. Use the form above to add one.")
+        st.caption("No polls loaded.")
     else:
         display = polls_df.copy()
         display = display.sort_values("date", ascending=False)
@@ -775,7 +744,7 @@ with tab_home:
             },
             height=250,
         )
-        st.caption(f"{len(polls_df)} polls loaded. Edit `data/polls_2026.csv` directly to bulk-modify.")
+        st.caption(f"{len(polls_df)} polls loaded.")
 
 
 # ── SENATE TAB ───────────────────────────────────────────────────────────────
