@@ -115,9 +115,16 @@ Applied selectively, informed by the 2018/2022 House backtest findings.
 
 ### Backtest validation of the dampening rule
 
-Tested on the 2018 House Goliath backtest (170 races). Same inputs, same
-seed, only difference is whether the dampening rule was applied to
-D-leaning districts:
+*Note on scope:* the numbers below come from the **2018 House Goliath
+backtest specifically** — a large 170-race stress-test built to isolate
+methodology changes on House data. This is different from the aggregate
+performance table above (which pools Senate + Governor + a smaller House
+sample across both 2018 and 2022, N=136). House-only mean errors are
+naturally higher than the aggregate — individual districts have more
+noise than statewide races.
+
+Tested on this 170-race sample: same inputs, same seed, only difference
+is whether the dampening rule was applied to D-leaning districts:
 
 | Metric | Without dampening | With dampening | Delta |
 |--------|-------------------|----------------|-------|
