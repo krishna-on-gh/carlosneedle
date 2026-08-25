@@ -179,6 +179,10 @@ STATE_LEG_CARRYOVER = {
         "R": 6, "D": 10, "total_seats": 33,
         "notes": "Even-numbered seats (2-32) carry over: 10D-6R. Odd seats (17) up in 2026.",
     },
+    ("IA", "State Senate"): {
+        "R": 19, "D": 6, "total_seats": 50,
+        "notes": "Even-numbered seats (2-50) carry over: 19R-6D. Odd seats (25) up in 2026. Current chamber: 33R-17D.",
+    },
     # Add more as you model chambers:
     # ("WI", "State House"): {"R": 0, "D": 0, "total_seats": 99, ...},  # all up each cycle
 }
