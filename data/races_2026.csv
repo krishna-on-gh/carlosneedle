@@ -1,6 +1,6 @@
 race_id,office,state,district,baseline_pres,baseline_shave,expected_swing,incumbent_party,scandal,incumbency_factor,candidate_quality,spending_effect,tier,last_updated,notes
 AK-Sen,Senate,AK,,13.1,,-9.65,R,0,0,-1.5,-2,1,2026-08-03,Former Rep. Mary Peltola up against incumbent Sen. Dan Sullivan (R). Massive upset potential
-GA-Sen,Senate,GA,,2.3,5.2,-9.65,D,0,-6.1,0,-3.5,1,2026-08-03,Incumbent Senator Jon Ossoff Up against likely Mike Collins
+GA-Sen,Senate,GA,,2.3,5.2,-9.65,D,0,-2.5,0,-3.5,1,2026-08-03,Incumbent Senator Jon Ossoff Up against likely Mike Collins
 IA-Sen,Senate,IA,,13.2,13,-9.65,Open - R,0,0,0,0.5,1,2026-08-03,"Rep. Ashley Hinson up against likely Josh Turek (D). Open Iowa seat in a blue wave, could get interesting"
 ME-Sen,Senate,ME,,-6.9,-12,-9.65,R,1.5,12.5,0,3.5,1,2026-08-03,"Sen. Susan Collins up against Graham Platner (D), he has a lot of scandals so this could be an election to look out for"
 MI-Sen,Senate,MI,,1.4,1.2,-9.65,Open - D,0,0,0,0,1,2026-05-28,"Competitive Primary for Dems, 2024 loser Mike Rogers is R nominee. Could be really competitive"
