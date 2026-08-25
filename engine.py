@@ -96,14 +96,19 @@ def _run_one(baseline, swing, swing_unc, scandal, incumbency, quality, spending,
 FEDERAL_OFFICES  = ("Senate", "Governor", "House")
 STATELEG_OFFICES = ("State House", "State Senate")
 
-# State-leg swing derivation rule (uniform, no per-state averaging):
+# State-leg swing derivation rule (uniform, no averaging):
 #   1. If state is in STATE_LEG_USE_NATIONAL → use raw national swing
-#   2. Else if state has a Governor race in 2026 → derived swing = Gov median − Pres baseline
-#   3. Else (no Gov race in 2026) → fall back to national swing
-# Senate races are never used to derive state-leg swings — they carry too much
-# candidate-specific noise (incumbency premiums, individual scandals) that
-# doesn't map cleanly onto legislative races.
+#   2. Else if state is in STATE_LEG_USE_SENATE → use Senate-derived swing
+#      (Senate median − Pres baseline)
+#   3. Else if state has a Governor race in 2026 → use Gov-derived swing
+#      (Gov median − Pres baseline)
+#   4. Else (no relevant race in 2026) → fall back to national swing
+# Senate is opt-in per state (not default) because Senate races carry
+# candidate-specific noise; use STATE_LEG_USE_SENATE when the Sen race
+# is a cleaner state signal than the Gov race (e.g., IA where Ernst's
+# Sen race is a better read than an open Gov race with unknowns).
 STATE_LEG_USE_NATIONAL = {"PA", "NC"}
+STATE_LEG_USE_SENATE   = {"IA"}
 
 
 def _simulate_row(row, override_national_swing, csv_national_swing, rng, n_sims,
@@ -191,19 +196,23 @@ def simulate_races(df, override_national_swing=None, csv_national_swing=-9.65,
 
     pass1 = pd.DataFrame(results)
 
-    # ── Compute per-state derived swings from Governor races only ──
-    # (Senate races excluded — too much candidate-specific noise)
-    state_swing_map = {}
+    # ── Compute per-state derived swings from Governor AND Senate races ──
+    # Two maps: one for Gov-derived (default), one for Sen-derived (opt-in).
+    gov_swing_map = {}
+    sen_swing_map = {}
     if len(pass1):
         for state in pass1["state"].unique():
             for _, r in pass1[(pass1["state"] == state) &
-                              (pass1["office"] == "Governor")].iterrows():
+                              (pass1["office"].isin(["Governor", "Senate"]))].iterrows():
                 src_row = federal[federal["race_id"] == r["race_id"]].iloc[0]
                 pres = src_row.get("baseline_pres")
                 if _is_blank(pres):
                     continue
-                state_swing_map[state] = r["median_margin"] - float(pres)
-                break  # Only one Governor per state
+                derived = r["median_margin"] - float(pres)
+                if r["office"] == "Governor":
+                    gov_swing_map[state] = derived
+                else:  # Senate
+                    sen_swing_map[state] = derived
 
     # ── Pass 2: state legislature races ──
     stateleg = df[df["office"].isin(STATELEG_OFFICES)]
@@ -211,14 +220,19 @@ def simulate_races(df, override_national_swing=None, csv_national_swing=-9.65,
         state = row.get("state")
 
         # Determine base swing:
-        #   1. Opt-out states → national
-        #   2. Otherwise → Gov-derived (if state has a Gov race in 2026)
-        #   3. Fallback → national
+        #   1. Opt-out to national → national
+        #   2. Opt-in to Senate → Sen-derived (if Sen race exists)
+        #   3. Otherwise → Gov-derived (if Gov race exists)
+        #   4. Fallback → national
         national = override_national_swing if override_national_swing is not None else csv_national_swing
         if state in STATE_LEG_USE_NATIONAL:
             base_swing = national
+        elif state in STATE_LEG_USE_SENATE:
+            base_swing = sen_swing_map.get(state)
+            if base_swing is None:
+                base_swing = national  # no Sen race → national
         else:
-            base_swing = state_swing_map.get(state)
+            base_swing = gov_swing_map.get(state)
             if base_swing is None:
                 base_swing = national  # no Gov race → national
 
