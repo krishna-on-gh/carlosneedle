@@ -32,3 +32,5 @@ date,pollster,sample_type,dem_pct,rep_pct,sample_size,notes
 8/22/2026,Emerson,LV,50.7,43,1000,
 8/24/2026,Reuters/Ipsos,RV,41,35,951,
 8/25/2026,Economist/YouGov,RV,46,40,1377,
+8/26/2026,Strength in Numbers/Verasight,RV,49,43,1378,
+8/26/2026,Strength in Numbers/Verasight,LV,51.1,43.6,N/A,"Same as the RV poll, except this is 'weighted by likeliness to vote'"
