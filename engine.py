@@ -108,7 +108,7 @@ STATELEG_OFFICES = ("State House", "State Senate")
 # is a cleaner state signal than the Gov race (e.g., IA where Ernst's
 # Sen race is a better read than an open Gov race with unknowns).
 STATE_LEG_USE_NATIONAL = {"PA", "NC"}
-STATE_LEG_USE_SENATE   = {"IA"}
+STATE_LEG_USE_SENATE   = {"IA", "MN"}
 
 
 def _simulate_row(row, override_national_swing, csv_national_swing, rng, n_sims,
