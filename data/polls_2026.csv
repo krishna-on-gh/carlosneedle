@@ -35,3 +35,5 @@ date,pollster,sample_type,dem_pct,rep_pct,sample_size,notes
 8/26/2026,Strength in Numbers/Verasight,RV,49,43,1378,
 8/26/2026,Strength in Numbers/Verasight,LV,51.1,43.6,1378,"Same as the RV poll, except this is 'weighted by likeliness to vote'"
 8/27/2026,Angus Reid Global,LV,53,43,1068,
+8/31/2026,Economist/YouGov,RV,46,40,1434,
+8/31/2026,Reuters/Ipsos,RV,43,38,924,
