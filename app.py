@@ -695,16 +695,31 @@ with tab_home:
         f"{effective_national/2.5:+.2f})"
     )
 
-    # Fever chart
+    # Fever chart — raw 21-day avg + projected (undecided-split) 21-day avg
     fever = fever_series(polls_df, window_days=21)
     if len(fever) >= 2:
+        # Compute projected series per day (rolling with undecideds split)
+        proj_vals = []
+        for d in fever["date"]:
+            p = projected_gcb(polls_df, as_of_date=d, window_days=21)
+            proj_vals.append(p["proj_margin_r"] if p is not None else None)
+        fever = fever.copy()
+        fever["projected"] = proj_vals
+
         fig = go.Figure()
+        # Raw rolling average — bold solid
         fig.add_trace(go.Scatter(
             x=fever["date"], y=fever["avg"],
-            mode="lines", line=dict(width=3, color="#333"),
-            fill="tozeroy",
-            hovertemplate="%{x|%b %d}: %{y:+.2f}<extra></extra>",
-            name="21d avg",
+            mode="lines", line=dict(width=3.5, color="#333"),
+            hovertemplate="%{x|%b %d}<br>Raw avg: %{y:+.2f}<extra></extra>",
+            name="Raw 21d avg",
+        ))
+        # Projected (undecideds split) — dotted
+        fig.add_trace(go.Scatter(
+            x=fever["date"], y=fever["projected"],
+            mode="lines", line=dict(width=2, color="#333", dash="dot"),
+            hovertemplate="%{x|%b %d}<br>Projected: %{y:+.2f}<extra></extra>",
+            name=f"Projected ({int(UNDECIDED_TO_D*100)}/{int(UNDECIDED_TO_R*100)} split)",
         ))
         fig.add_hline(y=0, line_dash="dash", line_color="black", line_width=1,
                       annotation_text="Tie", annotation_position="top right")
@@ -712,10 +727,11 @@ with tab_home:
             title="Generic ballot — 21-day rolling average (R+ scale)",
             xaxis_title="",
             yaxis_title="Margin (R − D)",
-            height=280,
+            height=300,
             margin=dict(l=10, r=10, t=40, b=10),
             plot_bgcolor=BG_COLOR, paper_bgcolor=BG_COLOR,
-            showlegend=False,
+            showlegend=True,
+            legend=dict(orientation="h", yanchor="bottom", y=-0.25, x=0),
         )
         st.plotly_chart(fig, use_container_width=True, key="fever_chart")
     elif len(polls_df) > 0:
