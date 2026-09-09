@@ -1,0 +1,32 @@
+race_id,office,state,display_name,dem_last_name,rep_last_name,notes
+AK-Sen,Senate,AK,Alaska Senate,Peltola,Sullivan,Sullivan incumbent
+TX-Sen,Senate,TX,Texas Senate,Talarico,Paxton,Cornyn incumbent
+KS-Sen,Senate,KS,Kansas Senate,Franklin,Marshall,Marshall incumbent
+NE-Sen,Senate,NE,Nebraska Senate,Osborn,Ricketts,Fischer/Ricketts; watch for Osborn 2.0
+IA-Sen,Senate,IA,Iowa Senate,Turek,Hinson,Ernst Retired
+MN-Sen,Senate,MN,Minnesota Senate,Flanagan,Tafoya,Smith retiring - open D
+MI-Sen,Senate,MI,Michigan Senate,El-Sayed,Rogers,Peters retired
+OH-Sen,Senate,OH,Ohio Senate,Brown,Husted,Husted incumbent (appointed)
+NC-Sen,Senate,NC,North Carolina Senate,Cooper,Whatley,Tillis incumbent
+VA-Sen,Senate,VA,Virginia Senate,Warner,Misusawa,Warner incumbent
+GA-Sen,Senate,GA,Georgia Senate,Ossoff,Collins,Ossoff incumbent
+SC-Sen,Senate,SC,South Carolina Senate,Andrews,Graham,Graham incumbent
+FL-Sen,Senate,FL,Florida Senate,Nixon,Moody,Moody appointed
+NH-Sen,Senate,NH,New Hampshire Senate,Pappas,Sununu,Open - Shaheen retiring
+ME-Sen,Senate,ME,Maine Senate,Jackson,Collins,Collins incumbent
+NV-Gov,Governor,NV,Nevada Governor,Ford,Lombardo,Lombardo incumbent
+AZ-Gov,Governor,AZ,Arizona Governor,Hobbs,Biggs,Hobbs incumbent
+AK-Gov,Governor,AK,Alaska Governor,,,Dunleavy termed out - open
+TX-Gov,Governor,TX,Texas Governor,Hinajosa,Abbott,Abbott
+KS-Gov,Governor,KS,Kansas Governor,,,Kelly termed out - open
+IA-Gov,Governor,IA,Iowa Governor,Sand,Lahn,Reynolds termed out - open
+WI-Gov,Governor,WI,Wisconsin Governor,Crowley,Tiffany,Evers - reelection or open
+MI-Gov,Governor,MI,Michigan Governor,Benson,James,Whitmer termed out - open
+OH-Gov,Governor,OH,Ohio Governor,Acton,Ramaswamy,DeWine termed out - open
+PA-Gov,Governor,PA,Pennsylvania Governor,Shapiro,Garrity,Shapiro reelection
+GA-Gov,Governor,GA,Georgia Governor,Bottoms,Jackson,Kemp termed out - open
+FL-Gov,Governor,FL,Florida Governor,Jolly,Donalds,DeSantis termed out
+NY-Gov,Governor,NY,New York Governor,Hochul,Blakeman,Hochul reelection
+NH-Gov,Governor,NH,New Hampshire Governor,,,Ayotte
+ME-Gov,Governor,ME,Maine Governor,Pingree,Charles,Mills termed out - open
+MN-Gov,Governor,MN,Minnesota Governor,Klobuchar,Demuth,Walz reelection or open

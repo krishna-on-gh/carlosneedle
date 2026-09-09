@@ -1,0 +1,6 @@
+# NV Gov 2022 FINAL results by county — the "answer key"
+# Source URL: https://en.wikipedia.org/wiki/2022_Nevada_gubernatorial_election
+#
+# Paste the "Results by county" table below. Any format is fine.
+# Ideally each row shows:  county | D votes | R votes | total
+# ---

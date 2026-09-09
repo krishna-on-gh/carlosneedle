@@ -451,3 +451,134 @@ Everything is open — methodology documented here, code and CSVs public,
 inputs traceable. Treat the outputs as informed forecasts from someone who
 takes the methodology seriously, not as authoritative calls from an
 established forecasting operation.
+
+---
+
+## Election Night Needle (Live 2026 Update)
+
+The **Election Night tab** exposes a live Bayesian needle for the target
+Senate and Governor races on election night, updating as county-level
+returns are pasted in.
+
+### The math
+
+Three-part Bayesian update, computed for each race independently:
+
+**1. Prior — the pre-election forecast.**
+Comes straight from this model's Monte Carlo output:
+- `prior_mean` = the race's `median_margin`
+- `prior_sigma` = `(P95 − P5) / 3.29` (converting the 90% credible
+  interval width to a standard deviation)
+
+Priors auto-refresh as the model's predictions update — until election
+night itself, when the last engine run before polls close is treated as
+the frozen prior. No re-forecasts during results.
+
+**2. Likelihood — what the reported counties say.**
+For each county that has reported, compute the observed swing:
+`observed_swing = reported_margin_2026 − baseline_margin_2024_Pres`.
+
+The **state-level swing** is the votes-weighted mean of those county swings.
+The state-swing standard error uses the Kish effective N to account for
+some counties dominating the reported vote share.
+
+Each county not yet reporting is projected as:
+`projected_margin = 2024_Pres_baseline + state_swing + county_residual_noise`
+
+Rolling this up (weighted by expected votes) across 10,000 Monte Carlo
+draws yields a distribution of possible final state margins — the
+**likelihood**.
+
+**3. Posterior — the needle.**
+Precision-weighted blend of prior and likelihood:
+```
+sigma_post² = 1 / (1/sigma_prior² + 1/sigma_data²)
+mean_post   = sigma_post² × (mean_prior/sigma_prior² + mean_data/sigma_data²)
+```
+
+Early night (thin data → wide `sigma_data`) → prior dominates.
+Late night (rich data → tight `sigma_data`) → data dominates.
+At 100% reporting, the needle equals the actual final by construction.
+
+The displayed 90% band is the 5th–95th percentiles of the posterior.
+The band **narrows** as more of the vote reports in. That's the wobble
+mechanism.
+
+### Turnout modeling
+
+Expected vote per county = `2024_Pres_total_votes × turnout_ratio`, where
+`turnout_ratio` is a per-state estimate of midterm vs presidential-year
+turnout (roughly 0.63–0.91 depending on state; see
+`data/state_turnout_ratios_2026.csv`). Ratios were derived from
+`(2018 turnout / 2016 turnout)` and `(2022 turnout / 2020 turnout)`
+averages.
+
+If the actual 2026 turnout diverges from the estimate, the projection's
+remaining-vote count is off proportionally. Small errors are absorbed;
+large ones would bias the needle late in the night.
+
+### Backtest results
+
+The needle model was tested against five real snapshots from prior
+election nights, using each race's actual reported margins at a specific
+point in time versus its known final result:
+
+| Race | Vote reported | Naive error | Needle error | Called correct winner? |
+|:---|:---:|:---:|:---:|:---:|
+| MI Gov 2022 | ~73% | 4.65 pts | 1.71 pts | Yes |
+| NV Gov 2022 | ~50% | 3.60 pts | 1.27 pts | Yes |
+| PA Gov 2022 | ~10% | ~35 pts   | 0.55 pts | Yes |
+| GA Pres 2020 | ~79% | 8.32 pts | 2.09 pts | **No** (over-confident) |
+| GA Pres 2024 | ~7% | 12.83 pts | 2.10 pts | Yes (correct tossup) |
+
+Naive = the raw votes-weighted margin of reported counties. Needle =
+posterior median from the Bayesian update. In every case, the needle
+was materially better than naive.
+
+**The GA Pres 2020 miss** is the known failure mode. At 79% reporting,
+Fulton and DeKalb still had large piles of mail ballots to count, and
+those mail ballots were extraordinarily D-heavy relative to the earlier
+election-day reported vote in those same counties. The uniform-swing
+model can't capture that intra-county vote-mode split — it treated the
+partially-reported urban margin as representative of the whole county
+and under-projected D. The full NYT needle famously called GA for Trump
+around midnight in 2020 for exactly this reason.
+
+### Known limitations
+
+- **Mail-vote-mode splits.** In GA, AZ, NV, PA the mix of mail vs
+  election-day counted at any moment can be very different from the
+  eventual mix. A uniform-swing needle can't correct for this without
+  per-county vote-mode data (which most states do not expose in a clean
+  live feed). The needle is more trustworthy in states without extreme
+  mode splits.
+
+- **Single-county-dominant states.** NV is roughly 87% Clark + Washoe.
+  When one county contributes >60% of reported vote, the "state swing"
+  is essentially that county's swing, and the needle can be
+  over-confident. The UI flags this with an explicit warning.
+
+- **Third-party disrupters.** A serious independent candidate (Osborn
+  in NE 2024, Angus King in ME) breaks the "each side has one party
+  candidate" assumption the model bakes in. Needles won't catch this;
+  it has to be handled in the pre-election prior instead.
+
+- **Turnout surprises.** If 2026 midterm turnout differs materially from
+  the estimated `turnout_ratio`, remaining-vote counts are off. Impact is
+  larger in states with widely varying turnout patterns cycle-to-cycle.
+
+- **Data-entry lag.** The needle only knows what has been pasted in.
+  During periods where the pasted snapshot goes stale (say, 15 minutes
+  since the last paste while returns are moving fast), the displayed
+  needle lags reality.
+
+### What the needle is and isn't
+
+**It is:** a Bayesian re-estimator that blends this model's pre-election
+forecast with pasted live returns. It gives calibrated uncertainty (the
+band), and its posterior is auditable in the code.
+
+**It isn't:** a decision desk. It doesn't call races, doesn't have access
+to precinct-level or vote-mode data, and doesn't run continuously. It's
+one hobbyist's attempt to have a defensible live estimate for the
+handful of races worth watching.

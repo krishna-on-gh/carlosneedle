@@ -593,8 +593,9 @@ def race_detail(sub_results, office_label):
 # ═════════════════════════════════════════════════════════════════════════════
 # TABS
 # ═════════════════════════════════════════════════════════════════════════════
-tab_home, tab_sen, tab_house, tab_gov, tab_state, tab_about = st.tabs(
-    ["🏛️ Home", "🏛️ Senate", "🏛️ House", "🏛️ Governor", "🏢 State Legislatures", "ℹ️ About"]
+(tab_home, tab_sen, tab_house, tab_gov, tab_state, tab_needle, tab_about) = st.tabs(
+    ["🏛️ Home", "🏛️ Senate", "🏛️ House", "🏛️ Governor", "🏢 State Legislatures",
+     "🗳️ Election Night", "ℹ️ About"]
 )
 
 
@@ -985,6 +986,10 @@ with tab_state:
 
 
 # ── ABOUT TAB ────────────────────────────────────────────────────────────────
+with tab_needle:
+    from needle_ui import render_needle_tab
+    render_needle_tab()
+
 with tab_about:
     st.markdown("## About CarlosNeedle")
     st.markdown(

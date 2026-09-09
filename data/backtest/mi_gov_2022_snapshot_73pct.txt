@@ -1,0 +1,95 @@
+# MI Gov 2022 snapshot — approx 73% of vote reported
+# Source URL (Wayback):
+# Snapshot timestamp:
+#
+# Paste the county-level table from the Wayback snapshot below this line.
+# Any format is fine — pipe-delimited, tab-delimited, copy-paste from HTML,
+# raw Wikipedia table markup, etc. I'll parse it in the next step.
+#
+# Ideally each row shows:  county | D votes (or %) | R votes (or %) | total reported | % reporting
+# ---
+
+County	Margin	Votes	Percent of votes in% In
+Oakland	Whitmer +23	617,668	88%
+Wayne	Whitmer +40	341,866	45%
+Kent	Whitmer +7	198,047	61%
+Macomb	Dixon +6	195,661	46%
+Washtenaw	Whitmer +44	147,969	74%
+Ottawa	Dixon +21	132,285	87%
+Genesee	Whitmer +9	114,639	59%
+Ingham	Whitmer +37	110,959	82%
+Livingston	Dixon +13	108,833	>95%
+Kalamazoo	Whitmer +18	92,696	71%
+Saginaw	Whitmer +8	79,854	86%
+St. Clair	Dixon +17	74,504	95%
+Jackson	Dixon +8	64,703	90%
+Berrien	Dixon +7	57,892	82%
+Eaton	Whitmer +8	52,238	88%
+Allegan	Dixon +21	51,317	87%
+Calhoun	Dixon +1	50,570	86%
+Bay	Whitmer +3	49,152	91%
+Grand Traverse	Whitmer +6	48,883	87%
+Muskegon	Whitmer +2	48,271	57%
+Midland	Dixon +4	41,224	93%
+Lenawee	Dixon +12	41,151	89%
+Clinton	Whitmer +0.4	40,106	92%
+Lapeer	Dixon +26	33,608	74%
+Monroe	Dixon +15	31,787	44%
+Marquette	Whitmer +22	31,369	92%
+Van Buren	Dixon +3	30,246	87%
+Ionia	Dixon +18	27,205	>95%
+Montcalm	Dixon +25	26,395	>95%
+Barry	Dixon +24	25,390	80%
+Shiawassee	Dixon +11	24,555	71%
+Tuscola	Dixon +28	24,001	94%
+Isabella	Whitmer +7	23,982	92%
+Newaygo	Dixon +33	22,759	95%
+St. Joseph	Dixon +21	21,921	91%
+Cass	Dixon +26	20,353	>95%
+Emmet	Dixon +1.6	19,195	93%
+Mecosta	Dixon +19	17,510	>95%
+Delta	Dixon +18	16,250	84%
+Branch	Dixon +28	16,127	91%
+Houghton	Dixon +7	15,480	92%
+Leelanau	Whitmer +12	15,474	95%
+Gratiot	Dixon +15	15,324	92%
+Wexford	Dixon +23	15,105	93%
+Sanilac	Dixon +39	15,025	79%
+Huron	Dixon +27	15,008	95%
+Mason	Dixon +11	14,757	93%
+Chippewa	Dixon +11	14,535	87%
+Antrim	Dixon +13	14,014	93%
+Alpena	Dixon +14	13,012	88%
+Roscommon	Dixon +16	12,951	>95%
+Manistee	Dixon +3	12,646	93%
+Otsego	Dixon +21	12,506	95%
+Charlevoix	Dixon +6	12,414	79%
+Hillsdale	Dixon +41	11,989	60%
+Dickinson	Dixon +26	11,985	>95%
+Iosco	Dixon +15	11,834	87%
+Cheboygan	Dixon +17	11,536	79%
+Gladwin	Dixon +25	11,357	90%
+Clare	Dixon +21	11,316	80%
+Osceola	Dixon +36	10,379	94%
+Ogemaw	Dixon +26	9,892	>95%
+Menominee	Dixon +27	8,474	83%
+Kalkaska	Dixon +30	7,817	80%
+Missaukee	Dixon +44	7,448	95%
+Presque Isle	Dixon +16	7,298	93%
+Arenac	Dixon +22	7,170	92%
+Crawford	Dixon +16	6,531	90%
+Gogebic	Dixon +7	6,466	>95%
+Mackinac	Dixon +13	5,999	91%
+Alcona	Dixon +29	5,981	>95%
+Iron	Dixon +19	5,620	89%
+Oceana	Dixon +23	5,550	43%
+Lake	Dixon +19	5,260	94%
+Montmorency	Dixon +31	5,118	>95%
+Alger	Dixon +6	4,326	>95%
+Oscoda	Dixon +30	4,012	91%
+Schoolcraft	Dixon +19	3,878	89%
+Baraga	Dixon +21	3,444	93%
+Ontonagon	Dixon +17	3,259	>95%
+Luce	Dixon +31	2,377	>95%
+Keweenaw	Dixon +3	1,390	91%
+Benzie	—	0	0%

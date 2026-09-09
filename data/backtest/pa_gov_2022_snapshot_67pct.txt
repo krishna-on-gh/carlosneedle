@@ -1,0 +1,46 @@
+# PA Gov 2022 snapshot ~67% reporting
+# Actual final: Shapiro +14.8 (D+14.8)
+# ---
+County	Margin	Votes	Percent
+Allegheny	Shapiro +71	183308	30
+Philadelphia	Shapiro +91	67168	12
+Bucks	Shapiro +70	39977	12
+York	Shapiro +60	26422	13
+Cumberland	Shapiro +61	25585	20
+Dauphin	Shapiro +70	25079	19
+Northampton	Shapiro +66	24773	18
+Delaware	Shapiro +76	21014	7
+Washington	Shapiro +61	12952	13
+Berks	Shapiro +21	9348	5
+Snyder	Mastriano +54	8086	46
+Lycoming	Shapiro +25	7659	13
+Franklin	Mastriano +35	6572	9
+Carbon	Mastriano +28	6309	22
+Wayne	Shapiro +31	5436	21
+Clarion	Mastriano +1.2	5075	28
+Jefferson	Mastriano +4	4236	21
+Columbia	Mastriano +12	3912	14
+Bradford	Shapiro +32	3629	13
+Susquehanna	Shapiro +13	3202	19
+Cambria	Mastriano +32	2932	5
+Greene	Mastriano +34	2684	18
+Westmoreland	Mastriano +28	2476	1
+Lancaster	Mastriano +34	2473	1
+Adams	Mastriano +41	2449	5
+Butler	Mastriano +15	2255	2
+Blair	Mastriano +37	2192	4
+Perry	Mastriano +45	2089	9
+Erie	Mastriano +7	1979	2
+Venango	Mastriano +32	1861	8
+Clearfield	Mastriano +40	1859	5
+Clinton	Shapiro +46	1851	12
+Lackawanna	Mastriano +22	1545	2
+Northumberland	Mastriano +36	1387	3
+Chester	Shapiro +2	1379	1
+Montgomery	Shapiro +8	1316	1
+Beaver	Mastriano +28	1163	1
+Schuylkill	Mastriano +53	1110	2
+Pike	Mastriano +49	1104	4
+Somerset	Mastriano +32	1037	3
+Lehigh	Shapiro +23	959	1
+Forest	Shapiro +32	409	17

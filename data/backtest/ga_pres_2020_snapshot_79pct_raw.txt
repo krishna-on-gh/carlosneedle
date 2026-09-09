@@ -1,0 +1,475 @@
+County	Margin	Est. votes reported	Total votes	Absentee
+Floyd	Trump +18
+25%
+10,709	10,506
+DeKalb	Biden +65
+31%
+125,323	79,237
+Bibb	Trump +26
+57%
+46,993	46,993
+Fulton	Biden +49
+58%
+322,357	281,610
+Columbia	Trump +38
+63%
+50,973	32,608
+Cobb	Biden +13
+70%
+294,341	224,992
+Gwinnett	Biden +15
+73%
+305,816	258,211
+Houston	Trump +23
+74%
+52,757	35,983
+Coweta	Trump +47
+75%
+57,767	33,685
+Coffee	Trump +50
+75%
+11,950	9,544
+Jeff Davis	Trump +69
+75%
+4,960	3,276
+Harris	Trump +56
+77%
+15,805	8,798
+Fannin	Trump +75
+78%
+11,383	6,793
+Taylor	Trump +40
+78%
+3,040	2,406
+Walton	Trump +57
+79%
+40,140	29,143
+Stephens	Trump +66
+79%
+9,686	8,128
+Chatham	Biden +13
+80%
+106,786	69,602
+Forsyth	Trump +45
+81%
+98,481	84,951
+Effingham	Trump +54
+81%
+23,699	18,890
+Pickens	Trump +75
+81%
+14,169	7,395
+Jones	Trump +45
+81%
+12,144	8,264
+Putnam	Trump +52
+81%
+9,151	7,099
+Gilmer	Trump +73
+82%
+13,024	8,136
+Clayton	Biden +71
+84%
+103,553	83,233
+Sumter	Biden +1.4
+85%
+10,932	8,245
+Henry	Biden +13
+86%
+93,327	76,680
+Richmond	Biden +37
+86%
+86,584	65,733
+Wilkinson	Trump +11
+87%
+4,271	2,429
+Dooly	Trump +6
+87%
+4,098	3,140
+Stewart	Biden +19
+87%
+1,978	1,455
+Atkinson	Trump +47
+88%
+3,155	2,174
+Taliaferro	Biden +22
+88%
+927	727
+Muscogee	Biden +24
+89%
+80,216	66,695
+Rockdale	Biden +40
+89%
+43,586	37,392
+Macon	Biden +23
+89%
+4,661	3,611
+Baker	Trump +16
+89%
+1,552	1,110
+Colquitt	Trump +55
+90%
+13,485	8,057
+Quitman	Trump +10
+90%
+1,106	776
+Douglas	Biden +25
+91%
+67,118	56,324
+Telfair	Trump +31
+91%
+4,323	3,038
+Glascock	Trump +80
+91%
+1,566	1,120
+Talbot	Biden +21
+92%
+3,519	2,505
+Calhoun	Biden +15
+92%
+2,193	1,547
+Bryan	Trump +46
+93%
+17,567	14,042
+Bacon	Trump +73
+93%
+4,668	4,087
+Jenkins	Trump +26
+93%
+3,451	2,565
+Miller	Trump +47
+93%
+2,830	2,119
+Burke	Trump +3
+94%
+10,085	6,622
+Berrien	Trump +66
+94%
+7,731	5,542
+Seminole	Trump +35
+94%
+3,877	2,624
+Appling	Trump +57
+95%
+8,322	6,230
+Dodge	Trump +45
+95%
+8,064	5,145
+Towns	Trump +61
+95%
+7,968	6,849
+Dade	Trump +65
+96%
+7,423	5,119
+Wilkes	Trump +13
+96%
+5,022	3,798
+Lincoln	Trump +38
+96%
+4,643	3,462
+Twiggs	Trump +7
+96%
+4,438	3,156
+Wilcox	Trump +47
+96%
+3,281	2,245
+Lowndes	Trump +13
+97%
+45,138	36,727
+Warren	Biden +12
+97%
+2,681	2,188
+Catoosa	Trump +56
+98%
+32,659	26,296
+Polk	Trump +57
+98%
+17,375	13,861
+Chattooga	Trump +62
+98%
+10,041	7,161
+Oglethorpe	Trump +39
+98%
+8,126	6,622
+Echols	Trump +76
+98%
+1,439	1,176
+Cherokee	Trump +39
+98%
+144,598	113,321
+Hall	Trump +45
+98%
+85,840	70,481
+Paulding	Trump +29
+98%
+85,273	71,473
+Fayette	Trump +7
+98%
+67,328	57,297
+Dougherty	Biden +27
+98%
+56,324	15,653
+Carroll	Trump +39
+98%
+54,416	40,060
+Newton	Biden +11
+98%
+54,177	36,255
+Clarke	Biden +42
+98%
+51,098	42,101
+Bartow	Trump +51
+98%
+50,113	37,484
+Glynn	Trump +23
+98%
+41,926	34,923
+Barrow	Trump +43
+98%
+38,000	30,076
+Jackson	Trump +58
+98%
+37,663	31,492
+Whitfield	Trump +41
+98%
+36,680	24,709
+Bulloch	Trump +24
+98%
+30,088	20,804
+Troup	Trump +22
+98%
+29,967	22,347
+Walker	Trump +59
+98%
+29,423	23,003
+Spalding	Trump +21
+98%
+28,951	21,274
+Oconee	Trump +34
+98%
+25,157	21,641
+Gordon	Trump +62
+98%
+24,011	15,915
+Camden	Trump +31
+98%
+23,484	18,527
+Laurens	Trump +29
+98%
+22,388	14,783
+Thomas	Trump +19
+98%
+21,848	17,575
+Liberty	Biden +24
+98%
+21,326	17,854
+Habersham	Trump +64
+98%
+20,407	17,204
+Baldwin	Biden +1.2
+98%
+18,205	14,742
+Lee	Trump +45
+98%
+16,702	12,691
+Tift	Trump +34
+98%
+16,257	12,372
+Dawson	Trump +68
+98%
+16,064	13,388
+Monroe	Trump +43
+98%
+15,590	11,746
+Union	Trump +63
+98%
+15,579	11,798
+Lumpkin	Trump +58
+98%
+15,524	13,127
+Murray	Trump +69
+98%
+15,382	10,909
+Madison	Trump +53
+98%
+14,697	10,602
+White	Trump +66
+98%
+14,697	10,797
+Haralson	Trump +74
+98%
+14,266	9,495
+Ware	Trump +40
+98%
+14,248	11,062
+Upson	Trump +34
+98%
+12,899	10,861
+Wayne	Trump +57
+98%
+12,758	9,763
+Hart	Trump +50
+98%
+12,721	9,780
+Peach	Trump +5
+98%
+12,436	10,629
+Butts	Trump +44
+98%
+11,786	10,558
+Morgan	Trump +42
+98%
+11,689	9,288
+Decatur	Trump +17
+98%
+11,613	9,336
+Greene	Trump +27
+98%
+11,237	9,791
+Toombs	Trump +45
+98%
+10,903	8,488
+Meriwether	Trump +21
+98%
+10,869	7,426
+Franklin	Trump +69
+98%
+10,783	8,097
+Pike	Trump +71
+98%
+10,715	8,062
+Grady	Trump +32
+98%
+10,689	8,001
+McDuffie	Trump +19
+98%
+10,451	8,985
+Emanuel	Trump +39
+98%
+9,499	6,093
+Washington	Biden +0.7
+98%
+9,448	6,868
+Worth	Trump +48
+98%
+9,281	5,899
+Rabun	Trump +59
+98%
+9,143	7,702
+Elbert	Trump +37
+98%
+9,135	6,739
+Pierce	Trump +75
+98%
+9,047	7,703
+Mitchell	Biden +11
+98%
+8,878	6,492
+Banks	Trump +78
+98%
+8,786	6,970
+Lamar	Trump +42
+98%
+8,767	6,500
+Tattnall	Trump +49
+98%
+8,175	6,193
+Crisp	Trump +25
+98%
+8,041	6,468
+Brantley	Trump +81
+98%
+7,725	5,568
+Jefferson	Biden +7
+98%
+7,641	5,461
+Jasper	Trump +53
+98%
+7,629	5,766
+Brooks	Trump +21
+98%
+7,077	5,116
+Cook	Trump +40
+98%
+7,034	5,357
+McIntosh	Trump +21
+98%
+6,698	5,408
+Screven	Trump +19
+98%
+6,624	4,725
+Ben Hill	Trump +26
+98%
+6,559	5,764
+Crawford	Trump +46
+98%
+6,089	4,653
+Bleckley	Trump +53
+98%
+5,704	4,447
+Long	Trump +27
+98%
+5,617	4,079
+Heard	Trump +68
+98%
+5,394	3,545
+Early	Trump +5
+98%
+5,184	3,732
+Charlton	Trump +51
+98%
+4,563	3,187
+Candler	Trump +42
+98%
+4,419	2,276
+Terrell	Biden +8
+98%
+4,415	3,167
+Evans	Trump +37
+98%
+4,246	3,527
+Irwin	Trump +51
+98%
+4,164	3,271
+Johnson	Trump +40
+98%
+4,100	3,111
+Pulaski	Trump +39
+98%
+4,059	3,547
+Montgomery	Trump +50
+98%
+3,962	2,591
+Turner	Trump +25
+98%
+3,790	3,075
+Marion	Trump +27
+98%
+3,624	2,633
+Lanier	Trump +43
+98%
+3,496	2,798
+Treutlen	Trump +37
+98%
+3,077	2,526
+Randolph	Biden +9
+98%
+3,065	2,336
+Clinch	Trump +48
+98%
+2,860	2,007
+Wheeler	Trump +39
+98%
+2,283	1,642
+Schley	Trump +59
+98%
+2,274	1,901
+Chattahoochee	Trump +13
+98%
+1,587	1,124
+Clay	Biden +11
+98%
+1,432	1,131
+Webster	Trump +8
+98%
+1,390	1,109

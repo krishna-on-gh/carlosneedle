@@ -1,0 +1,24 @@
+# NV Gov 2022 snapshot — approx 50% of vote reported
+# Source URL (Wayback):
+# Snapshot timestamp:
+#
+# Paste the county-level table from the Wayback snapshot below this line.
+# Any format is fine — pipe-delimited, tab-delimited, copy-paste from HTML,
+# raw Wikipedia table markup, etc. I'll parse it in the next step.
+#
+# Ideally each row shows:  county | D votes (or %) | R votes (or %) | total reported | % reporting
+# Note: several NV counties will show 0% reporting — that's fine, keep them in.
+# ---
+
+County	Margin	Votes	Percent of votes in% In
+Washoe	Sisolak + 0.5 84,800 	43%
+Humboldt  Lombardo + 55 5,300 	85%
+Pershing  Lombardo + 52 1,600   95%
+Churchill Lombardo + 50 9,000   90%
+Storey    Lombardo + 42 2,300   95%
+Carson    Lombardo + 15 18,400  75%
+Mineral   Lombardo + 28 1,700   90%
+Esmeralda Lombardo + 61 450     90%
+Elko      Lombardo + 60 13,100  90%
+White Pine Lombardo + 56 3,050  95%
+Clark     Sisolak + 7 506,800   65%
