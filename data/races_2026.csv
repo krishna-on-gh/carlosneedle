@@ -1,15 +1,15 @@
 race_id,office,state,district,baseline_pres,baseline_shave,expected_swing,incumbent_party,scandal,incumbency_factor,candidate_quality,spending_effect,tier,last_updated,notes
-AK-Sen,Senate,AK,,13.1,,-9.65,R,0,0,-1.5,-2,1,2026-08-03,Former Rep. Mary Peltola up against incumbent Sen. Dan Sullivan (R). Massive upset potential
-GA-Sen,Senate,GA,,2.3,5.2,-9.65,D,0,-2.5,0,-3.5,1,2026-08-03,Incumbent Senator Jon Ossoff Up against likely Mike Collins
+AK-Sen,Senate,AK,,13.1,,-9.65,R,0,0,-1.5,2,1,2026-09-09,Former Rep. Mary Peltola up against incumbent Sen. Dan Sullivan (R). Massive upset potential
+GA-Sen,Senate,GA,,2.3,5.2,-9.65,D,0,-2.5,0,-0.5,1,2026-09-09,Incumbent Senator Jon Ossoff Up against likely Mike Collins
 IA-Sen,Senate,IA,,13.2,13,-9.65,Open - R,0,0,0,0.5,1,2026-08-03,"Rep. Ashley Hinson up against likely Josh Turek (D). Open Iowa seat in a blue wave, could get interesting"
-ME-Sen,Senate,ME,,-6.9,-12,-9.65,R,1.5,12.5,0,3.5,1,2026-08-03,"Sen. Susan Collins up against Graham Platner (D), he has a lot of scandals so this could be an election to look out for"
-MI-Sen,Senate,MI,,1.4,1.2,-9.65,Open - D,0,0,0,0,1,2026-05-28,"Competitive Primary for Dems, 2024 loser Mike Rogers is R nominee. Could be really competitive"
+ME-Sen,Senate,ME,,-6.9,-12,-9.65,R,1.5,12.5,0,0.5,1,2026-09-09,"Sen. Susan Collins up against Graham Platner (D), he has a lot of scandals so this could be an election to look out for"
+MI-Sen,Senate,MI,,1.4,1.2,-9.65,Open - D,0,0,0,0.5,1,2026-09-09,"Competitive Primary for Dems, 2024 loser Mike Rogers is R nominee. Could be really competitive"
 MN-Sen,Senate,MN,,-4.2,-0.9,-9.65,Open - D,1.5,0,0,0,1,2026-05-28,"Lt. Gov Peggy Flanagan vs. Some R, no idea who but it won't matter. Accounting for unpopular Walz admin and fraud scandal in this race"
 NE-Sen,Senate,NE,,20.4,27,-9.65,R,0,2.8,-10,0.5,1,2026-08-26,"Former Gov. and Current Sen. Pete Ricketts vs. Dan Osborn. Osborn is an indie and ran a super strong campaign in 2024, he has a massive candidate quality boost"
-NH-Sen,Senate,NH,,-2.7,,-9.65,Open - D,0,0,1.5,0,1,2026-05-28,Former Sen. John Sununu (R) vs. Rep. Chris Pappas
-NC-Sen,Senate,NC,,3.3,3.8,-9.65,Open - R,0,0,-1.5,-0.5,1,2026-05-28,Former Gov. Roy Cooper (D) vs. Michael Whatley. Cooper is a super strong recruit for Dems
-OH-Sen,Senate,OH,,11.1,13,-9.65,R,0,2.5,-1.5,-3.5,1,2026-05-28,"Former Lt. Gov, current Sen. Jon Husted (R) vs. Former Sen. Sherrod Brown. This will be interesting"
-TX-Sen,Senate,TX,,13.6,16,-9.65,Open - R,-3,0,0,-3.5,1,2026-05-28,AG Ken Paxton (R) vs. James Talarico. Paxton has a lot of scandals...
+NH-Sen,Senate,NH,,-2.7,,-9.65,Open - D,0,0,1.5,0.5,1,2026-09-09,Former Sen. John Sununu (R) vs. Rep. Chris Pappas
+NC-Sen,Senate,NC,,3.3,3.8,-9.65,Open - R,0,0,-1.5,-0.5,1,2026-09-09,Former Gov. Roy Cooper (D) vs. Michael Whatley. Cooper is a super strong recruit for Dems
+OH-Sen,Senate,OH,,11.1,13,-9.65,R,0,2.5,-1.5,0.5,1,2026-09-09,"Former Lt. Gov, current Sen. Jon Husted (R) vs. Former Sen. Sherrod Brown. This will be interesting"
+TX-Sen,Senate,TX,,13.6,16,-9.65,Open - R,-3,0,0,-0.5,1,2026-09-09,AG Ken Paxton (R) vs. James Talarico. Paxton has a lot of scandals...
 CO-Sen,Senate,CO,,-11,-12,-9.65,D,0,-0.8,0,-3.5,2,2026-05-28,Former Gov. and current Sen. John Hickenlooper (D) vs. whatever political sacrificial lamb that the GOP puts up against him
 FL-Sen,Senate,FL,,13.1,14,-9.65,R,0,2.5,0,0,2,2026-05-28,Former AG and current Sen. Ashley Moody up against probably some resister grifter Dem. Yet again a sacrificial lamb put up against Rs in FL.
 MT-Sen,Senate,MT,,19.9,19,-9.65,Open - R,0,0,25,0,2,2026-08-03,"Open seat after Steve Daines just decided to not file for re-election last minute. Dem nominee refusing to dropout for Bodnar, Alme cruises to election"
@@ -39,7 +39,7 @@ AZ-Gov,Governor,AZ,,5.5,,-9.65,D,0,-2.5,0,0,1,2026-05-30,
 GA-Gov,Governor,GA,,2.3,,-9.65,Open - R,0,0,0,3.5,1,2026-08-03,
 IA-Gov,Governor,IA,,13.2,,-9.65,Open - R,0,0,-4,-3.5,1,2026-08-26,
 MI-Gov,Governor,MI,,1.4,,-9.65,Open - D,0,0,-1.5,0,1,2026-05-30,
-NV-Gov,Governor,NV,,1.51,,-9.65,R,0,4,-1.5,0,1,2026-08-03,
+NV-Gov,Governor,NV,,1.51,,-9.65,R,0,4,-1.5,2,1,2026-08-03,
 NH-Gov,Governor,NH,,9.34,,-9.65,R,0,4,0,0,1,2026-05-30,
 OH-Gov,Governor,OH,,11.1,,-9.65,Open - R,0,0,0,3.5,1,2026-05-30,
 PA-Gov,Governor,PA,,-14.78,,-9.65,D,0,-2.5,1.5,0,1,2026-05-30,
@@ -480,7 +480,7 @@ VA-04,House,VA,04,-32.6,,-3.86,D,0,0.9,0,0,2,2026-08-13,Need to update in Septem
 VA-06,House,VA,06,24,,-9.65,R,0,1.1,0,0,2,2026-08-13,Need to update in September
 VA-08,House,VA,08,-49.2,,-3.86,D,0,3.8,0,0,2,2026-08-13,Need to update in September
 VA-09,House,VA,09,43.9,,-9.65,R,0,-1.4,0,0,2,2026-08-13,Need to update in September
-VA-10,House,VA,10,-8.3,,-3.86,D,0,5.1,0,0,2,2026-08-13,Need to update in September
+VA-10,House,VA,10,-8.3,,-3.86,D,0,-2.5,0,0,2,2026-09-08,Need to update in September
 VA-11,House,VA,11,-34,,-3.86,D,0,-2.5,0,0,2,2026-08-13,Need to update in September
 WA-01,House,WA,01,-28.5,,-3.86,D,0,4.9,0,0,2,2026-08-13,Need to update in September
 WA-02,House,WA,02,-23.5,,-3.86,D,0,-2.2,0,0,2,2026-08-13,Need to update in September
