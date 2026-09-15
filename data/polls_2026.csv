@@ -44,3 +44,5 @@ date,pollster,sample_type,dem_pct,rep_pct,sample_size,notes
 9/13/2026,CBS/YouGov,LV,54,46,1750,
 9/14/2026,Morning Consult,LV,49,43,1000,
 9/14/2026,Reuters/Ipsos,RV,44,37,1143,
+9/15/2026,Economist/YouGov,LV,51,39,1055,
+9/15/2026,New York Times/Siena,LV,51,42.5,1503,"Rounded values were 51-43, but the overall lead was closer to D+9 rounded, so made a small adjustment in GOP vote share to account for this"
