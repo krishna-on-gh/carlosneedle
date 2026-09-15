@@ -42,3 +42,5 @@ date,pollster,sample_type,dem_pct,rep_pct,sample_size,notes
 9/10/2026,Quinnipiac,RV,49,38,970,
 9/10/2026,Cygnal,LV,50.7,42.1,1500,
 9/13/2026,CBS/YouGov,LV,54,46,1750,
+9/14/2026,Morning Consult,LV,49,43,1000,
+9/14/2026,Reuters/Ipsos,RV,44,37,1143,
