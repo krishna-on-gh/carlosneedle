@@ -1,15 +1,15 @@
 race_id,office,state,district,baseline_pres,baseline_shave,expected_swing,incumbent_party,scandal,incumbency_factor,candidate_quality,spending_effect,tier,last_updated,notes
-AK-Sen,Senate,AK,,13.1,,-9.65,R,0,-1.5,-6.6,-0.5,1,2026-09-15,Former Rep. Mary Peltola up against incumbent Sen. Dan Sullivan (R). Massive upset potential
+AK-Sen,Senate,AK,,13.1,,-9.65,R,0,-1.5,-6.6,2,1,2026-09-15,Former Rep. Mary Peltola up against incumbent Sen. Dan Sullivan (R). Massive upset potential
 GA-Sen,Senate,GA,,2.3,5.2,-9.65,D,0,-2.5,0,-0.5,1,2026-09-09,Incumbent Senator Jon Ossoff Up against likely Mike Collins
 IA-Sen,Senate,IA,,13.2,,-9.65,Open - R,0,0,0,0.5,1,2026-08-03,"Rep. Ashley Hinson up against likely Josh Turek (D). Open Iowa seat in a blue wave, could get interesting"
-ME-Sen,Senate,ME,,-6.9,-12,-9.65,R,1.5,12.5,0,3.5,1,2026-09-15,"Sen. Susan Collins up against Graham Platner (D), he has a lot of scandals so this could be an election to look out for"
+ME-Sen,Senate,ME,,-6.9,-12,-9.65,R,1.5,12.5,0,2,1,2026-09-15,"Sen. Susan Collins up against Graham Platner (D), he has a lot of scandals so this could be an election to look out for"
 MI-Sen,Senate,MI,,1.4,1.2,-9.65,Open - D,0,0,0,0.5,1,2026-09-09,"Competitive Primary for Dems, 2024 loser Mike Rogers is R nominee. Could be really competitive"
 MN-Sen,Senate,MN,,-4.2,-0.9,-9.65,Open - D,1.5,0,0,0,1,2026-05-28,"Lt. Gov Peggy Flanagan vs. Some R, no idea who but it won't matter. Accounting for unpopular Walz admin and fraud scandal in this race"
 NE-Sen,Senate,NE,,20.4,27,-9.65,R,0,2.8,-10,0.5,1,2026-08-26,"Former Gov. and Current Sen. Pete Ricketts vs. Dan Osborn. Osborn is an indie and ran a super strong campaign in 2024, he has a massive candidate quality boost"
 NH-Sen,Senate,NH,,-2.7,,-9.65,Open - D,0,0,1.5,0.5,1,2026-09-09,Former Sen. John Sununu (R) vs. Rep. Chris Pappas
-NC-Sen,Senate,NC,,3.3,,-9.65,Open - R,0,0,-1.5,-0.5,1,2026-09-09,Former Gov. Roy Cooper (D) vs. Michael Whatley. Cooper is a super strong recruit for Dems
+NC-Sen,Senate,NC,,3.3,,-9.65,Open - R,0,0,-1.5,0.5,1,2026-09-09,Former Gov. Roy Cooper (D) vs. Michael Whatley. Cooper is a super strong recruit for Dems
 OH-Sen,Senate,OH,,11.1,,-9.65,R,0,2.5,-2.1,0.5,1,2026-09-10,"Former Lt. Gov, current Sen. Jon Husted (R) vs. Former Sen. Sherrod Brown. This will be interesting"
-TX-Sen,Senate,TX,,13.6,,-9.65,Open - R,-3,0,0,-0.5,1,2026-09-09,AG Ken Paxton (R) vs. James Talarico. Paxton has a lot of scandals...
+TX-Sen,Senate,TX,,13.6,,-9.65,Open - R,-3,0,0,0,1,2026-09-09,AG Ken Paxton (R) vs. James Talarico. Paxton has a lot of scandals...
 CO-Sen,Senate,CO,,-11,-12,-9.65,D,0,-0.8,0,-3.5,2,2026-05-28,Former Gov. and current Sen. John Hickenlooper (D) vs. whatever political sacrificial lamb that the GOP puts up against him
 FL-Sen,Senate,FL,,13.1,14,-9.65,R,0,2.5,0,3.5,2,2026-09-10,Former AG and current Sen. Ashley Moody up against probably some resister grifter Dem. Yet again a sacrificial lamb put up against Rs in FL.
 MT-Sen,Senate,MT,,19.9,19,-9.65,Open - R,0,0,22.55,0,2,2026-09-15,"Open seat after Steve Daines just decided to not file for re-election last minute. Dem nominee refusing to dropout for Bodnar, Alme cruises to election"
@@ -71,9 +71,9 @@ TN-Gov,Governor,TN,,29.6,,-9.65,Open - R,0,0,0,0,3,2026-06-01,
 VT-Gov,Governor,VT,,51.6,,-9.65,R,0,4,0,0,3,2026-06-01,
 WY-Gov,Governor,WY,,45.8,,-9.65,Open - R,0,0,0,0,3,2026-06-01,
 AK-01,House,AK,01,13.1,,-9.65,R,0,2.5,0,3.5,1,2026-06-06,2.5 = standard incumbency boost for an R that beat a Dem in their previous election
-AZ-01,House,AZ,01,3.1,,-9.65,R,0,0,0,0.5,1,2026-08-03,
-AZ-02,House,AZ,02,15,,-9.65,R,0,-8.5,0,0,1,2026-08-03,
-AZ-06,House,AZ,06,0.7,,-9.65,R,0,-3.7,0,-0.5,1,2026-08-03,
+AZ-01,House,AZ,01,3.1,,-9.65,R,0,0,0,0.5,1,2026-09-16,
+AZ-02,House,AZ,02,15,,-9.65,R,0,-8.5,0,3.5,1,2026-09-16,
+AZ-06,House,AZ,06,0.7,,-9.65,R,0,-3.7,0,-0.5,1,2026-09-16,
 CA-01,House,CA,01,-12.2,,-3.86,Open - R,0,2.5,0,-0.5,1,2026-08-03,
 CA-06,House,CA,06,-8.4,,-3.86,Open - R,0,2.1,0,0.5,1,2026-08-03,
 CA-13,House,CA,13,-0.5,,-3.86,D,0,-5.2,0,-0.5,1,2026-08-03,
@@ -156,15 +156,15 @@ VA-05,House,VA,05,12.2,,-9.65,R,0,1.8,0,0,1,2026-06-06,
 VA-07,House,VA,07,-2.9,,-3.86,D,0,-1.2,0,0,1,2026-06-06,
 WA-03,House,WA,03,3.3,,-9.65,D,0,-6,0,0,1,2026-06-06,
 WA-05,House,WA,05,10.7,,-9.65,R,0,8.9,0,0,1,2026-06-06,
-WI-01,House,WI,01,4.5,,-9.65,R,0,1.8,0,0,1,2026-06-06,
-WI-03,House,WI,03,7.3,,-9.65,R,0,-7.3,0,0,1,2026-06-06,
-WI-08,House,WI,08,16.2,,-9.65,R,0,-2.8,0,0,1,2026-06-06,
-AZ-03,House,AZ,03,-39.8,,-3.86,D,0,-2.9,0,0,2,2026-08-07,
-AZ-04,House,AZ,04,-6.6,,-3.86,D,0,1.7,0,0,2,2026-08-07,
-AZ-05,House,AZ,05,20,,-9.65,Open - R,0,0,0,0,2,2026-08-07,
-AZ-07,House,AZ,07,-22.1,,-3.86,D,0,-2.5,0,0,2,2026-08-07,
-AZ-08,House,AZ,08,16.3,,-9.65,R,0,-6.4,0,0,2,2026-08-07,
-AZ-09,House,AZ,09,31.1,,-9.65,R,0,-4,0,0,2,2026-08-07,
+WI-01,House,WI,01,4.5,,-9.65,R,0,1.8,0,3.5,1,2026-06-06,
+WI-03,House,WI,03,7.3,,-9.65,R,0,-7.3,0,-2,1,2026-06-06,
+WI-08,House,WI,08,16.2,,-9.65,R,0,-2.8,0,3.5,1,2026-06-06,
+AZ-03,House,AZ,03,-39.8,,-3.86,D,0,-2.9,0,0.5,2,2026-09-16,
+AZ-04,House,AZ,04,-6.6,,-3.86,D,0,1.7,0,-3.5,2,2026-09-16,
+AZ-05,House,AZ,05,20,,-9.65,Open - R,0,0,0,3.5,2,2026-09-16,
+AZ-07,House,AZ,07,-22.1,,-3.86,D,0,-2.5,0,-3.5,2,2026-09-16,
+AZ-08,House,AZ,08,16.3,,-9.65,R,0,-6.4,0,3.5,2,2026-09-16,
+AZ-09,House,AZ,09,31.1,,-9.65,R,0,-4,0,0.5,2,2026-09-16,
 AR-01,House,AR,01,45.3,,-9.65,R,0,2.8,0,3.5,2,2026-08-07,
 AR-02,House,AR,02,15.5,,-9.65,R,0,-3.3,0,2,2,2026-08-07,
 AR-03,House,AR,03,22.9,,-9.65,R,0,2.9,0,3.5,2,2026-08-07,
@@ -441,36 +441,36 @@ TN-05,House,TN,05,23.1,,-9.65,Open - R,0,0,0,0,2,2026-08-13,Need to update in Se
 TN-06,House,TN,06,26.5,,-9.65,Open - R,0,0,0,0,2,2026-08-13,Need to update in September
 TN-07,House,TN,07,22.4,,-9.65,R,0,2.5,0,0,2,2026-08-13,Need to update in September
 TN-08,House,TN,08,20.2,,-9.65,R,0,1.8,0,0,2,2026-08-13,Need to update in September
-TX-01,House,TX,01,49.5,,-9.65,R,0,2.5,0,0,2,2026-08-13,Need to update in September
-TX-02,House,TX,02,22.9,,-9.65,Open - R,0,0,0,0,2,2026-08-13,Need to update in September
-TX-03,House,TX,03,23.3,,-9.65,R,0,1,0,0,2,2026-08-13,Need to update in September
-TX-04,House,TX,04,24.6,,-9.65,R,0,0.5,0,0,2,2026-08-13,Need to update in September
-TX-05,House,TX,05,21.5,,-9.65,R,0,-2.3,0,0,2,2026-08-13,Need to update in September
-TX-06,House,TX,06,22.9,,-9.65,R,0,-2.1,0,0,2,2026-08-13,Need to update in September
-TX-07,House,TX,07,-23.5,,-3.86,D,0,2.5,0,0,2,2026-08-13,Need to update in September
-TX-08,House,TX,08,27.7,,-9.65,Open - R,0,0,0,0,2,2026-08-13,Need to update in September
-TX-10,House,TX,10,22.6,,-9.65,Open - R,0,0,0,0,2,2026-08-13,Need to update in September
-TX-11,House,TX,11,34.3,,-9.65,R,0,2.5,0,0,2,2026-08-13,Need to update in September
-TX-12,House,TX,12,23.8,,-9.65,R,0,2.2,0,0,2,2026-08-13,Need to update in September
-TX-13,House,TX,13,46.1,,-9.65,R,0,2.5,0,0,2,2026-08-13,Need to update in September
-TX-14,House,TX,14,24.2,,-9.65,R,0,-0.5,0,0,2,2026-08-13,Need to update in September
-TX-16,House,TX,16,-16.3,,-3.86,D,0,4,0,0,2,2026-08-13,Need to update in September
-TX-17,House,TX,17,21.6,,-9.65,R,0,0.7,0,0,2,2026-08-13,Need to update in September
-TX-18,House,TX,18,-54.9,,-3.86,D,0,-2.5,0,0,2,2026-08-13,Need to update in September
-TX-19,House,TX,19,51.6,,-9.65,Open - R,0,2.5,0,0,2,2026-08-13,Need to update in September
-TX-20,House,TX,20,-28.5,,-3.86,D,0,-2.5,0,0,2,2026-08-13,Need to update in September
-TX-21,House,TX,21,21.8,,-9.65,Open - R,0,0,0,0,2,2026-08-13,Need to update in September
-TX-22,House,TX,22,22.1,,-9.65,Open - R,0,0,0,0,2,2026-08-13,Need to update in September
-TX-25,House,TX,25,24,,-9.65,R,0,-0.6,0,0,2,2026-08-13,Need to update in September
-TX-26,House,TX,26,23.8,,-9.65,R,0,1.8,0,0,2,2026-08-13,Need to update in September
-TX-27,House,TX,27,21.2,,-9.65,R,0,-0.8,0,0,2,2026-08-13,Need to update in September
-TX-29,House,TX,29,-30.4,,-3.86,D,0,-4.7,0,0,2,2026-08-13,Need to update in September
-TX-30,House,TX,30,-47,,-3.86,Open,0,0,0,0,2,2026-08-13,Need to update in September
-TX-31,House,TX,31,21.8,,-9.65,R,0,1.2,0,0,2,2026-08-13,Need to update in September
-TX-33,House,TX,33,-32.6,,-3.86,Open - D,0,0,-2.5,0,2,2026-08-13,Need to update in September
-TX-36,House,TX,36,24.9,,-9.65,R,0,-1.8,0,0,2,2026-08-13,Need to update in September
-TX-37,House,TX,37,-56.2,,-3.86,D,0,-0.7,0,0,2,2026-08-13,Need to update in September
-TX-38,House,TX,38,20.9,,-9.65,Open - R,0,0,0,0,2,2026-08-13,Need to update in September
+TX-01,House,TX,01,49.5,,-9.65,R,0,2.5,0,3.5,2,2026-09-16,Need to update in September
+TX-02,House,TX,02,22.9,,-9.65,Open - R,0,0,0,-0.5,2,2026-09-16,Need to update in September
+TX-03,House,TX,03,23.3,,-9.65,R,0,1,0,0.5,2,2026-09-16,Need to update in September
+TX-04,House,TX,04,24.6,,-9.65,R,0,0.5,0,3.5,2,2026-09-16,Need to update in September
+TX-05,House,TX,05,21.5,,-9.65,R,0,-2.3,0,3.5,2,2026-09-16,Need to update in September
+TX-06,House,TX,06,22.9,,-9.65,R,0,-2.1,0,3.5,2,2026-09-16,Need to update in September
+TX-07,House,TX,07,-23.5,,-3.86,D,0,2.5,0,-3.5,2,2026-09-16,Need to update in September
+TX-08,House,TX,08,27.7,,-9.65,Open - R,0,0,0,3.5,2,2026-09-16,Need to update in September
+TX-10,House,TX,10,22.6,,-9.65,Open - R,0,0,0,3.5,2,2026-09-16,Need to update in September
+TX-11,House,TX,11,34.3,,-9.65,R,0,2.5,0,3.5,2,2026-09-16,Need to update in September
+TX-12,House,TX,12,23.8,,-9.65,R,0,2.2,0,3.5,2,2026-09-16,Need to update in September
+TX-13,House,TX,13,46.1,,-9.65,R,0,2.5,0,3.5,2,2026-09-16,Need to update in September
+TX-14,House,TX,14,24.2,,-9.65,R,0,-0.5,0,3.5,2,2026-09-16,Need to update in September
+TX-16,House,TX,16,-16.3,,-3.86,D,0,4,0,-3.5,2,2026-09-16,Need to update in September
+TX-17,House,TX,17,21.6,,-9.65,R,0,0.7,0,3.5,2,2026-09-16,Need to update in September
+TX-18,House,TX,18,-54.9,,-3.86,D,0,-2.5,0,-3.5,2,2026-09-16,Need to update in September
+TX-19,House,TX,19,51.6,,-9.65,Open - R,0,2.5,0,3.5,2,2026-09-16,Need to update in September
+TX-20,House,TX,20,-28.5,,-3.86,D,0,-2.5,0,-3.5,2,2026-09-16,Need to update in September
+TX-21,House,TX,21,21.8,,-9.65,Open - R,0,0,0,3.5,2,2026-09-16,Need to update in September
+TX-22,House,TX,22,22.1,,-9.65,Open - R,0,0,0,3.5,2,2026-09-16,Need to update in September
+TX-25,House,TX,25,24,,-9.65,R,0,-0.6,0,3.5,2,2026-09-16,Need to update in September
+TX-26,House,TX,26,23.8,,-9.65,R,0,1.8,0,3.5,2,2026-09-16,Need to update in September
+TX-27,House,TX,27,21.2,,-9.65,R,0,-0.8,0,3.5,2,2026-09-16,Need to update in September
+TX-29,House,TX,29,-30.4,,-3.86,D,0,-4.7,0,-3.5,2,2026-09-16,Need to update in September
+TX-30,House,TX,30,-47,,-3.86,Open,0,0,0,-3.5,2,2026-09-16,Need to update in September
+TX-31,House,TX,31,21.8,,-9.65,R,0,1.2,0,3.5,2,2026-09-16,Need to update in September
+TX-33,House,TX,33,-32.6,,-3.86,Open - D,0,0,-2.5,-3.5,2,2026-09-16,Need to update in September
+TX-36,House,TX,36,24.9,,-9.65,R,0,-1.8,0,3.5,2,2026-09-16,Need to update in September
+TX-37,House,TX,37,-56.2,,-3.86,D,0,-0.7,0,-3.5,2,2026-09-16,Need to update in September
+TX-38,House,TX,38,20.9,,-9.65,Open - R,0,0,0,3.5,2,2026-09-16,Need to update in September
 UT-02,House,UT,02,28.9,,-9.65,R,0,5.4,0,0,2,2026-08-13,Need to update in September
 UT-03,House,UT,03,41.3,,-9.65,R,0,-0.4,0,0,2,2026-08-13,Need to update in September
 UT-04,House,UT,04,32.5,,-9.65,R,0,10.5,0,0,2,2026-08-13,Need to update in September
