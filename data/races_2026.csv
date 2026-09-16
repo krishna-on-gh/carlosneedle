@@ -4,7 +4,7 @@ GA-Sen,Senate,GA,,2.3,5.2,-9.65,D,0,-2.5,0,-0.5,1,2026-09-09,Incumbent Senator J
 IA-Sen,Senate,IA,,13.2,,-9.65,Open - R,0,0,0,0.5,1,2026-08-03,"Rep. Ashley Hinson up against likely Josh Turek (D). Open Iowa seat in a blue wave, could get interesting"
 ME-Sen,Senate,ME,,-6.9,-12,-9.65,R,1.5,12.5,0,2,1,2026-09-15,"Sen. Susan Collins up against Graham Platner (D), he has a lot of scandals so this could be an election to look out for"
 MI-Sen,Senate,MI,,1.4,1.2,-9.65,Open - D,0,0,0,0.5,1,2026-09-09,"Competitive Primary for Dems, 2024 loser Mike Rogers is R nominee. Could be really competitive"
-MN-Sen,Senate,MN,,-4.2,-0.9,-9.65,Open - D,1.5,0,0,0,1,2026-05-28,"Lt. Gov Peggy Flanagan vs. Some R, no idea who but it won't matter. Accounting for unpopular Walz admin and fraud scandal in this race"
+MN-Sen,Senate,MN,,-4.2,-0.9,-9.65,Open - D,3,0,0,0,1,2026-05-28,"Lt. Gov Peggy Flanagan vs. Some R, no idea who but it won't matter. Accounting for unpopular Walz admin and fraud scandal in this race"
 NE-Sen,Senate,NE,,20.4,27,-9.65,R,0,2.8,-10,0.5,1,2026-08-26,"Former Gov. and Current Sen. Pete Ricketts vs. Dan Osborn. Osborn is an indie and ran a super strong campaign in 2024, he has a massive candidate quality boost"
 NH-Sen,Senate,NH,,-2.7,,-9.65,Open - D,0,0,1.5,0.5,1,2026-09-09,Former Sen. John Sununu (R) vs. Rep. Chris Pappas
 NC-Sen,Senate,NC,,3.3,,-9.65,Open - R,0,0,-1.5,0.5,1,2026-09-09,Former Gov. Roy Cooper (D) vs. Michael Whatley. Cooper is a super strong recruit for Dems
@@ -20,7 +20,7 @@ AR-Sen,Senate,AR,,30.6,,-9.65,R,0,0,0,0,3,2026-05-28,
 DE-Sen,Senate,DE,,-14.7,,-9.65,D,0,-3,0,0,3,2026-05-28,
 ID-Sen,Senate,ID,,36.3,,-9.65,R,0,0,0,0,3,2026-05-28,
 IL-Sen,Senate,IL,,-10.9,,-9.65,Open - D,0,0,-1.5,-3.5,3,2026-05-28,Lt. Gov Juliana Stratton running
-KS-Sen,Senate,KS,,16,,-9.65,R,-1.5,2.5,0,0,3,2026-09-01,We love the Plains states don't we
+KS-Sen,Senate,KS,,16,,-9.65,R,-1.5,0,0,0,3,2026-09-01,We love the Plains states don't we
 KY-Sen,Senate,KY,,30.5,,-9.65,Open - R,0,0,0,0,3,2026-05-28,
 LA-Sen,Senate,LA,,22,,-9.65,Open - R,0,0,0,0,3,2026-05-28,
 MA-Sen,Senate,MA,,-25.2,-33,-9.65,D,0,0,0,0,3,2026-05-28,
@@ -62,7 +62,7 @@ ID-Gov,Governor,ID,,40.34,,-9.65,R,0,2.5,0,0,3,2026-06-01,
 IL-Gov,Governor,IL,,-12.54,,-9.65,D,0,-2.5,0,0,3,2026-06-01,
 MD-Gov,Governor,MD,,-32.41,,-9.65,D,0,-2.5,0,0,3,2026-06-01,
 MA-Gov,Governor,MA,,-29.17,,-9.65,D,0,-2.5,0,0,3,2026-06-01,
-MN-Gov,Governor,MN,,-4.2,,-9.65,Open - D,0,0,-1.5,0,3,2026-06-01,
+MN-Gov,Governor,MN,,-4.2,,-9.65,Open - D,3,0,-1.5,0,3,2026-06-01,Accounting for Walz admin fraud scandal in this race
 OK-Gov,Governor,OK,,34.3,,-9.65,Open - R,0,0,0,0,3,2026-06-01,
 RI-Gov,Governor,RI,,-19.06,,-9.65,Open - D,0,0,0,0,3,2026-06-01,
 SC-Gov,Governor,SC,,17.8,,-9.65,Open - R,0,0,0,0,3,2026-06-01,
