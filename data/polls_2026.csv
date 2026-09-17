@@ -48,3 +48,4 @@ date,pollster,sample_type,dem_pct,rep_pct,sample_size,notes
 9/15/2026,New York Times/Siena,LV,51,42.5,1503,"Rounded values were 51-43, but the overall lead was closer to D+9 rounded, so made a small adjustment in GOP vote share to account for this"
 9/16/2026,Marquette,LV,54,41,581,
 9/16/2026,Marquette,RV,50,42,864,
+9/16/2026,Fox News,RV,51,44,1211,
