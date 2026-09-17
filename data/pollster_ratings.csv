@@ -1,0 +1,21 @@
+pollster,grade,rank,notes
+Angus Reid Global,A/B,4,Silver Bulletin exact match
+BGSU/YouGov,B,6,BGSU partnership with YouGov (B)
+CBS/YouGov,B,6,CBS partnership with YouGov (B)
+CNBC,A-,3,Conducted by Hart Research + Public Opinion Strategies partnership
+CNN,C+,9,Conducted by SSRS (C+)
+Cygnal,A,2,Silver Bulletin exact match
+Economist/YouGov,B,6,YouGov (B)
+Emerson,A,2,Emerson College (A)
+FOX News,B,6,Fox News rated B on Silver Bulletin
+Fox News,B,6,Same as FOX News — case duplicate
+Marquette,A/B,4,Marquette University Law School (A/B)
+Morning Consult,C+,9,Silver Bulletin exact match
+NPR/PBS/Marist,A-,3,Marist College (A-)
+New York Times,A,2,NYT/Siena College (A)
+New York Times/Siena,A,2,NYT/Siena College (A)
+Pew Research,A/B,4,Pew Research Center (A/B)
+Quinnipiac,B+,5,Quinnipiac University (B+)
+Reuters/Ipsos,B,6,Ipsos (B)
+Strength in Numbers/Verasight,B,6,Not yet rated — default B (rank 6)
+The Argument,B,6,Not yet rated — default B (rank 6)

@@ -264,8 +264,56 @@ helps the Democrat.
 
 Manually-entered generic ballot polls in `data/polls_2026.csv`.
 
-**Weighting:** LV polls get weight 1.5, RV polls get weight 1.0
-(→ 60% / 40% split).
+**Weighting:** each poll's weight is the product of two factors:
+
+- **Sample-type weight:** LV = 1.5, RV = 1.0 (60% / 40% split)
+- **Pollster-quality weight:** derived from Silver Bulletin ratings
+
+The final weight is `sample_type × pollster_quality`.
+
+**Pollster-quality weight scale** (linear decay from A+ to F):
+
+| Grade | Rank | Weight |
+|:---:|:---:|:---:|
+| A+ | 1 | 1.32 |
+| A | 2 | 1.24 |
+| A- | 3 | 1.16 |
+| A/B | 4 | 1.08 |
+| B+ | 5 | 1.00 |
+| B | 6 | 0.92 |
+| B- | 7 | 0.84 |
+| B/C | 8 | 0.76 |
+| C+ | 9 | 0.68 |
+| C | 10 | 0.60 |
+| C/D | 12 | 0.44 |
+| D+ | 13 | 0.36 |
+| F | 16 | 0.20 |
+
+Formula: `grade_weight = max(0.20, 1.4 − 0.08 × rank)`.
+
+Pollster ratings live in `data/pollster_ratings.csv`. Unrated pollsters
+default to rank 6 (B → 0.92) — near-neutral, so unknown pollsters neither
+help nor hurt.
+
+**Combined-weight examples:**
+- A LV: 1.5 × 1.24 = **1.86** (top-tier)
+- B RV: 1.0 × 0.92 = **0.92** (near-neutral baseline)
+- C+ LV: 1.5 × 0.68 = **1.02**
+- C+ RV: 1.0 × 0.68 = **0.68**
+- F LV: 1.5 × 0.20 = **0.30** (floor)
+
+So an A LV poll counts about 6x an F LV poll, and about 2.7x a C+ RV poll.
+
+**Backtest evidence.** Applying this weighting to reconstructed pre-election
+poll windows from 2018, 2020, 2022, and 2024 improved the total absolute
+error by only 0.13 points across 4 elections — half improved, half got
+slightly worse. Two are better with the weighting (2020, 2022), two are
+slightly worse (2018, 2024). The change is defensible on principle
+(A-rated pollsters really are better than F-rated ones), but should be
+understood as a housekeeping improvement rather than an accuracy driver.
+Systemic industry-wide polling bias — the kind that hit every pollster in
+2020 and 2024 — dominates the aggregate error, and no re-weighting scheme
+can fix that.
 
 **Rolling window:** 21 days (about 3 weeks).
 

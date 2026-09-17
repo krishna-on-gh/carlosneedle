@@ -15,6 +15,7 @@ import numpy as np
 import pandas as pd
 
 POLLS_CSV = "data/polls_2026.csv"
+POLLSTER_RATINGS_CSV = "data/pollster_ratings.csv"
 
 # 2024 reference vote share (national House). Used to convert
 # current poll margin into an "expected_swing" delta.
@@ -25,6 +26,15 @@ REFERENCE_2024 = 2.15
 WEIGHT_LV = 1.5   # 1.5 / (1.5 + 1.0) = 0.60
 WEIGHT_RV = 1.0   # 1.0 / (1.5 + 1.0) = 0.40
 
+# Pollster-quality weighting (Silver Bulletin ranks). Grade weight is a linear
+# decay from A+ (rank 1, 1.32) to F (rank 16, 0.20). Default for unrated
+# pollsters = rank 6 (B), giving weight 0.92 — near-neutral.
+DEFAULT_POLLSTER_RANK = 6
+
+def _grade_weight(rank):
+    """rank 1 (A+) -> 1.32, rank 6 (B) -> 0.92, rank 16 (F) -> 0.20."""
+    return max(0.2, 1.4 - 0.08 * float(rank))
+
 # How undecideds break in the projected GCB (this cycle).
 # 0.56 to D, 0.44 to R.
 UNDECIDED_TO_D = 0.56
@@ -32,22 +42,37 @@ UNDECIDED_TO_R = 0.44
 
 
 # ── Loading ──────────────────────────────────────────────────────────────────
-def load_polls(path=POLLS_CSV):
-    """Load and normalize the polls CSV."""
+def _load_pollster_ranks(path=POLLSTER_RATINGS_CSV):
+    """Return {pollster_name: rank} lookup. Missing file → empty dict."""
+    try:
+        r = pd.read_csv(path)
+        return dict(zip(r["pollster"].astype(str).str.strip(),
+                        r["rank"].astype(float)))
+    except (FileNotFoundError, KeyError):
+        return {}
+
+
+def load_polls(path=POLLS_CSV, ratings_path=POLLSTER_RATINGS_CSV):
+    """Load and normalize the polls CSV. Weight = LV/RV × pollster grade."""
     try:
         df = pd.read_csv(path, parse_dates=["date"])
     except FileNotFoundError:
         return pd.DataFrame(columns=[
             "date", "pollster", "sample_type", "dem_pct", "rep_pct",
-            "sample_size", "notes", "margin_r", "weight"
+            "sample_size", "notes", "margin_r", "weight",
+            "weight_lvrv", "grade_rank", "grade_weight",
         ])
     if len(df) == 0:
         return df
     df["margin_r"] = df["rep_pct"] - df["dem_pct"]  # R+ convention
     df["sample_type"] = df["sample_type"].astype(str).str.strip().str.upper()
-    df["weight"] = df["sample_type"].apply(
+    df["weight_lvrv"] = df["sample_type"].apply(
         lambda s: WEIGHT_LV if s == "LV" else WEIGHT_RV
     )
+    ranks = _load_pollster_ranks(ratings_path)
+    df["grade_rank"] = df["pollster"].astype(str).str.strip().map(ranks).fillna(DEFAULT_POLLSTER_RANK)
+    df["grade_weight"] = df["grade_rank"].apply(_grade_weight)
+    df["weight"] = df["weight_lvrv"] * df["grade_weight"]
     return df.sort_values("date").reset_index(drop=True)
 
 
