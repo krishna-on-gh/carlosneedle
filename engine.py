@@ -100,6 +100,8 @@ STATELEG_OFFICES = ("State House", "State Senate")
 #   1. If state is in STATE_LEG_USE_NATIONAL → use raw national swing
 #   2. Else if state is in STATE_LEG_USE_SENATE → use Senate-derived swing
 #      (Senate median − Pres baseline)
+#   2b. Else if state is in STATE_LEG_USE_SEN_GOV_AVG → mean of the
+#      Sen-derived and Gov-derived swings (falls back to whichever exists)
 #   3. Else if state has a Governor race in 2026 → use Gov-derived swing
 #      (Gov median − Pres baseline)
 #   4. Else (no relevant race in 2026) → fall back to national swing
@@ -108,7 +110,8 @@ STATELEG_OFFICES = ("State House", "State Senate")
 # is a cleaner state signal than the Gov race (e.g., IA where Ernst's
 # Sen race is a better read than an open Gov race with unknowns).
 STATE_LEG_USE_NATIONAL = {"PA", "NC"}
-STATE_LEG_USE_SENATE   = {"IA", "MN"}
+STATE_LEG_USE_SENATE   = {"IA"}
+STATE_LEG_USE_SEN_GOV_AVG = {"MN"}
 
 
 def _simulate_row(row, override_national_swing, csv_national_swing, rng, n_sims,
@@ -231,6 +234,9 @@ def simulate_races(df, override_national_swing=None, csv_national_swing=-9.65,
             base_swing = sen_swing_map.get(state)
             if base_swing is None:
                 base_swing = national  # no Sen race → national
+        elif state in STATE_LEG_USE_SEN_GOV_AVG:
+            derived = [m[state] for m in (sen_swing_map, gov_swing_map) if state in m]
+            base_swing = sum(derived) / len(derived) if derived else national
         else:
             base_swing = gov_swing_map.get(state)
             if base_swing is None:
