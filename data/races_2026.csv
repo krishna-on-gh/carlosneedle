@@ -2,12 +2,12 @@ race_id,office,state,district,baseline_pres,baseline_shave,expected_swing,incumb
 AK-Sen,Senate,AK,,13.1,,-9.65,R,0,-1.5,-6.6,0.5,1,2026-09-15,Former Rep. Mary Peltola up against incumbent Sen. Dan Sullivan (R). Massive upset potential
 GA-Sen,Senate,GA,,2.3,5.2,-9.65,D,0,-2.5,0,-0.5,1,2026-09-09,Incumbent Senator Jon Ossoff Up against likely Mike Collins
 IA-Sen,Senate,IA,,13.2,,-9.65,Open - R,0,0,0,0.5,1,2026-08-03,"Rep. Ashley Hinson up against likely Josh Turek (D). Open Iowa seat in a blue wave, could get interesting"
-ME-Sen,Senate,ME,,-6.9,-12,-3.86,R,-1.5,12.5,0,0,1,2026-09-15,"Sen. Susan Collins up against Graham Platner (D), he has a lot of scandals so this could be an election to look out for"
-MI-Sen,Senate,MI,,1.4,1.2,-9.65,Open - D,0,0,0,-0.5,1,2026-09-20,"Competitive Primary for Dems, 2024 loser Mike Rogers is R nominee. Could be really competitive"
+ME-Sen,Senate,ME,,-6.9,-12,-3.86,R,-1.5,12.5,0,0.5,1,2026-09-15,"Sen. Susan Collins up against Graham Platner (D), he has a lot of scandals so this could be an election to look out for"
+MI-Sen,Senate,MI,,1.4,1.2,-9.65,Open - D,0,0,0,2,1,2026-09-20,"Competitive Primary for Dems, 2024 loser Mike Rogers is R nominee. Could be really competitive"
 MN-Sen,Senate,MN,,-4.2,-0.9,-3.86,Open - D,3,0,0,0,1,2026-09-16,"Lt. Gov Peggy Flanagan vs. Some R, no idea who but it won't matter. Accounting for unpopular Walz admin and fraud scandal in this race"
 NE-Sen,Senate,NE,,20.4,27,-9.65,R,0,2.8,-10,0.5,1,2026-08-26,"Former Gov. and Current Sen. Pete Ricketts vs. Dan Osborn. Osborn is an indie and ran a super strong campaign in 2024, he has a massive candidate quality boost"
-NH-Sen,Senate,NH,,-2.7,,-3.86,Open - D,0,0,1.5,-0.5,1,2026-09-09,Former Sen. John Sununu (R) vs. Rep. Chris Pappas
-NC-Sen,Senate,NC,,3.3,,-9.65,Open - R,0,0,-1.5,0.5,1,2026-09-09,Former Gov. Roy Cooper (D) vs. Michael Whatley. Cooper is a super strong recruit for Dems
+NH-Sen,Senate,NH,,-2.7,,-3.86,Open - D,0,0,1.5,0.5,1,2026-09-09,Former Sen. John Sununu (R) vs. Rep. Chris Pappas
+NC-Sen,Senate,NC,,3.3,,-9.65,Open - R,0,0,-1.5,-0.5,1,2026-09-09,Former Gov. Roy Cooper (D) vs. Michael Whatley. Cooper is a super strong recruit for Dems
 OH-Sen,Senate,OH,,11.1,,-9.65,R,0,0,-2.1,0.5,1,2026-09-20,"Former Lt. Gov, current Sen. Jon Husted (R) vs. Former Sen. Sherrod Brown. This will be interesting. For Sherrod, subtracted his last WAR of 4.6 by 2.5"
 TX-Sen,Senate,TX,,13.6,,-9.65,Open - R,-3,0,0,0,1,2026-09-09,AG Ken Paxton (R) vs. James Talarico. Paxton has a lot of scandals...
 CO-Sen,Senate,CO,,-11,-12,-3.86,D,0,-0.8,0,-3.5,2,2026-05-28,Former Gov. and current Sen. John Hickenlooper (D) vs. whatever political sacrificial lamb that the GOP puts up against him
@@ -97,14 +97,14 @@ IA-03,House,IA,03,4.4,,-9.65,R,0,-4.6,0,-0.5,1,2026-08-03,
 LA-06,House,LA,06,31.83,,-9.65,Open - D,0,0,0,0,1,2026-08-03,
 ME-02,House,ME,02,9.04,,-9.65,Open - D,0,0,1.5,-0.5,1,2026-08-03,
 MI-04,House,MI,04,5.52,,-9.65,R,0,2,0,0,1,2026-06-06,
-MI-07,House,MI,07,1.3,,-9.65,R,0,1.4,0,0,1,2026-06-06,
+MI-07,House,MI,07,1.3,,-9.65,R,3,1.4,0,0,1,2026-06-06,
 MI-08,House,MI,08,1.98,,-9.65,D,0,-8.6,0,0,1,2026-06-06,
 MI-10,House,MI,10,6.55,,-9.65,Open - R,0,0,0,0,1,2026-08-03,
 MN-01,House,MN,01,12,,-9.65,R,0,1.1,0,0,1,2026-06-06,
 MN-08,House,MN,08,14.2,,-9.65,R,0,-0.9,0,0,1,2026-06-06,
 MO-02,House,MO,02,7.95,,-9.65,R,0,-2,0,0,1,2026-06-06,
 MO-05,House,MO,05,-23.4,,-9.65,D,0,0.7,0,0,1,2026-06-06,
-MT-01,House,MT,01,11.5,,-9.65,Open - R,0,0,0,-0.5,1,2026-08-03,
+MT-01,House,MT,01,11.5,,-9.65,Open - R,0,0,0,0.5,1,2026-08-03,
 NE-01,House,NE,01,13,,-9.65,R,0,2.2,0,3.5,1,2026-08-03,
 NE-02,House,NE,02,-4.6,,-3.86,Open - R,0,0,0,-2,1,2026-08-03,
 NV-01,House,NV,01,-2.2,,-3.86,D,0,-2.4,0,2,1,2026-08-03,
