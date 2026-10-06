@@ -744,9 +744,15 @@ with tab_home:
     else:
         display = polls_df.copy()
         display = display.sort_values("date", ascending=False)
+        # Polls older than the 21-day window carry no weight in the current average.
+        cutoff = display["date"].max() - pd.Timedelta(days=21)
+        aged_out = display["date"] < cutoff
+        old_note = "Outside 21-day window; weight was " + display["weight"].map("{:.2f}".format)
+        existing = display["notes"].fillna("").astype(str).str.strip()
+        display.loc[aged_out, "notes"] = (existing[aged_out] + " | " + old_note[aged_out]).str.lstrip(" |")
+        display.loc[aged_out, "weight"] = 0.0
         display["date"] = display["date"].dt.strftime("%Y-%m-%d")
         display["margin_r"] = display["margin_r"].round(1)
-        display["weight"] = display["weight"]
         st.dataframe(
             display[["date", "pollster", "sample_type", "dem_pct", "rep_pct",
                      "margin_r", "sample_size", "weight", "notes"]],
@@ -760,7 +766,7 @@ with tab_home:
                 "rep_pct":     st.column_config.NumberColumn("Rep %", format="%.1f"),
                 "margin_r":    st.column_config.NumberColumn("Margin (R+)", format="%+.1f"),
                 "sample_size": st.column_config.NumberColumn("N", format="%d"),
-                "weight":      st.column_config.NumberColumn("Weight", format="%.1f", width="small"),
+                "weight":      st.column_config.NumberColumn("Weight", format="%.2f", width="small"),
                 "notes":       st.column_config.TextColumn("Notes"),
             },
             height=250,
