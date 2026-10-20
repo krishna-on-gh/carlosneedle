@@ -3,13 +3,13 @@ AK-Sen,Senate,AK,,13.1,,-9.65,R,0,-1.5,-6.6,0.5,1,2026-09-15,Former Rep. Mary Pe
 GA-Sen,Senate,GA,,2.3,5.2,-9.65,D,0,-2.5,0,-0.5,1,2026-09-09,Incumbent Senator Jon Ossoff Up against likely Mike Collins
 IA-Sen,Senate,IA,,13.2,,-9.65,Open - R,0,0,0,0.5,1,2026-08-03,"Rep. Ashley Hinson up against likely Josh Turek (D). Open Iowa seat in a blue wave, could get interesting"
 ME-Sen,Senate,ME,,-6.9,-12,-3.86,R,-1.5,12.5,0,0.5,1,2026-09-15,"Sen. Susan Collins up against Graham Platner (D), he has a lot of scandals so this could be an election to look out for"
-MI-Sen,Senate,MI,,1.4,1.2,-9.65,Open - D,0,0,0,2,1,2026-09-20,"Competitive Primary for Dems, 2024 loser Mike Rogers is R nominee. Could be really competitive"
+MI-Sen,Senate,MI,,1.4,1.2,-9.65,Open - D,0,0,0,0.5,1,2026-09-20,"Competitive Primary for Dems, 2024 loser Mike Rogers is R nominee. Could be really competitive"
 MN-Sen,Senate,MN,,-4.2,-0.9,-3.86,Open - D,1.5,0,0,0,1,2026-09-16,"Lt. Gov Peggy Flanagan vs. Some R, no idea who but it won't matter. Accounting for unpopular Walz admin and fraud scandal in this race"
 NE-Sen,Senate,NE,,20.4,27,-9.65,R,0,2.8,-10,0.5,1,2026-08-26,"Former Gov. and Current Sen. Pete Ricketts vs. Dan Osborn. Osborn is an indie and ran a super strong campaign in 2024, he has a massive candidate quality boost"
 NH-Sen,Senate,NH,,-2.7,,-3.86,Open - D,0,0,1.5,0.5,1,2026-09-09,Former Sen. John Sununu (R) vs. Rep. Chris Pappas
 NC-Sen,Senate,NC,,3.3,,-9.65,Open - R,0,0,-1.5,-0.5,1,2026-09-09,Former Gov. Roy Cooper (D) vs. Michael Whatley. Cooper is a super strong recruit for Dems
 OH-Sen,Senate,OH,,11.1,,-9.65,R,0,0,-2.1,0.5,1,2026-09-20,"Former Lt. Gov, current Sen. Jon Husted (R) vs. Former Sen. Sherrod Brown. This will be interesting. For Sherrod, subtracted his last WAR of 4.6 by 2.5"
-TX-Sen,Senate,TX,,13.6,,-9.65,Open - R,-3,0,0,0,1,2026-09-09,AG Ken Paxton (R) vs. James Talarico. Paxton has a lot of scandals...
+TX-Sen,Senate,TX,,13.6,,-9.65,Open - R,-3,0,0,0,1,2026-09-09,AG Ken Paxton (R) vs. James Talarico. Paxton has a lot of scandals... No amount of adspend erases that
 CO-Sen,Senate,CO,,-11,-12,-3.86,D,0,-0.8,0,-3.5,2,2026-05-28,Former Gov. and current Sen. John Hickenlooper (D) vs. whatever political sacrificial lamb that the GOP puts up against him
 FL-Sen,Senate,FL,,13.1,14,-9.65,R,0,0,0,3.5,2,2026-09-20,Former AG and current Sen. Ashley Moody up against probably some resister grifter Dem. Yet again a sacrificial lamb put up against Rs in FL.
 MT-Sen,Senate,MT,,19.9,19,-9.65,Open - R,0,0,22.425,0.5,2,2026-09-20,"Open seat after Steve Daines just decided to not file for re-election last minute. Dem nominee refusing to dropout for Bodnar, Alme cruises to election"
@@ -20,10 +20,10 @@ AR-Sen,Senate,AR,,30.6,,-9.65,R,0,0,0,3.5,3,2026-05-28,
 DE-Sen,Senate,DE,,-14.7,,-3.86,D,0,-3,0,-3.5,3,2026-05-28,
 ID-Sen,Senate,ID,,36.3,,-9.65,R,0,-5.1,0,0.5,3,2026-09-20,
 IL-Sen,Senate,IL,,-10.9,,-3.86,Open - D,0,0,-1.5,-3.5,3,2026-05-28,Lt. Gov Juliana Stratton running
-KS-Sen,Senate,KS,,16,,-9.65,R,0,-5.9,0,-0.5,3,2026-09-20,We love the Plains states don't we. Personally don't agree that KS flips but the numbers on the other hand...
+KS-Sen,Senate,KS,,16,,-9.65,R,0,-5.9,0,0.5,3,2026-09-20,We love the Plains states don't we. Personally don't agree that KS flips but the numbers on the other hand...
 KY-Sen,Senate,KY,,30.5,,-9.65,Open - R,0,0,0,2,3,2026-09-20,
 LA-Sen,Senate,LA,,22,,-9.65,Open - R,0,0,0,3.5,3,2026-09-20,
-MA-Sen,Senate,MA,,-25.2,-33,-3.86,D,0,2,0,-2,3,2026-09-20,
+MA-Sen,Senate,MA,,-25.2,-33,-3.86,D,0,2,10.8,-2,3,2026-09-20,
 MS-Sen,Senate,MS,,22.8,,-9.65,R,0,-9.5,0,0.5,3,2026-09-20,
 NJ-Sen,Senate,NJ,,-5.9,,-3.86,D,0,0.9,0,-3.5,3,2026-09-20,
 NM-Sen,Senate,NM,,-6,,-3.86,D,0,-2.5,0,-3.5,3,2026-09-20,Unopposed
@@ -41,7 +41,7 @@ IA-Gov,Governor,IA,,13.2,,-9.65,Open - R,0,0,-4,-0.5,1,2026-09-15,
 MI-Gov,Governor,MI,,1.4,,-9.65,Open - D,0,0,-1.5,-2,1,2026-09-15,
 NV-Gov,Governor,NV,,1.51,,-9.65,R,0,4,-1.5,3.5,1,2026-09-10,
 NH-Gov,Governor,NH,,9.34,,-9.65,R,0,4,0,3.5,1,2026-05-30,
-OH-Gov,Governor,OH,,11.1,,-9.65,Open - R,0,0,0,2,1,2026-09-15,
+OH-Gov,Governor,OH,,11.1,,-9.65,Open - R,-1.5,0,0,2,1,2026-09-15,Vivek releasing an ad with Amy Acton's estranged mom and getting bipartisan condemnation. Really dude?
 PA-Gov,Governor,PA,,-14.78,,-9.65,D,0,-2.5,1.5,0,1,2026-05-30,
 TX-Gov,Governor,TX,,10.9,,-9.65,R,0,2.5,0,0,1,2026-05-30,
 WI-Gov,Governor,WI,,0.9,,-9.65,Open - D,0,0,0,0.5,1,2026-09-15,
@@ -73,33 +73,33 @@ WY-Gov,Governor,WY,,45.8,,-9.65,Open - R,0,0,0,0,3,2026-06-01,
 AK-01,House,AK,01,13.1,,-9.65,R,0,2.5,0,3.5,1,2026-06-06,2.5 = standard incumbency boost for an R that beat a Dem in their previous election
 AZ-01,House,AZ,01,3.1,,-9.65,R,0,0,0,0.5,1,2026-09-16,
 AZ-02,House,AZ,02,15,,-9.65,R,0,-8.5,0,3.5,1,2026-09-16,
-AZ-06,House,AZ,06,0.7,,-9.65,R,0,-3.7,0,-0.5,1,2026-09-16,
+AZ-06,House,AZ,06,0.7,,-9.65,R,0,-3.7,0,-0.5,1,2026-10-20,According to AdImpact
 CA-01,House,CA,01,-12.2,,-3.86,Open - R,0,2.5,0,-0.5,1,2026-08-03,
 CA-06,House,CA,06,-8.4,,-3.86,Open - R,0,2.1,0,0.5,1,2026-08-03,
 CA-13,House,CA,13,-0.5,,-3.86,D,0,-5.2,0,-0.5,1,2026-08-03,
-CA-22,House,CA,22,1.8,,-9.65,R,0,2.2,0,-0.5,1,2026-08-03,
+CA-22,House,CA,22,1.8,,-9.65,R,0,2.2,0,-0.5,1,2026-10-20,According to AdImpact
 CA-45,House,CA,45,-3.9,,-3.86,D,0,-2.5,0,-3.5,1,2026-08-03,
 CA-48,House,CA,48,-3.4,,-3.86,Open - R,0,0,0,-0.5,1,2026-08-03,
 CO-03,House,CO,03,9.7,,-9.65,R,0,2.6,0,2,1,2026-08-03,
 CO-04,House,CO,04,18.3,,-9.65,R,-1.5,-9.2,0,-3.5,1,2026-08-03,
 CO-05,House,CO,05,9.1,,-9.65,R,0,2.6,0,-0.5,1,2026-08-03,
-CO-08,House,CO,08,1.9,,-9.65,R,0,2.5,0,-2,1,2026-08-03,
+CO-08,House,CO,08,1.9,,-9.65,R,0,2.5,0,0.5,1,2026-10-20,According to AdImpact
 FL-07,House,FL,07,12.4,,-9.65,R,-1.5,-3.4,0,0,1,2026-06-06,
 FL-09,House,FL,09,17.7,,-9.65,D,0,-5.3,0,0,1,2026-06-06,
 FL-13,House,FL,13,13.2,,-9.65,R,0,-6.1,0,0,1,2026-06-06,
-FL-14,House,FL,14,10.5,,-9.65,D,0,-4.3,0,0,1,2026-06-06,
-FL-22,House,FL,22,10.5,,-9.65,Open,0,0,0,0,1,2026-06-06,
-FL-25,House,FL,25,9.2,,-9.65,D,0,1.3,0,0,1,2026-06-06,
+FL-14,House,FL,14,10.5,,-9.65,D,0,-4.3,0,0.5,1,2026-10-20,According to AdImpact
+FL-22,House,FL,22,10.5,,-9.65,Open,0,0,0,-3.5,1,2026-10-20,According to AdImpact
+FL-25,House,FL,25,9.2,,-9.65,D,0,1.3,0,0.5,1,2026-10-20,According to AdImpact
 FL-27,House,FL,27,14.5,,-9.65,R,0,3,0,0,1,2026-06-06,
 IA-01,House,IA,01,8.4,,-9.65,R,0,-11.3,0,0.5,1,2026-08-03,
-IA-02,House,IA,02,9.9,,-9.65,Open - R,0,0,0,0.5,1,2026-08-03,
+IA-02,House,IA,02,9.9,,-9.65,Open - R,0,0,0,-0.5,1,2026-10-20,According to AdImpact
 IA-03,House,IA,03,4.4,,-9.65,R,0,-4.6,0,-0.5,1,2026-08-03,
 LA-06,House,LA,06,31.83,,-9.65,Open - D,0,0,0,0,1,2026-08-03,
 ME-02,House,ME,02,9.04,,-9.65,Open - D,0,0,1.5,-0.5,1,2026-08-03,
-MI-04,House,MI,04,5.52,,-9.65,R,0,2,0,0,1,2026-06-06,
-MI-07,House,MI,07,1.3,,-9.65,R,3,1.4,0,0,1,2026-06-06,
+MI-04,House,MI,04,5.52,,-9.65,R,0,2,0,0.5,1,2026-10-20,According to AdImpact
+MI-07,House,MI,07,1.3,,-9.65,R,3,1.4,0,0.5,1,2026-10-20,According to AdImpact
 MI-08,House,MI,08,1.98,,-9.65,D,0,-8.6,0,0,1,2026-06-06,
-MI-10,House,MI,10,6.55,,-9.65,Open - R,0,0,0,0,1,2026-08-03,
+MI-10,House,MI,10,6.55,,-9.65,Open - R,0,0,0,0.5,1,2026-10-20,According to AdImpact
 MN-01,House,MN,01,12,,-9.65,R,0,1.1,0,0,1,2026-06-06,
 MN-08,House,MN,08,14.2,,-9.65,R,0,-0.9,0,0,1,2026-06-06,
 MO-02,House,MO,02,7.95,,-9.65,R,0,-2,0,0,1,2026-06-06,
@@ -122,42 +122,42 @@ NY-02,House,NY,02,13.9,,-9.65,R,0,3.7,0,3.5,1,2026-08-03,
 NY-03,House,NY,03,4.3,,-9.65,D,0,-1.9,0,-0.5,1,2026-08-03,
 NY-04,House,NY,04,-1.2,,-3.86,D,0,-2.5,0,-3.5,1,2026-08-03,
 NY-11,House,NY,11,24.4,,-9.65,R,0,2.6,0,3.5,1,2026-08-03,
-NY-17,House,NY,17,-0.6,,-3.86,R,0,3.8,0,-0.5,1,2026-08-03,
+NY-17,House,NY,17,-0.6,,-3.86,R,0,3.8,0,0.5,1,2026-10-20,According to AdImpact
 NY-18,House,NY,18,-3.3,,-3.86,D,0,-8.1,0,-3.5,1,2026-08-03,
 NY-19,House,NY,19,-1.7,,-3.86,D,0,-4.1,0,-2,1,2026-08-03,
 NY-21,House,NY,21,20.7,,-9.65,Open,0,0,0,2,1,2026-08-03,
-NC-01,House,NC,01,11.6,,-9.65,D,0,-2.6,0,0.5,1,2026-08-03,
-NC-11,House,NC,11,9.5,,-9.65,R,-1.5,0,0,-0.5,1,2026-08-03,
+NC-01,House,NC,01,11.6,,-9.65,D,0,-2.6,0,-0.5,1,2026-10-20,According to AdImpact
+NC-11,House,NC,11,9.5,,-9.65,R,-1.5,0,0,-0.5,1,2026-10-20,According to AdImpact
 OH-01,House,OH,01,2.6,,-9.65,D,0,-1.7,0,-0.5,1,2026-08-03,
-OH-07,House,OH,07,11,,-9.65,R,-3,0,0,0,1,2026-08-03,
-OH-09,House,OH,09,10.6,,-9.65,D,0,-4.8,0,-0.5,1,2026-08-03,
-OH-10,House,OH,10,7.8,,-9.65,R,0,8.7,0,2,1,2026-08-03,
+OH-07,House,OH,07,11,,-9.65,R,-3,0,0,-0.5,1,2026-10-20,According to AdImpact
+OH-09,House,OH,09,10.6,,-9.65,D,0,-4.8,0,0.5,1,2026-08-03,
+OH-10,House,OH,10,7.8,,-9.65,R,0,8.7,0,2,1,2026-10-20,According to AdImpact
 OH-13,House,OH,13,-3.3,,-3.86,D,0,-0.6,0,-3.5,1,2026-08-03,
 OH-15,House,OH,15,10,,-9.65,R,0,-1.3,0,3.5,1,2026-08-03,
 OR-05,House,OR,05,-8.66,,-3.86,D,0,-2.5,0,-3.5,1,2026-08-03,
 PA-01,House,PA,01,-0.32,,-3.86,R,0,8.8,0,3.5,1,2026-08-03,
 PA-07,House,PA,07,3.21,,-9.65,R,0,2.5,0,0.5,1,2026-06-06,
-PA-08,House,PA,08,7.5,,-9.65,R,-1.5,0,0,2,1,2026-06-06,
+PA-08,House,PA,08,7.5,,-9.65,R,-1.5,0,0,-0.5,1,2026-10-20,According to AdImpact
 PA-10,House,PA,10,5.23,,-9.65,R,0,-8.8,0,0.5,1,2026-06-06,
 SC-01,House,SC,01,13.1,,-9.65,Open - R,0,0,0,-3.5,1,2026-08-03,
 TN-09,House,TN,09,21.1,,-9.65,Open - D,0,0,0,0,1,2026-08-03,
 TX-09,House,TX,09,19.9,,-9.65,Open - D,0,0,0,3.5,1,2026-08-03,
-TX-15,House,TX,15,17.9,,-9.65,R,0,-5.6,0,0.5,1,2026-08-03,
+TX-15,House,TX,15,17.9,,-9.65,R,0,-5.6,0,-0.5,1,2026-10-20,According to AdImpact
 TX-23,House,TX,23,14.8,,-9.65,Open - R,-3,0,0,0,1,2026-08-03,
 TX-24,House,TX,24,16.1,,-9.65,R,0,0,0,3.5,1,2026-08-03,
 TX-28,House,TX,28,10.4,,-9.65,D,0,-8.3,0,-0.5,1,2026-08-03,
 TX-32,House,TX,32,17.7,,-9.65,Open - D,0,0,0,3.5,1,2026-08-03,
-TX-34,House,TX,34,10.1,,-9.65,D,0,-1.3,0,0.5,1,2026-08-03,
+TX-34,House,TX,34,10.1,,-9.65,D,0,-1.3,0,-0.5,1,2026-10-20,According to AdImpact
 TX-35,House,TX,35,10.4,,-9.65,Open - D,0,0,0,0.5,1,2026-08-03,
 UT-01,House,UT,01,-23.7,,-3.86,Open - R,0,0,0,-3.5,1,2026-08-03,
-VA-01,House,VA,01,4.9,,-9.65,R,0,0.7,0,0,1,2026-06-06,
-VA-02,House,VA,02,0.2,,-9.65,R,0,-1.1,0,0,1,2026-06-06,
+VA-01,House,VA,01,4.9,,-9.65,R,0,0.7,0,-0.5,1,2026-10-20,According to AdImpact
+VA-02,House,VA,02,0.2,,-9.65,R,0,-1.1,0,0.5,1,2026-10-20,According to AdImpact
 VA-05,House,VA,05,12.2,,-9.65,R,0,1.8,0,0,1,2026-06-06,
 VA-07,House,VA,07,-2.9,,-3.86,D,0,-1.2,0,0,1,2026-06-06,
 WA-03,House,WA,03,3.3,,-9.65,D,0,-6,0,0,1,2026-06-06,
 WA-05,House,WA,05,10.7,,-9.65,R,0,8.9,0,0,1,2026-06-06,
 WI-01,House,WI,01,4.5,,-9.65,R,0,1.8,0,3.5,1,2026-06-06,
-WI-03,House,WI,03,7.3,,-9.65,R,0,-7.3,0,-2,1,2026-06-06,
+WI-03,House,WI,03,7.3,,-9.65,R,0,-7.3,0,-0.5,1,2026-10-20,According to AdImpact
 WI-08,House,WI,08,16.2,,-9.65,R,0,-2.8,0,3.5,1,2026-06-06,
 AZ-03,House,AZ,03,-39.8,,-3.86,D,0,-2.9,0,0.5,2,2026-09-16,
 AZ-04,House,AZ,04,-6.6,,-3.86,D,0,1.7,0,-3.5,2,2026-09-16,
