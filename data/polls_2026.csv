@@ -75,3 +75,6 @@ date,pollster,sample_type,dem_pct,rep_pct,sample_size,notes,white_d,white_r,lati
 10/20/2026,Ipsos,RV,47,35,1279,,,,,,,,,
 10/20/2026,Morning Consult,LV,50,43,17706,,,,,,,,,
 10/20/2026,Ipsos,LV,52,44,2032,,,,,,,,,
+10/21/2026,NBC News,RV,55,45,"19,135",,,,,,,,,
+10/21/2026,New York Times/Siena,LV,52,41,"3,494",,,,,,,,,
+10/21/2026,CNN,RV,49,39,1206,,,,,,,,,
