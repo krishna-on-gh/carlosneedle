@@ -78,3 +78,5 @@ date,pollster,sample_type,dem_pct,rep_pct,sample_size,notes,white_d,white_r,lati
 10/21/2026,NBC News,RV,55,45,"19,135",,,,,,,,,
 10/21/2026,New York Times/Siena,LV,52,41,"3,494",,,,,,,,,
 10/21/2026,CNN,RV,49,39,1206,,,,,,,,,
+10/25/2026,Economist/YouGov,LV,52,43,1179,,,,,,,,,
+10/25/2026,CBS/YouGov,LV,53,45,1971,,,,,,,,,
