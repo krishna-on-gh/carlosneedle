@@ -82,3 +82,7 @@ date,pollster,sample_type,dem_pct,rep_pct,sample_size,notes,white_d,white_r,lati
 10/25/2026,CBS/YouGov,LV,53,45,1971,,,,,,,,,
 10/25/2026,Strength in Numbers/Verasight,RV,52,41,1824,,,,,,,,,
 10/25/2026,Strength in Numbers/Verasight,LV,54,42,1824,,,,,,,,,
+10/27/2026,Reuters/Ipsos,LV,53,44,1164,,,,,,,,,
+10/27/2026,NPR/PBS/Marist,LV,52,44,1289,Sample size not mentioned,,,,,,,,
+10/27/2026,NPR/PBS/Marist,RV,52,42,1289,,,,,,,,,
+10/27/2026,Economist/YouGov,LV,52,41,1123,,,,,,,,,
