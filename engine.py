@@ -37,6 +37,9 @@ OFFICE_SETTINGS = {
     "State Senate": {"swing_unc": 4.0, "qual_base": 1.5, "blend": True},
 }
 
+# Races that blend Pres + SHAVE even though their office normally doesn't.
+BLEND_RACE_EXCEPTIONS = {"VT-Gov"}
+
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 def _to_float(x, default=0.0):
@@ -68,7 +71,8 @@ def _baseline_and_unc(row, settings):
         return None, None, "MISSING_PRES"
 
     pres = float(pres)
-    if settings["blend"] and not _is_blank(shave):
+    use_blend = settings["blend"] or row.get("race_id") in BLEND_RACE_EXCEPTIONS
+    if use_blend and not _is_blank(shave):
         shave = float(shave)
         baseline = 0.5 * pres + 0.5 * shave
         disagreement = abs(pres - shave)
