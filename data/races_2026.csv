@@ -41,7 +41,7 @@ IA-Gov,Governor,IA,,13.2,,-9.65,Open - R,-1.5,0,-4,-0.5,1,2026-11-03,Lahn was at
 MI-Gov,Governor,MI,,1.4,,-9.65,Open - D,0,0,-1.5,-0.5,1,2026-11-03,
 NV-Gov,Governor,NV,,1.51,,-9.65,R,0,4,-1.5,0.5,1,2026-11-03,
 NH-Gov,Governor,NH,,9.34,,-9.65,R,0,4,0,3.5,1,2026-11-03,
-OH-Gov,Governor,OH,,11.1,,-9.65,Open - R,-1.5,0,0,2,1,2026-11-03,Vivek releasing an ad with Amy Acton's estranged mom and getting bipartisan condemnation. Really dude?
+OH-Gov,Governor,OH,,11.1,,-9.65,Open - R,-3,0,0,2,1,2026-11-03,Vivek releasing an ad with Amy Acton's estranged mom and getting bipartisan condemnation. Really dude?
 PA-Gov,Governor,PA,,-14.78,,-9.65,D,0,-2.5,1.5,0,1,2026-11-03,
 TX-Gov,Governor,TX,,10.9,,-9.65,R,0,2.5,0,3.5,1,2026-11-03,
 WI-Gov,Governor,WI,,0.9,,-9.65,Open - D,0,0,0,0.5,1,2026-11-03,
@@ -68,7 +68,7 @@ RI-Gov,Governor,RI,,-19.06,,-9.65,Open - D,0,0,0,0,3,2026-11-03,
 SC-Gov,Governor,SC,,17.8,,-9.65,Open - R,0,0,0,0,3,2026-11-03,
 SD-Gov,Governor,SD,,29.2,,-9.65,Open - R,0,0,0,0,3,2026-11-03,
 TN-Gov,Governor,TN,,29.6,,-9.65,Open - R,0,0,0,0,3,2026-11-03,
-VT-Gov,Governor,VT,,51.6,,-9.65,R,0,4,0,0,3,2026-11-03,
+VT-Gov,Governor,VT,,51.6,-30.61,-9.65,R,0,4,0,0,3,2026-11-03,
 WY-Gov,Governor,WY,,45.8,,-9.65,Open - R,0,0,0,0,3,2026-11-03,
 AK-01,House,AK,01,13.1,,-9.65,R,0,2.5,0,3.5,1,2026-06-06,2.5 = standard incumbency boost for an R that beat a Dem in their previous election
 AZ-01,House,AZ,01,3.1,,-9.65,R,0,0,0,0.5,1,2026-11-03,
