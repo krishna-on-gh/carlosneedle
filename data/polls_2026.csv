@@ -87,3 +87,6 @@ date,pollster,sample_type,dem_pct,rep_pct,sample_size,notes,white_d,white_r,lati
 10/27/2026,NPR/PBS/Marist,RV,52,42,1289,,,,,,,,,
 10/27/2026,Economist/YouGov,LV,52,41,1123,,,,,,,,,
 11/2/2026,AtlasIntel,RV,55.5,41.4,3566,,,,,,,,,
+11/3/2026,YouGov,LV,53,44,3915,,,,,,,,,
+11/3/2026,Reuters/Ipsos,LV,52,44,1212,,,,,,,,,
+11/3/2026,Morning Consult,RV,51,43,2200,,,,,,,,,
