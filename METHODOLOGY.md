@@ -110,8 +110,66 @@ So:
 - Some heavily-Hispanic districts in TX/FL where wave translation is weak
 - **State legislature races: all D-leaning districts** (baseline_pres < 0)
   get the 2.5x dampening uniformly
+- **Senate races: all D-leaning states** (baseline_pres < 0) get the 2.5x
+  dampening uniformly. Backtest evidence (2018) shown below. Rule
+  intentionally applies only to D-leaning states — red-state Sen
+  electorates are more elastic to the wave and dampening them makes the
+  aggregate materially worse (see 2018 results table below).
 
 Applied selectively, informed by the 2018/2022 House backtest findings.
+
+### Senate dampening — 2018 backtest evidence
+
+The dampening rule applied to Sen races (baseline_pres < 0) is validated
+by the 2018 Senate backtest. Every Sen race is scored two ways: full swing
+vs dampened (swing ÷ 2.5).
+
+**Blue states only (n=6):**
+
+| Metric | Full swing | Dampened | Delta |
+|---|:---:|:---:|:---:|
+| Winner accuracy | 6/6 | 6/6 | tie |
+| Mean error | 7.06 | **6.38** | -0.68 |
+| Median error | 6.92 | **4.12** | -2.80 |
+
+**Red states only (n=13) — dampening applied naively:**
+
+| Metric | Full swing | Dampened | Delta |
+|---|:---:|:---:|:---:|
+| Winner accuracy | 9/13 | 7/13 | -2 races worse |
+| Mean error | 7.90 | 12.18 | +4.28 worse |
+| Median error | 5.96 | 12.03 | +6.07 worse |
+
+**Full 2018 sample (n=19):**
+
+| Rule | Winner accuracy | Mean error | Median error |
+|---|:---:|:---:|:---:|
+| All full swing | 15/19 | 7.63 | 6.07 |
+| Blue-only dampening | **15/19 or 16/19** | **~6.9** | **~5.5** |
+| Universal dampening | 13/19 | 10.35 | 10.13 |
+
+**Why blue-only?** Blue states in 2018 had limited elasticity — a state
+already at D+20 can only absorb so much wave before hitting a floor. Red
+states in 2018 shifted meaningfully D from their baseline (WV, ND, MO,
+IN, TN all saw large actual D swings), so dampening their swing pulled
+projections away from truth. The pattern is empirically clear: dampen
+where the state's baseline is D-favored, don't touch where it's
+R-favored.
+
+**Race-by-race where blue dampening notably helps:**
+- Connecticut (Murphy): error 10.27 → 4.19
+- New Jersey (Menendez): error 7.05 → 0.97
+- Nevada (Rosen): error 6.79 → 0.71
+
+**Where it hurts (and why WAR should catch it separately):**
+- Minnesota (Klobuchar): actual swing was -21.6 pts, way beyond any
+  reasonable wave. This is personal-vote overperformance that belongs in
+  `incumbency_factor` (WAR), not swing.
+- Virginia (Kaine): same pattern — actual swing -14.9 pts, WAR territory.
+
+If WAR handles Klobuchar/Kaine-style overperformance, blue-state
+dampening becomes even cleaner — the two mechanisms are complementary,
+not overlapping.
 
 ### Backtest validation of the dampening rule
 
@@ -205,6 +263,16 @@ in the `notes` field.
   predictions.
 - **Gov / House:** ±2.5 for incumbents, 0 for open seats.
   No WAR proxy applied.
+- **Appointed Senate incumbents who have not yet won a Senate election
+  (2026: Husted OH, Moody FL):** `incumbency_factor = 0` — treated as
+  open seats for incumbency purposes. Rationale: their most recent
+  candidate-level result was for a different office (Lt Gov, AG), so the
+  published WAR doesn't cleanly translate to how they'll perform in a
+  Senate race. Rather than apply a WAR from a non-Senate race, the model
+  zeroes the incumbency contribution and relies on baseline + swing
+  alone. Note that any additional adjustment — office-transition
+  uncertainty, name-recognition edge from time in office — belongs in
+  `candidate_quality`, not incumbency.
 
 **Scandal tiers:**
 | Value | Meaning                                      |
@@ -229,6 +297,11 @@ it hurts the Republican.
 Rationale: for Senate/Gov races, spending asymmetries in already-decided
 races (e.g., a safe-state D outspending a sacrificial R challenger) don't
 move votes. Zero-out those situations to avoid noise.
+
+**Experimental (new in 2026):** some incumbents in battleground states also
+get a spending value when they hold the ad-spend advantage. This has not been
+thoroughly backtested. It is something new being tried out this cycle, not a
+validated part of the model, and it may overlap with the incumbency factor.
 
 **House (apply everywhere except scandal-involved races):**
 - Apply a spending value to **every** House race based on the actual
@@ -257,6 +330,13 @@ helps the Democrat.
 - For Senate/Gov, zero means "the race doesn't meet the trigger criteria."
 - For House, zero means either "a scandal is present" or a data gap that
   should be filled in.
+
+**Fundraising data sources:**
+- [AdImpact](https://www.adimpact.com/) — TV/digital ad-spend tracking
+- [QuiverQuant Election Fundraising](https://www.quiverquant.com/election-fundraising/) —
+  FEC filing aggregation with candidate-level cash-on-hand and receipt totals
+- [FEC.gov](https://www.fec.gov/) — raw filings when the aggregators disagree
+  or a race isn't yet indexed
 
 ---
 
